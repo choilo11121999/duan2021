@@ -1,0 +1,63 @@
+/* footer-brand-slide */
+.footer-brand-slide {
+  height: 80px;
+  border-bottom: 2px solid #222;
+  border-top: 2px solid #222;
+  padding: 0 100px;
+}
+
+.footer-brand-slide img {
+  width: 100px;
+  height: 70px;
+}
+
+/* footer-policy */
+.footer-policy {
+  padding: 20px 100px;
+  border-bottom: 2px solid #222;
+}
+
+.footer-policy ul, 
+.footer-policy ul li {
+  margin: 0;
+  padding: 0;
+}
+.footer-policy ul li {
+  list-style-type: none;
+}
+
+.footer-policy .cgv-premission{
+  background: url(./../img/cong-thuong.PNG) no-repeat scroll top left transparent;
+  width: 200px;
+  height: 70px;
+}
+
+/* .footer-address */
+.footer-address {
+  padding: 20px 100px;
+}
+
+.footer-address  h3,
+.footer-policy h3 {
+  font-size: 18px;
+}
+
+.footer-address  p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.footer-address 
+.logo-cgv {
+  background-image: url(./../img/logo-cj-cgv.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* .bg-footer */
+.bg-footer {
+  background-image: url(./../img/bg-bottom-footer.jpg);
+  background-repeat: repeat-x;
+  background-size: contain;
+}
