@@ -13,6 +13,7 @@ const Register = () => {
   const [emailErr, setEmailErr] = useState(false);
   const [passworErr, setPasswordErr] = useState(false);
   const [passworConfirmationErr, setPasswordConfirmationErr] = useState(false);
+  const [msgErr, setMsgErr] = useState('');
 
   useEffect(() => {
     validate();
@@ -54,7 +55,6 @@ const Register = () => {
     password,
     password_confirmation,
   };
-  let ErrNamemsg, ErrEmailmsg;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -62,21 +62,29 @@ const Register = () => {
     axios
       .post("/api/auth/signup", data)
       .then((res) => {
+        console.log(res);
         setStatus(1);
       })
       .catch((err) => {
         setStatus(err.response.status);
+        setMsgErr(err.response.data.message);
       });
   };
+
+  let Errmsg;
+
   if (status === 1) {
     return <Redirect to={"/user/login"} />;
-  } else if (status === 400) {
-    ErrEmailmsg = "Email đã tồn tại";
-  } else if (status === 500) {
-    ErrNamemsg = "Tên người dùng đã tồn tại";
+  } else if (status === 400 && msgErr === 'ER002') {
+    Errmsg = "Email đã tồn tại";
+  } else if (status === 400 && msgErr === 'ER003') {
+    Errmsg = "Tên người dùng đã tồn tại";
+  } else if (status === 401) {
+    Errmsg = "Email không khả dụng"
+  } else if (status === 423) {
+    Errmsg = "Tài khoản đã bị khóa"
   } else {
-    ErrEmailmsg = "";
-    ErrNamemsg = "";
+    Errmsg = "";
   }
 
   return (
@@ -178,10 +186,7 @@ const Register = () => {
           </div>
           <div className="form-group my-2">
             <p className="err mb-1 text-center" style={{ color: "red" }}>
-              {ErrEmailmsg}
-            </p>
-            <p className="err mb-1 text-center" style={{ color: "red" }}>
-              {ErrNamemsg}
+              {Errmsg}
             </p>
             <button type="submit" className="btn btn-danger btn-block btn-lg">
               Đăng ký
