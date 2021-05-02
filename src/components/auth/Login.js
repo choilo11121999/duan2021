@@ -1,73 +1,48 @@
-import './../../css/Login.css';
-import { Link, Redirect } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import "./../../css/Login.css";
+import { Link, Redirect } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
 
 const Login = ({ setUserLogin }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [islogin, setIslogin] = useState(false);
-  const [emailErr, setEmailErr] = useState(false);
-  const [passworErr, setPasswordErr] = useState(false);
-  let msgEmailErr, msgPasswordErr;
+  const [status, setStatus] = useState(false);
+  let msgErr;
 
-  useEffect(() => {
-    validate();
-    console.log(email);
-  }, [email, password]);
-
-  const validatEmail = new RegExp(
-    '^[a-zA-Z0-9_]+@gmail+.[a-z]+$'
-  );
-
-  const validPassword = new RegExp('^[a-zA-Z0-9_.]{4,}$');
-
-  const validate =() => {
-    if(email != '' && !validatEmail.test(email)) {
-      setEmailErr(true);
-    } else {
-      setEmailErr(false);
-    }
-    if(password != '' && !validPassword.test(password)) {
-      setPasswordErr(true);
-    } else {
-      setPasswordErr(false)
-    }
-  };
-  
   const data = {
     email,
-    password
+    password,
   };
-  const handleSubmit =(e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    axios.post('/api/auth/login', data)
-      .then(
-        res => {
-          console.log("login success");
-          localStorage.setItem('token', res.data.data.access_token);
-          setIslogin(true);
-          setUserLogin(res.data.data.user);
-        }
-      )
-      .catch(
-        err => {
-          console.log(err);
-        }
-      );
+    axios
+      .post("/api/auth/login", data)
+      .then((res) => {
+        console.log("login success");
+        localStorage.setItem("token", res.data.data.access_token);
+        setIslogin(true);
+        setUserLogin(res.data.data.user);
+      })
+      .catch((err) => {
+        setStatus(true);
+      });
   };
 
-  if(islogin) {
-    return <Redirect to={'/'} />;
+  if (islogin) {
+    return <Redirect to={"/"} />;
+  }
+  if (status) {
+    msgErr = "Nhập sai email hoặc password!";
+  } else {
+    msgErr = "";
   }
 
   return (
     <div className="login">
       <div className="login-header">
-        <h2 className="text-center w-100 font-weight-bold">
-          Đăng Nhập
-        </h2>
+        <h2 className="text-center w-100 font-weight-bold">Đăng Nhập</h2>
       </div>
       <div className="login-body my-3">
         <form onSubmit={handleSubmit}>
@@ -79,9 +54,8 @@ const Login = ({ setUserLogin }) => {
               required="required"
               onChange={(e) => setEmail(e.target.value)}
             />
-            {emailErr ? <p style={{color: 'red'}}>Email của bạn không đúng định dạng</p> : ''}
           </div>
-          <div className="form-group my-4">
+          <div className="form-group my-2">
             <input
               type="password"
               className="form-control"
@@ -89,14 +63,14 @@ const Login = ({ setUserLogin }) => {
               required="required"
               onChange={(e) => setPassword(e.target.value)}
             />
-            {passworErr ? <p style={{color: 'red'}}>Mật khẩu của bạn không đúng định dạng</p> : ''}
           </div>
+          <p className="mb-0 ml-4 text-center" style={{ color: "red" }}>
+            {msgErr}
+          </p>
           <div className="form-group my-4">
-            <input
-              type="submit"
-              className="btn btn-danger btn-block btn-lg"
-              value="Đăng nhập"
-            />
+            <button type="submit" className="btn btn-danger btn-block btn-lg">
+              Đăng nhập
+            </button>
           </div>
         </form>
       </div>

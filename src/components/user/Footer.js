@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./../../css/Footer.css";
 import logo4dx from "./../../img/logo-4dx.png";
 import logoimax from "./../../img/logo-imax.png";
@@ -9,24 +10,24 @@ const Footer = () => {
     <div className="footer">
       <div className="footer-brand-slide row align-items-center">
         <div className="col">
-          <a href="#">
+          <Link to='4dx' >
             <img src={logo4dx} />
-          </a>
+          </Link>
         </div>
         <div className="col">
-          <a href="#">
+          <Link to='imax'>
             <img src={logoimax} />
-          </a>
+          </Link>
         </div>
         <div className="col">
-          <a href="#">
+          <Link to='screenx'>
             <img src={logoscreenx} />
-          </a>
+          </Link>
         </div>
         <div className="col">
-          <a href="#">
+          <Link to='starium'>
             <img src={logostarium} />
-          </a>
+          </Link>
         </div>
       </div>
       <div className="footer-policy row">
