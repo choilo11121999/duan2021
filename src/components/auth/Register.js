@@ -70,7 +70,7 @@ const Register = () => {
   };
   if (status === 1) {
     return <Redirect to={"/user/login"} />;
-  } else if (status === 422) {
+  } else if (status === 400) {
     ErrEmailmsg = "Email đã tồn tại";
   } else if (status === 500) {
     ErrNamemsg = "Tên người dùng đã tồn tại";
