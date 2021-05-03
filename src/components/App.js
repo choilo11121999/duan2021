@@ -7,6 +7,7 @@ import MoviePlaying from './user/MoviePlaying';
 import MovieUpComing from './user/MovieUpComing';
 import Login from './auth/Login';
 import Register from './auth/Register';
+import Admin from './admin/admin';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -38,6 +39,7 @@ const App = () => {
 
       {/* Router */}
       <Route path="/" exact component={Home}/>
+      <Route path="/admin" component={Admin} />
       <Route path="/user/login" component={() => <Login setUserLogin={setUserLogin} />}/>
       <Route path="/user/register" component={Register}/>
       <Route path="/movie/movie_playing" component={MoviePlaying} />
