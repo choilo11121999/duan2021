@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import TaskList from './TaskList'; 
 import { Link, Redirect } from 'react-router-dom';
 
-class Product extends Component {
+class Products extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -126,4 +126,4 @@ class Product extends Component {
   }
 }
 
-export default Product;
+export default Products;
