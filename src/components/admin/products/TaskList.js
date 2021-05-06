@@ -6,75 +6,81 @@ class TaskList extends Component {
     super(props);
     this.state = {
       filterName: '',
-      filterStatus: -1,
+      filterCategory: '',
+      filterPoster: '',
+      filterDuration: '',
+      filterDescription: ''
     };
-  }
-
-  onUpdateStatus = (id) => {
-    this.props.onUpdateStatus(id);
-  }
-
-  onCreate= (id) => {
-    this.props.onDelete(id);
-  }
-  onDelete = (id) => {
-    this.props.onCreate(id);
-  }
-
-  onUpdate = (id) => {
-    this.props.onUpdate(id);
   }
 
   onChange = (event) => {
     var target = event.target;
     var name = target.name;
-    var value = target.value;
-    this.props.onFilter(name === "filterName" ? value : this.state.filterName,
-      name === "filterStatus" ? value : this.state.filterStatus);
+    var value = target.type === 'checkbox' ? target.checked : target.value;
+    this.props.onFilter(name === 'filterName' ? value : this.state.filterName, 
+      name === 'filterCategory' ? value : this.state.filterCategory,
+      name === 'filterPoster' ? value : this.state.filterPoster,
+      name === 'filterDuration' ? value : this.state.filterDuration,
+      name === 'filterDescription' ? value : this.state.filterDescription
+    );
     this.setState({
       [name]: value
     });
   }
 
   render() {
-    var { task } = this.props;
-    var elmTask = task.map((task, index) => {
-      return <TaskItem key={task.id} index={index} task={task} onUpdateStatus={this.onUpdateStatus}
-        onDelete={this.onDelete} onUpdate={this.onUpdate} onCreate={this.onCreate}/>;
-    })
-
-    var { filterName, filterStatus } = this.state;
+    var { tasks } = this.props;
+    var elmTasks = tasks.map((task, index) => {
+      return (
+        <TaskItem key={task.id} task={task} index={index + 1}
+            onUpdateStatus={ this.props.onUpdateStatus }
+            onDeleteTask={ this.props.onDeleteTask }
+            onSelectedItem = { this.props.onSelectedItem }
+        />
+      )
+    });
     return (
       <div>
-        <hr />
-        <input type="text" className="form-control" placeholder="Tìm kiếm..." name="filterName" value={filterName} onChange={this.onChange} />
-        <table className="table table-bordered table-hover mt-15">
+        <table className="table table-bordered table-hover">
           <thead>
-            <tr className="text-nowrap">
+            <tr>
               <th className="text-center">STT</th>
               <th className="text-center">Tên</th>
               <th className="text-center">Thể loại</th>
-              <th className="text-center">Hãng sản xuất</th>
-              <th className="text-center">Ngày chiếu</th>
-              <th className="text-center">Nội dung</th>
-              <th className="text-center">Giá vé</th>
-              <th className="text-center">Trạng Thái</th>
-              <th className="text-center">Hành Động</th>
+              <th className="text-center">Poster</th>
+              <th className="text-center">Thời gian phim</th>
+              <th className="text-center">Mô tả</th>
+              <th className="text-center">Sửa</th>
+              <th className="text-center">Xóa</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>
+                <input type="text" className="form-control" name="filterName"
+                  onChange={this.onChange} value={this.state.filerName}/>
+              </td>
+              <td>
+                <input type="text" className="form-control" name="filterCategory"
+                  onChange={this.onChange} value={this.state.filerCategory} />
+              </td>
+              <td>
+                <input type="text" className="form-control" name="filterPoster"
+                  onChange={this.onChange} value={this.state.filerPoster} />
+              </td>
+              <td>
+                <input type="number" className="form-control" name="filterDuration"
+                  onChange={this.onChange} value={this.state.filterDuration} />
+              </td>
+              <td>
+                <input type="text" className="form-control" name="filterDescription"
+                  onChange={this.onChange} value={this.state.filterDescription} />
+              </td>
               <td></td>
               <td></td>
             </tr>
-            {elmTask}
+            {elmTasks}
           </tbody>
         </table>
       </div>

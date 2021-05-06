@@ -1,127 +1,219 @@
 import React, { Component } from 'react';
-import TaskList from './TaskList'; 
-import { Link, Redirect } from 'react-router-dom';
-
+import '../../../css/Products.css';
+import TaskList from './TaskList';
+import TaskForm from './TaskForm';
+import TaskControl from './TaskControl';
 class Products extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      task: [],
-      isDisplayForm: false,
-      taskEditing: null,
-      filter: {
-        name: '',
-        status: -1
-      },
-    }
-    this.handleToggleForm = this.handleToggleForm.bind(this);
+      tasks : [],
+      isDisplayForm : false,
+      keyword : '',
+      filterName : '',
+      filterCategory : '',
+      filterDuration : '',
+      filterPoster : '',
+      filterDescription: '',
+      itemEditing : null,
+      sortBy : 'name',
+      sortValue : 1
+    };
+  }
+
+  componentWillMount() {
+      if(localStorage && localStorage.getItem('tasks')){
+          var tasks = JSON.parse(localStorage.getItem('tasks'));
+          this.setState({
+              tasks : tasks
+          });
+      }
   }
 
   s4() {
-    return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1); //tạo 1 chuỗi bất kỳ
+      return  Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
   }
 
-  generateID() {  //tạo ID bất kỳ
-    return this.s4() + this.s4() + '-' + this.s4() + '-' + this.s4() + '-' + this.s4() + '-' + this.s4()
-      + '-' + this.s4() + '-' + this.s4();
+  guid() {
+      return this.s4() + this.s4() + '-' + this.s4() + '-' + this.s4() + '-' + this.s4() + '-' + this.s4() + this.s4() + this.s4();
   }
 
-  handleToggleForm() { //hiển thị hoặc ẩn form
-    if (this.state.isDisplayForm && this.state.taskEditing !== null) {
-      this.setState({
-        isDisplayForm: true,
-        taskEditing: null,
+  findIndex = (id) => {
+      var { tasks } = this.state;
+      var result = -1;
+      tasks.forEach((task, index) => {
+          if(task.id === id){
+              result = index;
+          }
       });
-    } else {
+      return result;
+  }
+
+  // onUpdateCategory = (id) => {
+  //     var tasks = this.state.tasks;
+  //     var index = this.findIndex(id);
+  //     tasks[index].category = !tasks[index].category;
+  //     this.setState({
+  //         tasks : tasks
+  //     });
+  //     localStorage.setItem('tasks', JSON.stringify(tasks));
+  // }
+
+  onSave = (data) => {
+    var tasks = this.state.tasks;
+    if(data.id === ''){
+      data.id = this.guid();
+      tasks.push(data);
+    }else{
+      var index = this.findIndex(data.id);
+      tasks[index] = data;
+    }
+    this.setState({
+      tasks : tasks
+    });
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }
+
+  onToggleForm = () => {
+    if(this.state.itemEditing !== null){
       this.setState({
-        isDisplayForm: !this.state.isDisplayForm,
-        taskEditing: null,
+        itemEditing : null
+      });
+    }else{
+      this.setState({
+          isDisplayForm : !this.state.isDisplayForm
       });
     }
-
   }
 
-  onShowForm() { //hiển thị hoặc ẩn form
+  onExitForm = () =>{
     this.setState({
-      isDisplayForm: true,
+      isDisplayForm : false,
+      itemEditing : null
     });
   }
 
-  onUpdate = (id) => {
-    var { task } = this.state;
+  onDeleteTask = (id) => {
+    var { tasks } = this.state;
     var index = this.findIndex(id);
-    var taskEditing = task[index];
-
+    tasks.splice(index, 1);
     this.setState({
-      taskEditing: taskEditing,
+      tasks : tasks
     });
-    this.onShowForm();
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    this.onExitForm();
   }
 
-  onFilter = (filterName, filterStatus) => {
-    filterStatus = parseInt(filterStatus, 10);
+  onSearch = (keyword) => {
     this.setState({
-      filter: {
-        name: filterName.toLowerCase(),
-        status: filterStatus,
-      }
+      keyword : keyword
     });
+  }
+
+  onFilter = (filterName, filterCategory, filterPoster, filterDuration, filterDescription) => {
+    this.setState({
+      filterName : filterName,
+      filterCategory : filterCategory,
+      filterPoster: filterPoster,
+      filterDuration: filterDuration,
+      filterDescription: filterDescription,
+    });
+  }
+
+  onSelectedItem = (item) => {
+    this.setState({
+      itemEditing : item,
+      isDisplayForm : true
+    })
+  }
+
+  onSort = (sortBy, sortValue) => {
+    this.setState({
+      sortBy : sortBy,
+      sortValue : sortValue
+    })
   }
 
   render() {
-    var { task, isDisplayForm, taskEditing, filter } = this.state;
+    var {
+        tasks,
+        isDisplayForm,
+        keyword, filterName,
+        filterCategory,
+        filterPoster,
+        filterDuration,
+        filterDescription,
+        itemEditing,
+        sortBy,
+        sortValue
+    } = this.state;
 
-    if (filter) {
-      if (filter.name) {
-        task = task.filter((task) => {
-          return task.name.toLowerCase().indexOf(filter.name) !== -1;  //tìm kiếm theo name
-        });
-      }
-      task = task.filter((task) => {
-        if (filter.status === -1) {
-          return task;
-        } else {
-          return task.status === (filter.status === 1 ? true : false); // tìm kiếm theo status
-        }
+    tasks = tasks.filter((task) => {
+      return task.name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
+    });
+
+    if(filterName){
+      tasks = tasks.filter((task) => {
+        return task.name.toLowerCase().indexOf(filterName.toLowerCase()) !== -1
       });
     }
+    if(filterCategory){
+      tasks = tasks.filter((task) => {
+        return task.name.toLowerCase().indexOf(filterCategory.toLowerCase()) !== -1
+      });
+    }
+    if(filterPoster){
+      tasks = tasks.filter((task) => {
+        return task.name.toLowerCase().indexOf(filterPoster.toLowerCase()) !== -1
+      });
+    }
+    if(filterDuration){
+      tasks = tasks.filter((task) => {
+        return task.name.toLowerCase().indexOf(filterDuration.toLowerCase()) !== -1
+      });
+    }
+    if(sortBy === 'name'){
+      tasks.sort((a, b) => {
+        if(a.name > b.name) return sortValue;
+        else if(a.name < b.name) return -sortValue;
+        else return 0;
+      });
+    }
+    // else{
+    //     tasks.sort((a, b) => {
+    //         if(a.status > b.status) return -sortValue;
+    //         else if(a.status < b.status) return sortValue;
+    //         else return 0;
+    //     });
+    // }
+    var elmForm = isDisplayForm === true ? 
+      <TaskForm onSave={this.onSave} onExitForm={this.onExitForm}
+        itemEditing={ itemEditing } /> : '';
     return (
-        <>
-            <div className="admin container my-4">
-                <form className='row'>
-                    <div className='form-group d-flex col-9'>
-                        <input type='text' className="form-control" placeholder='input text' />
-                        <button type='submit' className='btn btn-primary'>Search</button>
-                    </div>
-                    <div className="dropdown col-3">
-                        <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown button
-                        </button>
-                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a className="dropdown-item" href="#">ID</a>
-                        <a className="dropdown-item" href="#">Name</a>
-                        <a className="dropdown-item" href="#"></a>
-                    </div>
-                     </div>
-                </form>
-            </div>
-        `<div className="container">
-            {/* <Link to='/'><button type="button" className="btn btn-warning"><i className="fas fa-home"></i>&nbsp;Home</button></Link> */}
-            <div className="text-center">
-              <h1>Quản Lý Phim</h1><hr/>
-            </div>
-            <div className="row">
-              <div className={isDisplayForm ? "col-xs-8 col-sm-8 col-md-8 col-lg-8" : "col-xs-12 col-sm-12 col-md-12 col-lg-12"}>
-                  <div className="row">
-                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <TaskList task={task} onUpdateStatus={this.onUpdateStatus} 
-                          onDelete={this.onDelete} onUpdate={this.onUpdate} onFilter={this.onFilter} />
-                    </div>
-                  </div>
-              </div>
-            </div>
+      <div className="container">
+        <div className="text-center">
+            <h1>Quản Lý Phim</h1><hr/>
         </div>
-      </>
+        <div className="row">
+          <div className={ isDisplayForm === true ? 'col-xs-4 col-sm-4 col-md-4 col-lg-4' : '' }>
+              {elmForm}
+          </div>
+          <div className={ isDisplayForm === true ? 'col-xs-8 col-sm-8 col-md-8 col-lg-8' : 'col-xs-12 col-sm-12 col-md-12 col-lg-12' }>
+            <button type="button" className="btn btn-primary" onClick={this.onToggleForm} >
+              <span className="fa fa-plus mr-3"></span>Thêm Phim
+            </button>
+            <TaskControl onSearch={this.onSearch} onSort={this.onSort}
+              sortBy={sortBy} sortValue={sortValue} /><br/>
+            <TaskList
+              tasks={tasks} // onUpdateCategory={this.onUpdateCategory}
+              onDeleteTask={this.onDeleteTask}
+              filterName={filterName} filterCategory={filterCategory}
+              filterDuration={filterDuration} filterPoster={filterPoster}
+              filterDescription={filterDescription}
+              onFilter={this.onFilter} onSelectedItem={this.onSelectedItem} />
+          </div>
+        </div>
+      </div>
     );
   }
 }

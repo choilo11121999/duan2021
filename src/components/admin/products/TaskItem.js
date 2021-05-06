@@ -1,45 +1,52 @@
 import React, { Component } from 'react';
 
 class TaskItem extends Component {
-    onUpdateStatus = () => {
-        this.props.onUpdateStatus(this.props.task.id);
+    // showStatusElement(){
+    //     return (
+    //         <span
+    //             className={ this.props.task.status ? 'label label-danger' : 'label label-info' }
+    //             onClick={ this.onUpdateStatus }
+    //         >{ this.props.task.status === true ? 'Kích Hoạt' : 'Ẩn' }</span>
+    //     );
+    // }
+
+    // onUpdateCategory = () => {
+    //     this.props.onUpdateCategory(this.props.task.id);
+    // }
+
+    onDeleteItem = () => {
+        this.props.onDeleteTask(this.props.task.id);
     }
 
-    onDelete = () => {
-        this.props.onDelete(this.props.task.id);
-    }
-    onCreate = () => {
-        this.props.onCreate(this.props.task.id)
-    }
-    onUpdate = () => {
-        this.props.onUpdate(this.props.task.id)
+    onSelectedItem = () => {
+        this.props.onSelectedItem(this.props.task);
     }
 
     render() {
-        var { task, index } = this.props;
         return (
             <tr>
-                <td>{ index }</td>
-                <td  className="text-nowrap">{ task.name }</td>
-                <td  className="text-nowrap">{ task.theloai === 1 ? 'Hành động' : task.theloai === 2 ? 'Tình cảm' : task.theloai === 3 ? 'Kinh Dị' : task.theloai === 4 ? 'Trinh thám' : '' }</td>
-                <td  className="text-nowrap">{ task.studio }</td>
-                <td  className="text-nowrap">{ task.ngaychieu }</td>
-                <td>{ task.description }</td>
-                <td  className="text-nowrap">{ task.price }</td>
+                <td className="text-center">{this.props.index}</td>
+                <td >{this.props.task.name}</td>
                 <td className="text-center">
-                    <span className={task.status ? "label label-success" : "label label-warning"}
-                        onClick={this.onUpdateStatus}
-                    >{task.status ? 'Đang chiếu' : 'Sắp chiếu'}</span>
+                    {this.props.task.category}
                 </td>
                 <td className="text-center">
-                    <button type="button" className=" buttonbe" onClick={this.onCreate}>
-                        <span className="fa fa-pencil"></span>Thêm
+                    {this.props.task.poster}
+                </td>
+                <td className="text-center">
+                    {this.props.task.duration}
+                </td>
+                <td className="text-center">
+                    {this.props.task.description}
+                </td>
+                <td className="text-center">
+                    <button type="button" className="btn btn-warning" onClick={this.onSelectedItem}>
+                        <span className="fa fa-pencil mr-3"></span>
                     </button>
-                    <button type="button" className=" buttonbe" onClick={this.onUpdate}>
-                        <span className="fa fa-pencil"></span>Sửa
-                    </button>
-                    <button type="button" className=" buttonbe" onClick={this.onDelete}>
-                        <span className="fa fa-trash" ></span>Xóa
+                </td>
+                <td className="text-center">
+                    <button type="button" className="btn btn-danger" onClick={this.onDeleteItem}>
+                        <span className="fa fa-trash mr-3"></span>
                     </button>
                 </td>
             </tr>
