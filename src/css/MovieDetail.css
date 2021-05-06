@@ -1,0 +1,34 @@
+.movie-detail .breadcrums {
+  background-color: #f1f0e5;
+  border-bottom: 1px solid #cacac0;
+  padding: 5px 0;
+  margin: 0;
+  width: 100%;
+}
+
+.movie-detail .breadcrums ul{
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  padding: 0;
+}
+
+.movie-detail .breadcrums ul li {
+  margin: 0;
+}
+
+.movie-detail .breadcrums ul li.home a {
+  background: url(./../img/bg-cgv-bread-home.png) no-repeat scroll left center transparent;
+  text-indent: -9999px;
+  padding: 0 9px;
+  width: 17px;
+  height: 15px;
+}
+
+.movie-detail .breadcrums ul li span {
+  background: url(./../img/bg-cgv-icon-arrow.png) no-repeat scroll center center transparent;
+  text-indent: -9999px;
+  padding: 0 15px;
+  display: inline-block;
+  float: none;
+}

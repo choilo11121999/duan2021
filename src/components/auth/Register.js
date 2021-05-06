@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link, Redirect } from "react-router-dom";
 import "./../../css/Register.css";
+import Swal from 'sweetalert2';
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -64,6 +65,10 @@ const Register = () => {
       .then((res) => {
         console.log(res);
         setStatus(1);
+        Swal.fire({
+          icon: 'success',
+          text: 'Đăng ký thành công!',
+        })
       })
       .catch((err) => {
         setStatus(err.response.status);
@@ -92,6 +97,9 @@ const Register = () => {
       <div className="register-header">
         <h2 className="text-center w-100 font-weight-bold">Đăng ký</h2>
       </div>
+      <p className="err mb-1 text-center" style={{ color: "red" }}>
+        {Errmsg}
+      </p>
       <div className="register-body my-3">
         <form onSubmit={handleSubmit}>
           <div className="form-group my-2">
@@ -185,9 +193,6 @@ const Register = () => {
             </label>
           </div>
           <div className="form-group my-2">
-            <p className="err mb-1 text-center" style={{ color: "red" }}>
-              {Errmsg}
-            </p>
             <button type="submit" className="btn btn-danger btn-block btn-lg">
               Đăng ký
             </button>
