@@ -1,9 +1,8 @@
 /* footer-brand-slide */
 .footer-brand-slide {
-  height: 80px;
   border-bottom: 2px solid #222;
   border-top: 2px solid #222;
-  padding: 0 100px;
+  padding: 10px 0px;
 }
 
 .footer-brand-slide img {
@@ -13,7 +12,7 @@
 
 /* footer-policy */
 .footer-policy {
-  padding: 20px 100px;
+  padding: 10px 0px;
   border-bottom: 2px solid #222;
 }
 
@@ -34,7 +33,7 @@
 
 /* .footer-address */
 .footer-address {
-  padding: 20px 100px;
+  padding: 20px 0;
 }
 
 .footer-address  h3,
@@ -50,9 +49,9 @@
 .footer-address 
 .logo-cgv {
   background-image: url(./../img/logo-cj-cgv.jpg);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat; 
+  background-position: left;
 }
 
 /* .bg-footer */

@@ -8,70 +8,74 @@ import logostarium from "./../../img/logo-starium.png";
 const Footer = () => {
   return (
     <div className="footer">
-      <div className="footer-brand-slide row align-items-center">
-        <div className="col">
-          <Link to='4dx' >
-            <img src={logo4dx} />
-          </Link>
-        </div>
-        <div className="col">
-          <Link to='imax'>
-            <img src={logoimax} />
-          </Link>
-        </div>
-        <div className="col">
-          <Link to='screenx'>
-            <img src={logoscreenx} />
-          </Link>
-        </div>
-        <div className="col">
-          <Link to='starium'>
-            <img src={logostarium} />
-          </Link>
-        </div>
-      </div>
-      <div className="footer-policy row">
-        <div className="col">
-          <h3>CGV Viet Nam</h3>
-          <ul>
-            <li>Gioi thieu</li>
-            <li>Tien ich Online</li>
-            <li>The qua tang</li>
-            <li>Tuyen dung</li>
-            <li>Lien he quang cao</li>
-          </ul>
-        </div>
-        <div className="col">
-          <h3>Dieu khoan su dung</h3>
-          <ul>
-            <li>Dieu khoan chung</li>
-            <li>Dieu khoan giao dich</li>
-            <li>Chinh sach thanh toan</li>
-            <li>Chinh sach bao mat</li>
-            <li>Cau hoi thuong gap</li>
-          </ul>
-        </div>
-        <div className="col">
-          <h3>Ket noi voi chung toi</h3>
-          <ul className="d-flex">
-            <li>Facebook</li>
-            <li>Youtube</li>
-            <li>Instagram</li>
-            <li>Zalo</li>
-          </ul>
-          <div className="cgv-premission">
+      <div className="footer-brand-slide">
+        <div className="container d-flex align-items-center justify-content-between mx-auto p-0">
+          <div className="">
+            <Link to='4dx' >
+              <img src={logo4dx} />
+            </Link>
+          </div>
+          <div className="">
+            <Link to='imax'>
+              <img src={logoimax} />
+            </Link>
+          </div>
+          <div className="">
+            <Link to='screenx'>
+              <img src={logoscreenx} />
+            </Link>
+          </div>
+          <div className="">
+            <Link to='starium'>
+              <img src={logostarium} />
+            </Link>
           </div>
         </div>
-        <div className="col">
-          <h3>Cham soc khach hang</h3>
-          <p>
-            Hotline: 1900 6017 <br/>
-            Giờ làm việc: 8:00 - 22:00 (Tất cả các ngày bao gồm cả Lễ Tết) <br/>
-            Email hỗ trợ: <a href="mailto:hoidap@cgv.vn">hoidap@cgv.vn</a>
-          </p>
+      </div>
+      <div className="footer-policy">
+        <div className="container d-flex align-items-center justify-content-between mx-auto p-0">
+          <div className="col">
+            <h3>CGV Việt Nam</h3>
+            <ul>
+              <li>Giới thiệu</li>
+              <li>Tiện ích Online</li>
+              <li>Thẻ quà tặng</li>
+              <li>Tuyển dụng</li>
+              <li>Liên hệ quảng cáo</li>
+            </ul>
+          </div>
+          <div className="col">
+            <h3>Điều khoản sử dụng</h3>
+            <ul>
+              <li>Điều khoản chung</li>
+              <li>Điều khoản giao dịch</li>
+              <li>Chính sách thanh toán</li>
+              <li>Chính sách bảo mật</li>
+              <li>Câu hỏi thường gặp</li>
+            </ul>
+          </div>
+          <div className="col">
+            <h3>Kết nối với chúng tôi</h3>
+            <ul className="d-flex">
+              <li>Facebook</li>
+              <li>Youtube</li>
+              <li>Instagram</li>
+              <li>Zalo</li>
+            </ul>
+            <div className="cgv-premission">
+            </div>
+          </div>
+          <div className="col">
+            <h3>Chăm sóc khách hàng</h3>
+            <p>
+              Hotline: 1900 6017 <br/>
+              Giờ làm việc: 8:00 - 22:00 (Tất cả các ngày bao gồm cả Lễ Tết) <br/>
+              Email hỗ trợ: <a href="mailto:hoidap@cgv.vn">hoidap@cgv.vn</a>
+            </p>
+          </div>
         </div>
       </div>
-      <div className="footer-address row mt-1">
+      <div className="container mx-auto footer-address row mt-1">
         <div className="logo-cgv col-3">
         </div>
         <div className="col-9">

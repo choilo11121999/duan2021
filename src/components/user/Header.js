@@ -9,7 +9,7 @@ const Header = ({ user, setUserLogin }) => {
   }
   return (
     <div className="header">
-      <div className="header-language-background p-1 clearfix">
+      <div className="container header-language-background p-1 clearfix">
         <div className="navbar navbar-expand-sm navbar-light bg-light float-right p-0">
           <ul className="navbar-nav">
             <li className="nav-item">
@@ -57,7 +57,7 @@ const Header = ({ user, setUserLogin }) => {
         </div>
       </div>
       <div className="header-page d-flex align-items-center">
-        <nav className="navbar navbar-expand-lg navbar-light">
+        <nav className="container navbar navbar-expand-lg navbar-light">
           <NavLink className="navbar-brand" to="/">
             <img src={imgLogo} width="150" height="70" alt="logo" />
           </NavLink>
