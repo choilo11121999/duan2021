@@ -2,7 +2,7 @@ import "./../../css/Login.css";
 import { Link, Redirect } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-
+import Swal from 'sweetalert2';
 const Login = ({ setUserLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,6 +24,10 @@ const Login = ({ setUserLogin }) => {
         localStorage.setItem("token", res.data.data.access_token);
         setIslogin(true);
         setUserLogin(res.data.data.user);
+        Swal.fire({
+          icon: 'success',
+          text: 'Đăng nhập thành công!',
+        })
       })
       .catch((err) => {
         setStatus(true);
@@ -44,6 +48,9 @@ const Login = ({ setUserLogin }) => {
       <div className="login-header">
         <h2 className="text-center w-100 font-weight-bold">Đăng Nhập</h2>
       </div>
+      <p className="mb-0 ml-4 text-center" style={{ color: "red" }}>
+        {msgErr}
+      </p>
       <div className="login-body my-3">
         <form onSubmit={handleSubmit}>
           <div className="form-group my-4">
@@ -64,9 +71,6 @@ const Login = ({ setUserLogin }) => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <p className="mb-0 ml-4 text-center" style={{ color: "red" }}>
-            {msgErr}
-          </p>
           <div className="form-group my-4">
             <button type="submit" className="btn btn-danger btn-block btn-lg">
               Đăng nhập

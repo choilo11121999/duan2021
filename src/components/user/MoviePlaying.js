@@ -12,7 +12,7 @@ import s8 from "./../../img/selection/8.jpg";
 
 const MoviePlaying = () => {
   return (
-    <div className="movie-playing">
+    <div className="container movie-playing">
       <div className="breadcrums">
         <ul>
           <li className="home">
