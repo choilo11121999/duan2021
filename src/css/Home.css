@@ -10,7 +10,6 @@
 .product {
   padding: 0;
   position: relative;
-  height: 320px;
 }
 .product:hover .btn-play,
 .product:hover .product-content {
