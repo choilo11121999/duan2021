@@ -1,11 +1,45 @@
 .home {
-  margin: 20px 0;
+  margin: 20px auto;
   position: relative;
   z-index: -99999px;
 }
 
 .movie-selection {
   margin: 20px 0;
+}
+.product {
+  padding: 0;
+  position: relative;
+}
+.product:hover .btn-play,
+.product:hover .product-content {
+  display: block;
+}
+.btn-play {
+  position: absolute;
+  top: 40%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  display: none;
+}
+.product-content h3 {
+  color: white;
+}
+.product-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  text-align: center;
+  padding-bottom: 5px;
+  display: none;
+}
+.link,
+.link:hover {
+  color: white;
+  text-decoration: none;
 }
 
 .movie-selection .movie-selection-title,

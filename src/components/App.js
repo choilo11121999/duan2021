@@ -5,6 +5,7 @@ import Footer from './user/Footer';
 import Home from './user/Home';
 import MoviePlaying from './user/MoviePlaying';
 import MovieUpComing from './user/MovieUpComing';
+import MovieDetail from './user/MovieDetail';
 import Login from './auth/Login';
 import Register from './auth/Register';
 import Admin from './admin/admin';
@@ -35,7 +36,7 @@ const App = () => {
 
   return (
     <Router>
-    <div className="container class"> 
+    <div className="App"> 
       <Header user={user} setUserLogin={setUserLogin} />
 
       {/* Router */}
@@ -46,6 +47,7 @@ const App = () => {
       <Route path="/user/register" component={Register}/>
       <Route path="/movie/movie_playing" component={MoviePlaying} />
       <Route path="/movie/movie_upcoming" component={MovieUpComing} />
+      <Route path="/movie/movie_detail" component={MovieDetail} />
     </div>
 
     <Footer />

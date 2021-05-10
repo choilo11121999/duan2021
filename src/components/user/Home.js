@@ -25,10 +25,11 @@ import e7 from './../../img/event/7.jpg';
 import e8 from './../../img/event/8.png';
 
 import "./../../css/Home.css";
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   return (
-    <div className="home">
+    <div className="container home">
       {/* Slide show */}
       <div id="slide-banner" className="carousel slide slide-banner w-100" data-ride="carousel">
         <ol className="carousel-indicators">
@@ -87,8 +88,22 @@ const Home = () => {
           <div className="carousel-inner" role="listbox">
             <div className="carousel-item active">
               <div className="row">
-                <div className="col-3">
+                <div className="col-3 product">
                   <img className="d-block w-100 h-100" src={s1} alt="First slide"/>
+                  <div className="btn-play">
+                    <button className="btn btn-lg btn-danger">Play</button>
+                  </div>
+                  <div className="product-content">
+                    <h3>Ten phim</h3>
+                    <span className="btn btn-sm btn-danger">
+                      <Link className="link" to="/movie/movie_detail">
+                        Xem chi tiết
+                      </Link>
+                    </span>
+                    <button className="btn btn-sm btn-danger ml-3">
+                      Mua ve
+                    </button>
+                  </div>
                 </div>
                 <div className="col-3">
                   <img className="d-block w-100 h-100" src={s2} alt="First slide"/>
