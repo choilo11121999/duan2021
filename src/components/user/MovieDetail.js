@@ -1,11 +1,24 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./../../css/MovieDetail.css";
+import ImgTest from './../../img/selection/1.jpg';
 
 const MoviePlaying = () => {
+  const [valueRadio, setValueRadio] = useState('detail');
+
+  const handleChecked = (e) => {
+    e.preventDefault();
+    if(e.target.checked) {
+      setValueRadio(true);
+    } else {
+      setValueRadio(false)
+    }
+  };
+
   return (
-    <div className="container movie-detail">
+    <div className="movie-detail">
       <div className="breadcrums">
-        <ul>
+        <ul className="container">
           <li className="home">
             <Link to="/" title="Trở về trang chủ"></Link>
             <span>/</span>
@@ -25,14 +38,13 @@ const MoviePlaying = () => {
           </li>
         </ul>
       </div>
-      <div className="main">
+      <div className="container main">
         <div className="main-header">
           <h2>Nội dung phim</h2>
         </div> 
-        <div className="main-body">
+        <div className="main-body d-flex justify-content-between">
           <div className="main-body-img">
-            {/* <img src={} /> */}
-            <p>IMG</p>
+            <img src={ImgTest} />
           </div>
           <div className="main-body-description">
             <h3>Ten phim</h3>
@@ -45,25 +57,56 @@ const MoviePlaying = () => {
             <p><strong>Rated: </strong></p>
             <div className="main-body-btn">
               <button className="btn btn-primary btn-sm">Like</button>
-              <button className="btn btn-danger">Mua vé</button>
+              <button className="btn btn-danger btn-sm ml-5">Mua vé</button>
             </div>
           </div>
-          <div className="detail-trailer">
-            <div className="form-check form-check-inline">
-              <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" />
-              <label className="form-check-label" for="inlineRadio1">Chi tiết</label>
-            </div>
-            <div className="form-check form-check-inline">
-              <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" />
-              <label className="form-check-label" for="inlineRadio2">Trailer</label>
-            </div>
-            <div className="detail">
-              <p>Mo ta chi tiet phim</p>
-            </div>
-            <div className="trailer">
-              <p>Video</p>
-            </div>
+        </div>
+        <div className="detail-trailer">
+          <div className="radio-btn d-flex justify-content-center mb-3" onChange={(e) => setValueRadio(e.target.value)}>
+            {
+              valueRadio === 'detail' ? (
+                <label className="btn btn-danger btn-sm">
+                  Xem chi tiết
+                  <input id="detail" value="detail" name="select" type="radio" />
+                </label>
+              ) : (
+                <label className="btn btn-outline-danger btn-sm">
+                  Xem chi tiết
+                  <input id="detail" value="detail" name="select" type="radio" />
+                </label>
+              )
+              
+            }
+            {
+              valueRadio === 'trailer' ? (
+                <label className="btn btn-danger btn-sm ml-2">
+                  Trailer
+                  <input id="trailer" value="trailer" name="select" type="radio" />
+                </label>
+              ) : (
+                <label className="btn btn-outline-danger btn-sm ml-2">
+                  Trailer
+                  <input id="trailer" value="trailer" name="select" type="radio" />
+                </label>
+              )
+            }
           </div>
+          {
+            valueRadio === 'detail' ? (
+              <div className="detail">
+                <p>
+                  Sau khi bản thân bỗng nhiên sở hữu “Bàn tay diệt quỷ”, võ sĩ MMA Yong Hoo (Park Seo Joon thủ vai) 
+                  đã dấn thân vào hành trình trừ tà, trục quỷ đối đầu với Giám Mục Bóng Tối (Woo Do Hwan) – tên quỷ 
+                  Satan đột lốt người. Từ đó sự thật về cái chết của cha Yong Hoo cũng dần được hé lộ cũng như nguyên 
+                  nhân anh trở thành “người được chọn”.
+                </p>
+              </div>
+              ) : (
+                <div className="trailer">
+                  <p>Video</p>
+                </div>
+              )
+          }
         </div>
       </div>
     </div>
