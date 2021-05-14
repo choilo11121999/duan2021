@@ -4,6 +4,7 @@
   padding: 5px 0;
   margin: 0;
   width: 100%;
+  height: 30px;
 }
 
 .movie-detail .breadcrums ul{
@@ -31,4 +32,33 @@
   padding: 0 15px;
   display: inline-block;
   float: none;
+}
+
+.main-header {
+  border-bottom: 1px solid #000;
+  margin-top: 20px;
+}
+
+.main-body {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.main-body-description h3 {
+  border-bottom: 1px solid #cacac0;
+  width: 800px;
+  padding-bottom: 10px;
+}
+
+.detail-trailer {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.detail-trailer label {
+  width: 120px;
+}
+
+.detail-trailer input[type='radio'] {
+  display: none;
 }
