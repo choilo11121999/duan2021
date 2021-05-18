@@ -7,7 +7,7 @@ class TaskList extends Component {
     this.state = {
       filterName: '',
       filterCategory: '',
-      filterPoster: '',
+      filterSrc: '',
       filterDuration: '',
       filterDescription: ''
     };
@@ -19,7 +19,7 @@ class TaskList extends Component {
     var value = target.type === 'checkbox' ? target.checked : target.value;
     this.props.onFilter(name === 'filterName' ? value : this.state.filterName, 
       name === 'filterCategory' ? value : this.state.filterCategory,
-      name === 'filterPoster' ? value : this.state.filterPoster,
+      name === 'filterSrc' ? value : this.state.filterSrc,
       name === 'filterDuration' ? value : this.state.filterDuration,
       name === 'filterDescription' ? value : this.state.filterDescription
     );
@@ -58,23 +58,23 @@ class TaskList extends Component {
             <tr>
               <td></td>
               <td>
-                <input type="text" className="form-control" name="filterName"
+                <input type="text" className="form-control pd-0" name="filterName"
                   onChange={this.onChange} value={this.state.filerName}/>
               </td>
               <td>
-                <input type="text" className="form-control" name="filterCategory"
+                <input type="text" className="form-control pd-0" name="filterCategory"
                   onChange={this.onChange} value={this.state.filerCategory} />
               </td>
               <td>
-                <input type="text" className="form-control" name="filterPoster"
-                  onChange={this.onChange} value={this.state.filerPoster} />
+                <input type="text" className="form-control pd-0" name="filterSrc"
+                  onChange={this.onChange} value={this.state.filerSrc} />
               </td>
               <td>
-                <input type="number" className="form-control" name="filterDuration"
+                <input type="number" className="form-control pd-0" name="filterDuration"
                   onChange={this.onChange} value={this.state.filterDuration} />
               </td>
               <td>
-                <input type="text" className="form-control" name="filterDescription"
+                <input type="text" className="form-control pd-0" name="filterDescription"
                   onChange={this.onChange} value={this.state.filterDescription} />
               </td>
               <td></td>

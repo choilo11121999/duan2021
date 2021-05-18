@@ -41,8 +41,6 @@ const App = () => {
 
       {/* Router */}
       <Route path="/" exact component={Home}/>
-      <Route path="/admin" exact component={Admin}/>
-      <Route path="/admin/products" component={Products} />
       <Route path="/user/login" component={() => <Login setUserLogin={setUserLogin} />}/>
       <Route path="/user/register" component={Register}/>
       <Route path="/movie/movie_playing" component={MoviePlaying} />
@@ -51,6 +49,8 @@ const App = () => {
     </div>
 
     <Footer />
+    <Route path="/admin" exact component={Admin}/>
+    <Route path="/admin/products" component={Products} />
   </Router>
   );
 }

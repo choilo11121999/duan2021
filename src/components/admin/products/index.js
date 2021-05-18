@@ -7,15 +7,16 @@ class Products extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tasks : [],
-      isDisplayForm : false,
-      keyword : '',
-      filterName : '',
-      filterCategory : '',
-      filterDuration : '',
-      filterPoster : '',
+      tasks: [],
+      isDisplayForm: false,
+      keyword: '',
+      filterName: '',
+      filterCategory: '',
+      filterDuration: '',
+      filterPicture: false,
+      filteSrc: false,
       filterDescription: '',
-      itemEditing : null,
+      itemEditing: null,
       sortBy : 'name',
       sortValue : 1
     };
@@ -25,7 +26,7 @@ class Products extends Component {
       if(localStorage && localStorage.getItem('tasks')){
           var tasks = JSON.parse(localStorage.getItem('tasks'));
           this.setState({
-              tasks : tasks
+              tasks: tasks
           });
       }
   }
@@ -39,12 +40,12 @@ class Products extends Component {
   }
 
   findIndex = (id) => {
-      var { tasks } = this.state;
+      var {tasks} = this.state;
       var result = -1;
       tasks.forEach((task, index) => {
-          if(task.id === id){
-              result = index;
-          }
+        if(task.id === id){
+          result = index;
+        }
       });
       return result;
   }
@@ -69,7 +70,7 @@ class Products extends Component {
       tasks[index] = data;
     }
     this.setState({
-      tasks : tasks
+      tasks: tasks
     });
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }
@@ -77,19 +78,19 @@ class Products extends Component {
   onToggleForm = () => {
     if(this.state.itemEditing !== null){
       this.setState({
-        itemEditing : null
+        itemEditing: null
       });
     }else{
       this.setState({
-          isDisplayForm : !this.state.isDisplayForm
+          isDisplayForm: !this.state.isDisplayForm
       });
     }
   }
 
   onExitForm = () =>{
     this.setState({
-      isDisplayForm : false,
-      itemEditing : null
+      isDisplayForm: false,
+      itemEditing: null
     });
   }
 
@@ -98,7 +99,7 @@ class Products extends Component {
     var index = this.findIndex(id);
     tasks.splice(index, 1);
     this.setState({
-      tasks : tasks
+      tasks: tasks
     });
     localStorage.setItem('tasks', JSON.stringify(tasks));
     this.onExitForm();
@@ -106,15 +107,14 @@ class Products extends Component {
 
   onSearch = (keyword) => {
     this.setState({
-      keyword : keyword
+      keyword: keyword
     });
   }
 
-  onFilter = (filterName, filterCategory, filterPoster, filterDuration, filterDescription) => {
+  onFilter = (filterName, filterCategory, filterDuration, filterDescription) => {
     this.setState({
-      filterName : filterName,
-      filterCategory : filterCategory,
-      filterPoster: filterPoster,
+      filterName: filterName,
+      filterCategory: filterCategory,
       filterDuration: filterDuration,
       filterDescription: filterDescription,
     });
@@ -122,30 +122,31 @@ class Products extends Component {
 
   onSelectedItem = (item) => {
     this.setState({
-      itemEditing : item,
-      isDisplayForm : true
+      itemEditing: item,
+      isDisplayForm: true
     })
   }
 
   onSort = (sortBy, sortValue) => {
     this.setState({
-      sortBy : sortBy,
-      sortValue : sortValue
+      sortBy: sortBy,
+      sortValue: sortValue
     })
   }
 
   render() {
     var {
-        tasks,
-        isDisplayForm,
-        keyword, filterName,
-        filterCategory,
-        filterPoster,
-        filterDuration,
-        filterDescription,
-        itemEditing,
-        sortBy,
-        sortValue
+      tasks,
+      isDisplayForm,
+      keyword, filterName,
+      filterCategory,
+      filterPicture,
+      filteSrc,
+      filterDuration,
+      filterDescription,
+      itemEditing,
+      sortBy,
+      sortValue
     } = this.state;
 
     tasks = tasks.filter((task) => {
@@ -162,11 +163,11 @@ class Products extends Component {
         return task.name.toLowerCase().indexOf(filterCategory.toLowerCase()) !== -1
       });
     }
-    if(filterPoster){
-      tasks = tasks.filter((task) => {
-        return task.name.toLowerCase().indexOf(filterPoster.toLowerCase()) !== -1
-      });
-    }
+    // if(filterPoster){
+    //   tasks = tasks.filter((task) => {
+    //     return task.name.toLowerCase().indexOf(filterPoster.toLowerCase()) !== -1
+    //   });
+    // }
     if(filterDuration){
       tasks = tasks.filter((task) => {
         return task.name.toLowerCase().indexOf(filterDuration.toLowerCase()) !== -1
@@ -208,8 +209,8 @@ class Products extends Component {
               tasks={tasks} // onUpdateCategory={this.onUpdateCategory}
               onDeleteTask={this.onDeleteTask}
               filterName={filterName} filterCategory={filterCategory}
-              filterDuration={filterDuration} filterPoster={filterPoster}
-              filterDescription={filterDescription}
+              filteSrc={filteSrc} filterPicture={filterPicture}
+              filterDuration={filterDuration} filterDescription={filterDescription}
               onFilter={this.onFilter} onSelectedItem={this.onSelectedItem} />
           </div>
         </div>
