@@ -12,7 +12,9 @@ class TaskForm extends Component {
                 id: this.props.itemEditing.id,
                 name: this.props.itemEditing.name,
                 category: this.props.itemEditing.category,
-                poster: this.props.itemEditing.poster,
+                // poster: this.props.itemEditing.poster,
+                picture: this.props.itemEditing.picture,
+                src: this.props.itemEditing.src,
                 duration: this.props.itemEditing.duration,
                 description: this.props.itemEditing.description
             });
@@ -27,7 +29,9 @@ class TaskForm extends Component {
                 id: nextProps.itemEditing.id,
                 name: nextProps.itemEditing.name,
                 category: nextProps.itemEditing.category,
-                poster: nextProps.itemEditing.poster,
+                // poster: nextProps.itemEditing.poster,
+                picture: nextProps.itemEditing.picture,
+                src: nextProps.itemEditing.src,
                 duration: nextProps.itemEditing.duration,
                 description: nextProps.itemEditing.description
             });
@@ -45,6 +49,15 @@ class TaskForm extends Component {
         });
     }
 
+    handlePictureSelected = (event) => {
+        var picture = event.target.files[0];
+        var src     = URL.createObjectURL(picture);
+        this.setState({
+          picture: picture,
+          src: src
+        });
+    }
+
     onHandleSubmit = (event) => {
         event.preventDefault();
         this.props.onSave(this.state);
@@ -57,7 +70,9 @@ class TaskForm extends Component {
             id: '',
             name: '',
             category: '',
-            poster: '',
+            // poster: '',
+            picture: false,
+            src: false,
             duration: '',
             description: ''
         });
@@ -87,14 +102,14 @@ class TaskForm extends Component {
                                 value={this.state.name} onChange={ this.onHandleChange }/>
                         </div>
                         <div className="form-group">
-                            <label>Thể loại:</label>
+                            <label>Radio Button:</label>
                             <input  type="text" className="form-control" name="category"           
                                 value={this.state.category} onChange={this.onHandleChange}/>
                         </div>
                         <div className="form-group">
-                            <label>Poster:</label>
-                            <input type="text" className="form-control" name="poster"              
-                                value={this.state.poster} onChange={this.onHandleChange}/>
+                            <label>Ảnh Poster:</label>
+                            <input type="file" className="form-control-file" name="picture"              
+                                value={this.state.poster} onChange={this.handlePictureSelected.bind(this)}/>
                         </div>
                         <div className="form-group">
                             <label>Thời gian phim:</label>
