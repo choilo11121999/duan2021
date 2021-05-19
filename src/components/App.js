@@ -8,7 +8,7 @@ import MovieUpComing from './user/MovieUpComing';
 import MovieDetail from './user/MovieDetail';
 import Login from './auth/Login';
 import Register from './auth/Register';
-import Admin from './admin/Admin.js';
+import Admin from './admin/admin.js';
 import Products from './admin/products/index';
 import { useEffect, useState } from 'react';
 import axios from 'axios'; 
