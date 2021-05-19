@@ -7,6 +7,7 @@ class TaskList extends Component {
     this.state = {
       filterName: '',
       filterCategory: '',
+      filterStatus: '',
       filterSrc: '',
       filterDuration: '',
       filterDescription: ''
@@ -19,6 +20,7 @@ class TaskList extends Component {
     var value = target.type === 'checkbox' ? target.checked : target.value;
     this.props.onFilter(name === 'filterName' ? value : this.state.filterName, 
       name === 'filterCategory' ? value : this.state.filterCategory,
+      name === 'filterStatus' ? value : this.state.filterStatus,
       name === 'filterSrc' ? value : this.state.filterSrc,
       name === 'filterDuration' ? value : this.state.filterDuration,
       name === 'filterDescription' ? value : this.state.filterDescription
@@ -29,14 +31,13 @@ class TaskList extends Component {
   }
 
   render() {
-    var { tasks } = this.props;
+    var {tasks} = this.props;
     var elmTasks = tasks.map((task, index) => {
       return (
         <TaskItem key={task.id} task={task} index={index + 1}
-            onUpdateStatus={ this.props.onUpdateStatus }
-            onDeleteTask={ this.props.onDeleteTask }
-            onSelectedItem = { this.props.onSelectedItem }
-        />
+          onUpdateStatus={this.props.onUpdateStatus}
+          onDeleteTask={this.props.onDeleteTask}
+          onSelectedItem = {this.props.onSelectedItem}/>
       )
     });
     return (
@@ -46,10 +47,11 @@ class TaskList extends Component {
             <tr>
               <th className="text-center">STT</th>
               <th className="text-center">Tên</th>
-              <th className="text-center">Thể loại</th>
+              <th className="text-center">Category</th>
               <th className="text-center">Poster</th>
               <th className="text-center">Thời gian phim</th>
               <th className="text-center">Mô tả</th>
+              <th className="text-center">Trạng thái</th>
               <th className="text-center">Sửa</th>
               <th className="text-center">Xóa</th>
             </tr>
@@ -74,7 +76,7 @@ class TaskList extends Component {
                   onChange={this.onChange} value={this.state.filterDuration} />
               </td>
               <td>
-                <input type="text" className="form-control pd-0" name="filterDescription"
+                <input type="textarea" className="form-control pd-0" name="filterDescription"
                   onChange={this.onChange} value={this.state.filterDescription} />
               </td>
               <td></td>

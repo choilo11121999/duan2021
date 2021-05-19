@@ -1,18 +1,21 @@
-import React, { Component } from 'react';
+import React, {Component, useState} from 'react';
 import '../../../css/Products.css';
 import TaskList from './TaskList';
 import TaskForm from './TaskForm';
 import TaskControl from './TaskControl';
+import { Button, Modal } from 'react-bootstrap';
 class Products extends Component {
   constructor(props) {
     super(props);
     this.state = {
       tasks: [],
       isDisplayForm: false,
+      show: false,
       keyword: '',
       filterName: '',
       filterCategory: '',
       filterDuration: '',
+      filterStatus : '-1',
       filterPicture: false,
       filteSrc: false,
       filterDescription: '',
@@ -50,18 +53,19 @@ class Products extends Component {
       return result;
   }
 
-  // onUpdateCategory = (id) => {
-  //     var tasks = this.state.tasks;
-  //     var index = this.findIndex(id);
-  //     tasks[index].category = !tasks[index].category;
-  //     this.setState({
-  //         tasks : tasks
-  //     });
-  //     localStorage.setItem('tasks', JSON.stringify(tasks));
-  // }
+  onUpdateStatus = (id) => {
+    var tasks = this.state.tasks;
+    var index = this.findIndex(id);
+    tasks[index].status = !tasks[index].status;
+    this.setState({
+        tasks : tasks
+    });
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+}
 
   onSave = (data) => {
     var tasks = this.state.tasks;
+    data.status = data.status === 'true' ? true : false;
     if(data.id === ''){
       data.id = this.guid();
       tasks.push(data);
@@ -73,18 +77,6 @@ class Products extends Component {
       tasks: tasks
     });
     localStorage.setItem('tasks', JSON.stringify(tasks));
-  }
-
-  onToggleForm = () => {
-    if(this.state.itemEditing !== null){
-      this.setState({
-        itemEditing: null
-      });
-    }else{
-      this.setState({
-          isDisplayForm: !this.state.isDisplayForm
-      });
-    }
   }
 
   onExitForm = () =>{
@@ -111,10 +103,11 @@ class Products extends Component {
     });
   }
 
-  onFilter = (filterName, filterCategory, filterDuration, filterDescription) => {
+  onFilter = (filterName, filterCategory, filterStatus, filterDuration, filterDescription) => {
     this.setState({
       filterName: filterName,
       filterCategory: filterCategory,
+      filterStatus: filterStatus,
       filterDuration: filterDuration,
       filterDescription: filterDescription,
     });
@@ -133,20 +126,14 @@ class Products extends Component {
       sortValue: sortValue
     })
   }
+  
 
   render() {
     var {
-      tasks,
-      isDisplayForm,
+      tasks, show, handleClose, handleShow,
       keyword, filterName,
-      filterCategory,
-      filterPicture,
-      filteSrc,
-      filterDuration,
-      filterDescription,
-      itemEditing,
-      sortBy,
-      sortValue
+      filterCategory, filterStatus, filterPicture, filteSrc, filterDuration, filterDescription,
+      itemEditing, sortBy, sortValue
     } = this.state;
 
     tasks = tasks.filter((task) => {
@@ -168,6 +155,15 @@ class Products extends Component {
     //     return task.name.toLowerCase().indexOf(filterPoster.toLowerCase()) !== -1
     //   });
     // }
+    if(filterStatus){
+      tasks = tasks.filter((task) => {
+          if(filterStatus === '-1' || filterStatus === -1){
+              return task;
+          }else{
+              return task.status === (parseInt(filterStatus, 10) === 1 ? true : false);
+          }
+      });
+    }
     if(filterDuration){
       tasks = tasks.filter((task) => {
         return task.name.toLowerCase().indexOf(filterDuration.toLowerCase()) !== -1
@@ -180,40 +176,48 @@ class Products extends Component {
         else return 0;
       });
     }
-    // else{
-    //     tasks.sort((a, b) => {
-    //         if(a.status > b.status) return -sortValue;
-    //         else if(a.status < b.status) return sortValue;
-    //         else return 0;
-    //     });
-    // }
-    var elmForm = isDisplayForm === true ? 
-      <TaskForm onSave={this.onSave} onExitForm={this.onExitForm}
-        itemEditing={ itemEditing } /> : '';
+    handleClose = (show) => {
+      this.setState({
+        show: false
+      })
+    }
+    handleShow = (show) => {
+      this.setState({
+        show: true
+      })
+    }
+
     return (
       <div className="container">
         <div className="text-center">
             <h1>Quản Lý Phim</h1><hr/>
         </div>
-        <div className="row">
-          <div className={ isDisplayForm === true ? 'col-xs-4 col-sm-4 col-md-4 col-lg-4' : '' }>
-              {elmForm}
-          </div>
-          <div className={ isDisplayForm === true ? 'col-xs-8 col-sm-8 col-md-8 col-lg-8' : 'col-xs-12 col-sm-12 col-md-12 col-lg-12' }>
-            <button type="button" className="btn btn-primary" onClick={this.onToggleForm} >
-              <span className="fa fa-plus mr-3"></span>Thêm Phim
-            </button>
-            <TaskControl onSearch={this.onSearch} onSort={this.onSort}
-              sortBy={sortBy} sortValue={sortValue} /><br/>
-            <TaskList
-              tasks={tasks} // onUpdateCategory={this.onUpdateCategory}
-              onDeleteTask={this.onDeleteTask}
-              filterName={filterName} filterCategory={filterCategory}
-              filteSrc={filteSrc} filterPicture={filterPicture}
-              filterDuration={filterDuration} filterDescription={filterDescription}
-              onFilter={this.onFilter} onSelectedItem={this.onSelectedItem} />
-          </div>
-        </div>
+        <Button variant="primary" onClick={handleShow}>
+          <span className="fa fa-plus mr-3"></span>Thêm Phim
+        </Button>
+        <TaskControl onSearch={this.onSearch} onSort={this.onSort}
+          sortBy={sortBy} sortValue={sortValue} /><br/>
+        <TaskList
+          tasks={tasks} onUpdateCategory={this.onUpdateCategory}
+          onDeleteTask={this.onDeleteTask}
+          filterName={filterName} filterCategory={filterCategory}
+          filterStatus={filterStatus}
+          filteSrc={filteSrc} filterPicture={filterPicture}
+          filterDuration={filterDuration} filterDescription={filterDescription}
+          onFilter={this.onFilter} onSelectedItem={this.onSelectedItem} />       
+        <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
+          <Modal.Header closeButton>
+            <Modal.Title>{!this.state.id ? 'Thêm Phim' : 'Cập Nhật Phim'}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <TaskForm/>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </div>
     );
   }

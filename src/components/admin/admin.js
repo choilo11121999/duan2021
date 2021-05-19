@@ -1,6 +1,12 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { GiHamburgerMenu } from "react-icons/gi";
+import '../../css/Admin.css';
+import Navbar from "./Navbar";
+import Products from "./products/index";
 
 const Admin = () => {
+  const [collapsed, setCollapsed] = useState(false);
   return (
     <>
       <div className="admin container my-4">
@@ -21,6 +27,15 @@ const Admin = () => {
           </div>
         </form>
       </div>
+      <Router>
+        <header>
+          <GiHamburgerMenu onClick={() => setCollapsed(!collapsed)}/>
+        </header>
+        <Navbar show={collapsed}/>
+        <div className="c-admin-content">
+          <Route path="/admin/products" exact={true} component={Products}/>
+        </div>
+      </Router>
     </>
   );
 }
