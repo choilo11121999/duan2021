@@ -8,9 +8,10 @@ import MovieUpComing from './user/MovieUpComing';
 import MovieDetail from './user/MovieDetail';
 import Login from './auth/Login';
 import Register from './auth/Register';
-import Admin from './admin/admin';
+import Admin from './admin/admin.js';
+import Products from './admin/products/index';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from 'axios'; 
 
 const App = () => {
   const [user, setUser] = useState('');
@@ -40,7 +41,6 @@ const App = () => {
 
       {/* Router */}
       <Route path="/" exact component={Home}/>
-      <Route path="/admin" component={Admin} />
       <Route path="/user/login" component={() => <Login setUserLogin={setUserLogin} />}/>
       <Route path="/user/register" component={Register}/>
       <Route path="/movie/movie_playing" component={MoviePlaying} />
@@ -49,6 +49,8 @@ const App = () => {
     </div>
 
     <Footer />
+    <Route path="/admin" exact component={Admin}/>
+    <Route path="/admin/products" component={Products} />
   </Router>
   );
 }
