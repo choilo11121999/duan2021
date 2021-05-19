@@ -15,7 +15,7 @@ class Products extends Component {
       filterName: '',
       filterCategory: '',
       filterDuration: '',
-      filterStatus : '-1',
+      filterStatus : '0',
       filterPicture: false,
       filteSrc: false,
       filterDescription: '',
@@ -53,7 +53,7 @@ class Products extends Component {
       return result;
   }
 
-  onUpdateStatus = (id) => {
+  onUpdateStatus = (id) => { 
     var tasks = this.state.tasks;
     var index = this.findIndex(id);
     tasks[index].status = !tasks[index].status;
@@ -78,7 +78,6 @@ class Products extends Component {
     });
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }
-
   onExitForm = () =>{
     this.setState({
       isDisplayForm: false,
@@ -102,7 +101,6 @@ class Products extends Component {
       keyword: keyword
     });
   }
-
   onFilter = (filterName, filterCategory, filterStatus, filterDuration, filterDescription) => {
     this.setState({
       filterName: filterName,
@@ -134,6 +132,7 @@ class Products extends Component {
       keyword, filterName,
       filterCategory, filterStatus, filterPicture, filteSrc, filterDuration, filterDescription,
       itemEditing, sortBy, sortValue
+
     } = this.state;
 
     tasks = tasks.filter((task) => {
@@ -155,15 +154,6 @@ class Products extends Component {
     //     return task.name.toLowerCase().indexOf(filterPoster.toLowerCase()) !== -1
     //   });
     // }
-    if(filterStatus){
-      tasks = tasks.filter((task) => {
-          if(filterStatus === '-1' || filterStatus === -1){
-              return task;
-          }else{
-              return task.status === (parseInt(filterStatus, 10) === 1 ? true : false);
-          }
-      });
-    }
     if(filterDuration){
       tasks = tasks.filter((task) => {
         return task.name.toLowerCase().indexOf(filterDuration.toLowerCase()) !== -1
