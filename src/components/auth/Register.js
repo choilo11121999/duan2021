@@ -55,7 +55,9 @@ const Register = () => {
     email,
     password,
     password_confirmation,
+    role: 0
   };
+  console.log(data);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -153,7 +155,7 @@ const Register = () => {
                 required
               />
               {passworErr ? (
-                <span style={{ color: "red" }}>Mật khẩu sai định dạng</span>
+                <span style={{ color: "red" }}>Mật khẩu sai định dạng (gồm ít nhất 1 chữ hoa, chữ thường, số và ký tự đặc biệt !@$^%())</span>
               ) : (
                 ""
               )}

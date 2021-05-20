@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./../../css/MovieDetail.css";
 import ImgTest from './../../img/selection/1.jpg';
+import Booking from "./Booking";
 
 const MoviePlaying = () => {
   const [valueRadio, setValueRadio] = useState('detail');
@@ -57,7 +58,10 @@ const MoviePlaying = () => {
             <p><strong>Rated: </strong></p>
             <div className="main-body-btn">
               <button className="btn btn-primary btn-sm">Like</button>
-              <button className="btn btn-danger btn-sm ml-5">Mua vé</button>
+              <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#selectTime">
+                Mua vé
+              </button>
+              <Booking />
             </div>
           </div>
         </div>
