@@ -7,6 +7,7 @@ const Login = ({ setUserLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [islogin, setIslogin] = useState(false);
+  const [role, setRole] = useState('');
   const [status, setStatus] = useState(false);
   let msgErr;
 
@@ -20,9 +21,11 @@ const Login = ({ setUserLogin }) => {
     axios
       .post("/api/auth/login", data)
       .then((res) => {
-        console.log("login success");
+        console.log("login success", res.data);
         localStorage.setItem("token", res.data.data.access_token);
+        localStorage.setItem("role", res.data.data.user.role);
         setIslogin(true);
+        setRole(res.data.data.user.role)
         setUserLogin(res.data.data.user);
         Swal.fire({
           icon: 'success',
@@ -34,8 +37,10 @@ const Login = ({ setUserLogin }) => {
       });
   };
 
-  if (islogin) {
+  if (islogin && role === 0) {
     return <Redirect to={"/"} />;
+  } else if (islogin && role === 1) {
+    return <Redirect to={"/admin"} />;
   }
   if (status) {
     msgErr = "Nhập sai email hoặc password!";
