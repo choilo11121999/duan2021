@@ -27,7 +27,12 @@ import e8 from './../../img/event/8.png';
 import "./../../css/Home.css";
 import { Link } from 'react-router-dom';
 
-const Home = () => {
+const Home = ({ setProductNameFromHome, phimName }) => {
+  const handleClickDetail = (e) => {
+    const productName = e.target.parentNode.parentNode.firstChild.innerText;
+    setProductNameFromHome(productName);
+  }
+
   return (
     <div className="container home">
       {/* Slide show */}
@@ -87,9 +92,26 @@ const Home = () => {
           </ol>
           <div className="carousel-inner" role="listbox">
             <div className="carousel-item active">
-              <div className="row">
-                <div className="col-3 product">
-                  <img className="d-block w-100 h-100" src={s1} alt="First slide"/>
+              <div className="row d-flex justify-content-between flex-row">
+                <div className="product">
+                  <img className="" src={s1} alt="First slide"/>
+                  <div className="btn-play">
+                    <button className="btn btn-lg btn-danger">Play</button>
+                  </div>
+                  <div className="product-content">
+                    <h3>Ten phim</h3>
+                    <span className="btn btn-sm btn-danger">
+                      <Link className="link" to={`/movie/movie_detail/${phimName}`} onClick={(e) => handleClickDetail(e)} >
+                        Xem chi tiết
+                      </Link>
+                    </span>
+                    <button className="btn btn-sm btn-danger ml-3">
+                      Mua ve
+                    </button>
+                  </div>
+                </div>
+                <div className="product">
+                  <img className="" src={s2} alt="First slide"/>
                   <div className="btn-play">
                     <button className="btn btn-lg btn-danger">Play</button>
                   </div>
@@ -105,30 +127,111 @@ const Home = () => {
                     </button>
                   </div>
                 </div>
-                <div className="col-3">
-                  <img className="d-block w-100 h-100" src={s2} alt="First slide"/>
+                <div className="product">
+                  <img className="" src={s3} alt="First slide"/>
+                  <div className="btn-play">
+                    <button className="btn btn-lg btn-danger">Play</button>
+                  </div>
+                  <div className="product-content">
+                    <h3>Ten phim</h3>
+                    <span className="btn btn-sm btn-danger">
+                      <Link className="link" to="/movie/movie_detail">
+                        Xem chi tiết
+                      </Link>
+                    </span>
+                    <button className="btn btn-sm btn-danger ml-3">
+                      Mua ve
+                    </button>
+                  </div>
                 </div>
-                <div className="col-3">
-                  <img className="d-block w-100 h-100" src={s3} alt="First slide"/>
-                </div>
-                <div className="col-3">
-                  <img className="d-block w-100 h-100" src={s4} alt="First slide"/>
+                <div className="product">
+                  <img className="" src={s4} alt="First slide"/>
+                  <div className="btn-play">
+                    <button className="btn btn-lg btn-danger">Play</button>
+                  </div>
+                  <div className="product-content">
+                    <h3>Ten phim</h3>
+                    <span className="btn btn-sm btn-danger">
+                      <Link className="link" to="/movie/movie_detail">
+                        Xem chi tiết
+                      </Link>
+                    </span>
+                    <button className="btn btn-sm btn-danger ml-3">
+                      Mua ve
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
             <div className="carousel-item">
-              <div className="row">
-                <div className="col-3">
-                  <img className="d-block w-100 h-100" src={s5} alt="First slide"/>
+              <div className="row d-flex justify-content-between flex-row">
+                <div className="product">
+                  <img className="" src={s5} alt="First slide"/>
+                  <div className="btn-play">
+                    <button className="btn btn-lg btn-danger">Play</button>
+                  </div>
+                  <div className="product-content">
+                    <h3>Ten phim</h3>
+                    <span className="btn btn-sm btn-danger">
+                      <Link className="link" to="/movie/movie_detail">
+                        Xem chi tiết
+                      </Link>
+                    </span>
+                    <button className="btn btn-sm btn-danger ml-3">
+                      Mua ve
+                    </button>
+                  </div>
                 </div>
-                <div className="col-3">
-                  <img className="d-block w-100 h-100" src={s6} alt="First slide"/>
+                <div className="product">
+                  <img className="" src={s6} alt="First slide"/>
+                  <div className="btn-play">
+                    <button className="btn btn-lg btn-danger">Play</button>
+                  </div>
+                  <div className="product-content">
+                    <h3>Ten phim</h3>
+                    <span className="btn btn-sm btn-danger">
+                      <Link className="link" to="/movie/movie_detail">
+                        Xem chi tiết
+                      </Link>
+                    </span>
+                    <button className="btn btn-sm btn-danger ml-3">
+                      Mua ve
+                    </button>
+                  </div>
                 </div>
-                <div className="col-3">
-                  <img className="d-block w-100 h-100" src={s7} alt="First slide"/>
+                <div className="product">
+                  <img className="" src={s7} alt="First slide"/>
+                  <div className="btn-play">
+                    <button className="btn btn-lg btn-danger">Play</button>
+                  </div>
+                  <div className="product-content">
+                    <h3>Ten phim</h3>
+                    <span className="btn btn-sm btn-danger">
+                      <Link className="link" to="/movie/movie_detail">
+                        Xem chi tiết
+                      </Link>
+                    </span>
+                    <button className="btn btn-sm btn-danger ml-3">
+                      Mua ve
+                    </button>
+                  </div>
                 </div>
-                <div className="col-3">
-                  <img className="d-block w-100 h-100" src={s8} alt="First slide"/>
+                <div className="product">
+                  <img className="" src={s8} alt="First slide"/>
+                  <div className="btn-play">
+                    <button className="btn btn-lg btn-danger">Play</button>
+                  </div>
+                  <div className="product-content">
+                    <h3>Ten phim</h3>
+                    <span className="btn btn-sm btn-danger">
+                      <Link className="link" to="/movie/movie_detail">
+                        Xem chi tiết
+                      </Link>
+                    </span>
+                    <button className="btn btn-sm btn-danger ml-3">
+                      Mua ve
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -158,32 +261,32 @@ const Home = () => {
           <div className="carousel-inner" role="listbox">
             <div className="carousel-item active">
               <div className="row">
-                <div className="col-3">
+                <div className="col-3 event">
                   <img className="d-block w-100 h-100" src={e1} alt="First slide"/>
                 </div>
-                <div className="col-3">
+                <div className="col-3 event">
                   <img className="d-block w-100 h-100" src={e2} alt="First slide"/>
                 </div>
-                <div className="col-3">
+                <div className="col-3 event">
                   <img className="d-block w-100 h-100" src={e3} alt="First slide"/>
                 </div>
-                <div className="col-3">
+                <div className="col-3 event">
                   <img className="d-block w-100 h-100" src={e4} alt="First slide"/>
                 </div>
               </div>
             </div>
             <div className="carousel-item">
               <div className="row">
-                <div className="col-3">
+                <div className="col-3 event">
                   <img className="d-block w-100 h-100" src={e5} alt="First slide"/>
                 </div>
-                <div className="col-3">
+                <div className="col-3 event">
                   <img className="d-block w-100 h-100" src={e6} alt="First slide"/>
                 </div>
-                <div className="col-3">
+                <div className="col-3 event">
                   <img className="d-block w-100 h-100" src={e7} alt="First slide"/>
                 </div>
-                <div className="col-3">
+                <div className="col-3 event">
                   <img className="d-block w-100 h-100" src={e8} alt="First slide"/>
                 </div>
               </div>
