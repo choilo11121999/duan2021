@@ -1,0 +1,61 @@
+header{
+  padding: 30px;
+  background: #011627;
+  height: 95px;
+}
+header svg {
+  font-size: 40px;
+}
+
+.side-nav{
+  width: 240px;
+  background: #011627;
+  position: absolute;
+  height: 95vh;
+  padding: 0 30px;
+  left: -100%;
+  transition: all 0.3s;
+}
+.side-nav.active{
+  left: 0;
+}
+.logo{
+  width: 60px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px;
+}
+ul{
+  padding: 0;
+}
+ul li{
+  list-style-type: none;
+}
+ul li a{
+  color: green;
+  text-decoration: none;
+  font-size: 16px;
+  display: block;
+  padding: 10px 15px;
+  border-radius: 6px;
+}
+ul li a:hover, ul li a.active{
+  background: #172b4d;
+}
+.c-admin-content{
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  color: blue;
+}
+
+.c-admin{
+  background: #ecf0f1;
+  height: 100vh;
+  display: flex;
+}
+h1{
+  color: pink;
+}
