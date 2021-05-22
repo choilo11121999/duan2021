@@ -42,12 +42,12 @@ const App = () => {
   console.log("user ", user);
   return (
     <Router>
+        <Route path="/admin" component={Admin} />
       <div className="App"> 
         <Header user={user} setUserLogin={setUserLogin} />
 
         {/* Router */}
         <Route path="/" exact component={() => <Home setProductNameFromHome={setProductNameFromHome} phimName={productName} />} />
-        <Route path="/admin" component={Admin} />
         <Route path="/user/login" component={() => <Login setUserLogin={setUserLogin} />}/>
         <Route path="/user/register" component={Register}/>
         <Route path="/movie/movie_playing" component={MoviePlaying} />
@@ -58,8 +58,6 @@ const App = () => {
       </div>
 
     <Footer />
-    <Route path="/admin" exact component={Admin}/>
-    <Route path="/admin/products" component={Products} />
   </Router>
   );
 }

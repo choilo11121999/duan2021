@@ -178,8 +178,8 @@ class Products extends Component {
     }
 
     return (
-      <div className="container">
-        <div className="text-center">
+      <div className="mr-5">
+        <div className="text-left">
             <h1>Quản Lý Phim</h1><hr/>
         </div>
         <Button variant="primary" onClick={handleShow}>
