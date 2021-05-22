@@ -37,7 +37,7 @@ const Login = ({ setUserLogin }) => {
       });
   };
 
-  if (islogin && role !== 1) {
+  if (islogin && role === null) {
     return <Redirect to={"/"} />;
   } else if (islogin && role === 1) {
     return <Redirect to={"/admin/products"} />;
