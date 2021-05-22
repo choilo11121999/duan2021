@@ -9,7 +9,6 @@ const Admin = () => {
   const getCollapsed = (value) => {
     setToggle(value);
   }
-  console.log(toggle);
   return (
     <Router>
       <div className="admin-page d-flex">

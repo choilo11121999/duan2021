@@ -18,12 +18,10 @@ const App = () => {
   const [user, setUser] = useState('');
   const [productName, setProductName] = useState('');
   const role = localStorage.getItem('role');
-  console.log(role);
   useEffect(() => {
     axios.get('/api/auth/user')
     .then(
       res => {
-        console.log(res);
         setUserLogin(res.data.data)
       }
     )
@@ -41,7 +39,6 @@ const App = () => {
   const setProductNameFromHome = (product_name) => {
     setProductName(product_name);
   };
-  console.log("user ", user);
   return (
     <Router>
       {
