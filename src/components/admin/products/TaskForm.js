@@ -47,7 +47,11 @@ function TaskForm ({ handleClose }) {
         console.log(data);
         console.log(checkedState);
         axios
-            .post('http://45.77.241.194:8080/api/products', data)
+            .post('http://45.77.241.194:8080/api/products', data , {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            })
             .then((res) => {
                 console.log(res);
             })

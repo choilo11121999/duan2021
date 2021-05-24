@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ed489c62-51c8-471f-abc9-0dc9c85f9fbb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/user/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/user/MovieDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user/MovieDetail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/Home.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/Home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/admin/products/TaskForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/admin/products/TaskForm.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,6 +12,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="e4af0c2e-b5d9-442b-81cf-4aba031f7ddd" />
+        <option name="url" value="https://github.com/choilo11121999/duan2021.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="ProjectId" id="1sVb57xqvEWp0HLoS7rafVld272" />
   <component name="ProjectViewState">
@@ -40,10 +46,24 @@
       <option name="presentableId" value="Default" />
       <updated>1620960521651</updated>
       <workItem from="1620960529089" duration="228000" />
+      <workItem from="1621839900421" duration="509000" />
+      <workItem from="1621840471195" duration="510000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
