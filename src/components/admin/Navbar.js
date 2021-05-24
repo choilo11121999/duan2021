@@ -1,5 +1,5 @@
 import React, { Component, useEffect, useState } from 'react';
-import {NavLink} from "react-router-dom";
+import {NavLink, Link} from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FiHome, FiLogOut} from "react-icons/fi";
 import '../../css/Admin.css';
@@ -25,7 +25,7 @@ const Navbar = ({ getCollapsed, setUser }) => {
                     <li className="menu-item-link"><NavLink activeClassName="active-item-link" to="/admin/products"><FiHome/>Products</NavLink> </li>
                     <li className="menu-item-link"><NavLink activeClassName="active-item-link" to="/admin/show"><FiHome/>Show</NavLink> </li>
                     <li className="menu-item-link"><NavLink activeClassName="active-item-link" to="/admin/rooms"><FiHome/>Rooms</NavLink> </li>
-                    <li className="menu-item-link"><NavLink activeClassName="active-item-link" to="/" onClick={handleLogout}><FiLogOut/>&nbsp; Đăng xuất</NavLink> </li>
+                    <li className="menu-item-link"><Link to="/" onClick={handleLogout}><FiLogOut/>&nbsp; Đăng xuất</Link> </li>
                 </ul>
             </div>
         </>

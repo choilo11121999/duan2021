@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ed489c62-51c8-471f-abc9-0dc9c85f9fbb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/admin/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/admin/Navbar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/admin/products/TaskForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/admin/products/TaskForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/admin/products/TaskList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/admin/products/TaskList.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +35,9 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -47,7 +51,7 @@
       <updated>1620960521651</updated>
       <workItem from="1620960529089" duration="228000" />
       <workItem from="1621839900421" duration="509000" />
-      <workItem from="1621840471195" duration="510000" />
+      <workItem from="1621840471195" duration="9748000" />
     </task>
     <servers />
   </component>

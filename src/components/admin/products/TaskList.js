@@ -80,7 +80,8 @@ class TaskList extends Component {
                   onChange={this.onChange} value={this.state.filterDescription} />
               </td>
               <td></td>
-              <td></td>
+              <td>sửa</td>
+              <td>xóa</td>
             </tr>
             {elmTasks}
           </tbody>

@@ -8,7 +8,7 @@ function TaskForm ({ handleClose }) {
     );
     const [name, setName] = useState("");
     const [category, setCategory] = useState([]);
-    const [poster, setPoster] = useState("");
+    const [poster, setPoster] = useState();
     const [duration, setDuration] = useState("");
     const [description, setDescription] = useState("");
     const [status, setStatus] = useState("");
@@ -20,6 +20,11 @@ function TaskForm ({ handleClose }) {
     
         setCheckedState(updatedCheckedState);
     };
+
+    const handleFileSelected = (e) => {
+        setPoster(e.target.files[0]);
+    }
+
     useEffect(() => {
         const categorySelected = [];
         const getCategory = checkedState.map((item, index) => {
@@ -29,23 +34,21 @@ function TaskForm ({ handleClose }) {
         });
         setCategory(categorySelected);
     }, [checkedState]);
-    
-    const handleFileSelected = (e) => {
-        setPoster(e.target.files[0]);
-    }
-  
-    const data = {
-        name,
-        category,
-        poster,
-        duration,
-        description,
-        status,
-    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
+        let image = poster;
+        let formData = new FormData();
+        formData.append('image', image);
+        const data = {
+            name,
+            category,
+            poster: formData.getAll('image'),
+            duration,
+            description,
+            status,
+        }
         console.log(data);
-        console.log(checkedState);
         axios
             .post('http://45.77.241.194:8080/api/products', data , {
                 headers: {
