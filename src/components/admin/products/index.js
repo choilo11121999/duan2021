@@ -200,7 +200,7 @@ class Products extends Component {
             <Modal.Title>{!this.state.id ? 'Thêm Phim' : 'Cập Nhật Phim'}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <TaskForm/>
+            <TaskForm handleClose={handleClose} />
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>

@@ -1,7 +1,11 @@
-import React, { Component, useState } from 'react';
-import { Button } from 'react-bootstrap';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 
-function TaskForm () {
+function TaskForm ({ handleClose }) {
+    const types = ["Action", "Comedy", "Drama", "Fantasy", "Horror", "Mystery", "Romance", "Thriller", "Animation"];
+    const [checkedState, setCheckedState] = useState(
+        new Array(types.length).fill(false)
+    );
     const [name, setName] = useState("");
     const [category, setCategory] = useState([]);
     const [poster, setPoster] = useState("");
@@ -9,6 +13,27 @@ function TaskForm () {
     const [description, setDescription] = useState("");
     const [status, setStatus] = useState("");
     
+    const handleOnChangeCheckbox = (position) => {
+        const updatedCheckedState = checkedState.map((item, index) =>
+          index === position ? !item : item
+        );
+    
+        setCheckedState(updatedCheckedState);
+    };
+    useEffect(() => {
+        const categorySelected = [];
+        const getCategory = checkedState.map((item, index) => {
+            if (item === true) { 
+                categorySelected.push(types[index]) 
+            }
+        });
+        setCategory(categorySelected);
+    }, [checkedState]);
+    
+    const handleFileSelected = (e) => {
+        setPoster(e.target.files[0]);
+    }
+  
     const data = {
         name,
         category,
@@ -20,6 +45,15 @@ function TaskForm () {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(data);
+        console.log(checkedState);
+        axios
+            .post('http://45.77.241.194:8080/api/products', data)
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     }
     return (
         <div className="panel panel-warning">
@@ -32,71 +66,30 @@ function TaskForm () {
                     </div>
                     <div className="form-group">
                         <label>Category:</label>
-                        <div className="form-row" onChange={(e) => setCategory(...category, e.target.value)}>
-                            <div className="col">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="inlineRadioOptions" id="inlineRadio1" value="Action"/>
-                                    <label class="form-check-label" for="inlineRadio1">Action</label>
-                                </div>
-                            </div>
-                            <div className="col">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="inlineRadioOptions" id="inlineRadio2" value="Comedy"/>
-                                    <label class="form-check-label" for="inlineRadio2">Comedy</label>
-                                </div>
-                            </div>
-                            <div className="col">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="inlineRadioOptions" id="inlineRadio3" value="Drama"/>
-                                    <label class="form-check-label" for="inlineRadio3">Drama</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="form-row">
-                            <div className="col">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="inlineRadioOptions" id="inlineRadio4" value="Fantasy"/>
-                                    <label class="form-check-label" for="inlineRadio4">Fantasy</label>
-                                </div>
-                            </div>
-                            <div className="col">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="inlineRadioOptions" id="inlineRadio5" value="Horror"/>
-                                    <label class="form-check-label" for="inlineRadio5">Horror</label>
-                                </div>
-                            </div>
-                            <div className="col">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="inlineRadioOptions" id="inlineRadio6" value="Mystery"/>
-                                    <label class="form-check-label" for="inlineRadio6">Mystery</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="form-row">
-                            <div className="col">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="inlineRadioOptions" id="inlineRadio7" value="Romance"/>
-                                    <label class="form-check-label" for="inlineRadio7">Romance</label>
-                                </div>
-                            </div>
-                            <div className="col">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="inlineRadioOptions" id="inlineRadio8" value="Thriller"/>
-                                    <label class="form-check-label" for="inlineRadio8">Thriller</label>
-                                </div>
-                            </div>
-                            <div className="col">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="inlineRadioOptions" id="inlineRadio9" value="Animation"/>
-                                    <label class="form-check-label" for="inlineRadio9">Animation</label>
-                                </div>
-                            </div>
-                        </div>
+                        <ul className="list-types d-flex flex-wrap justify-content-start p-0">
+                            {types.map((name, index) => {
+                                return (
+                                    <li key={index} className="form-check form-check-inline mr-0 ml-3 w-25">
+                                        <input
+                                            className="form-check-input"
+                                            type="checkbox"
+                                            id={`custom-checkbox-${index}`}
+                                            name={name}
+                                            value={name}
+                                            checked={checkedState[index]}
+                                            onChange={() => handleOnChangeCheckbox(index)}
+                                        />
+                                        <label className="form-check-label" htmlFor={`custom-checkbox-${index}`}>{name}</label>
+                                    </li>
+                                );
+                            })}
+                        </ul>
                     </div>
                     <div className="form-group">
                         <label>Ảnh Poster:</label>
                         <input type="file" className="form-control-file" name="picture"              
-                            /*value={this.state.poster} onChange={this.handlePictureSelected.bind(this)}*//>
+                            onChange={(e) => handleFileSelected(e)}
+                        />
                     </div>
                     <div className="form-group">
                         <label>Time Picker:</label>
@@ -121,7 +114,7 @@ function TaskForm () {
                     </div>
                     <br/>
                     <div className="text-center">
-                        <button type="submit" className="btn btn-warning">
+                        <button type="submit" className="btn btn-warning" onClick={handleClose}>
                             <span className="fa fa-plus mr-3"></span>Lưu Lại
                         </button>&nbsp;
                         <button type="button" className="btn btn-danger">

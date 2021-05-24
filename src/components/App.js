@@ -18,6 +18,7 @@ const App = () => {
   const [user, setUser] = useState('');
   const [productName, setProductName] = useState('');
   const role = localStorage.getItem('role');
+  console.log("role",role);
   useEffect(() => {
     axios.get('/api/auth/user')
     .then(
@@ -44,7 +45,7 @@ const App = () => {
       {
         role === "1" ? (
           <div className="Admin">
-            <Route path="/admin" component={Admin} />
+            <Route path="/admin" component={() => <Admin setUserLogin={setUserLogin} />} />
           </div>
         ) : (
           <div className="App"> 

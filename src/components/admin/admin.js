@@ -4,16 +4,20 @@ import '../../css/Admin.css';
 import Navbar from "./Navbar";
 import Products from "./products/index";
 
-const Admin = () => {
+const Admin = ({ setUserLogin }) => {
   const [toggle, setToggle] = useState(false);
   const getCollapsed = (value) => {
     setToggle(value);
+  }
+
+  const setUser = (value) => {
+    setUserLogin(value);
   }
   return (
     <Router>
       <div className="admin-page d-flex">
         <div className="nav-bar">
-          <Navbar getCollapsed={getCollapsed}/>
+          <Navbar getCollapsed={getCollapsed} setUser={setUser} />
         </div>
         <div className={toggle ? "content-right" : "content-left"}>
           <div className="c-admin-content">
