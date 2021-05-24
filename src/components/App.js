@@ -17,11 +17,11 @@ import axios from 'axios';
 const App = () => {
   const [user, setUser] = useState('');
   const [productName, setProductName] = useState('');
+  const role = localStorage.getItem('role');
   useEffect(() => {
     axios.get('/api/auth/user')
     .then(
       res => {
-        console.log(res);
         setUserLogin(res.data.data)
       }
     )
@@ -39,27 +39,30 @@ const App = () => {
   const setProductNameFromHome = (product_name) => {
     setProductName(product_name);
   };
-  console.log("user ", user);
   return (
     <Router>
-      <div className="App"> 
-        <Header user={user} setUserLogin={setUserLogin} />
+      {
+        role === "1" ? (
+          <div className="Admin">
+            <Route path="/admin" component={Admin} />
+          </div>
+        ) : (
+          <div className="App"> 
+            <Header user={user} setUserLogin={setUserLogin} />
 
-        {/* Router */}
-        <Route path="/" exact component={() => <Home setProductNameFromHome={setProductNameFromHome} phimName={productName} />} />
-        <Route path="/admin" component={Admin} />
-        <Route path="/user/login" component={() => <Login setUserLogin={setUserLogin} />}/>
-        <Route path="/user/register" component={Register}/>
-        <Route path="/movie/movie_playing" component={MoviePlaying} />
-        <Route path="/movie/movie_upcoming" component={MovieUpComing} />
-        <Route path={`/movie/movie_detail/${productName}`} component={MovieDetail} />
-        <Route path="/movie/movie_detail/booking" component={Booking} />
+            {/* Router */}
+            <Route path="/" exact component={() => <Home setProductNameFromHome={setProductNameFromHome} phimName={productName} />} />
+            <Route path="/user/login" component={() => <Login setUserLogin={setUserLogin} />}/>
+            <Route path="/user/register" component={Register}/>
+            <Route path="/movie/movie_playing" component={MoviePlaying} />
+            <Route path="/movie/movie_upcoming" component={MovieUpComing} />
+            <Route path={`/movie/movie_detail/${productName}`} component={MovieDetail} />
+            <Route path="/movie/movie_detail/booking" component={Booking} />
 
-      </div>
-
-    <Footer />
-    <Route path="/admin" exact component={Admin}/>
-    <Route path="/admin/products" component={Products} />
+            <Footer />
+          </div>
+        )
+      }
   </Router>
   );
 }

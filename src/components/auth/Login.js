@@ -37,10 +37,10 @@ const Login = ({ setUserLogin }) => {
       });
   };
 
-  if (islogin && role === 0) {
+  if (islogin && role === null) {
     return <Redirect to={"/"} />;
   } else if (islogin && role === 1) {
-    return <Redirect to={"/admin"} />;
+    return <Redirect to={"/admin/products"} />;
   }
   if (status) {
     msgErr = "Nhập sai email hoặc password!";

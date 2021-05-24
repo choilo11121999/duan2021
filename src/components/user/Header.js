@@ -27,7 +27,7 @@ const Header = ({ user, setUserLogin }) => {
                 user ?
                 (<span>{user.name}</span>) :
                 (
-                  <NavLink className="nav-Navlink p-0" to="/user/login">
+                  <NavLink activeClassName="active-link" className="nav-Navlink p-0" to="/user/login">
                     Đăng nhập
                   </NavLink>
                 )

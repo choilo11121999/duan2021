@@ -40,3 +40,7 @@ ul li {
 .show-menu:hover .menu {
   display: block;
 }
+
+.active-link {
+  color: red
+}
