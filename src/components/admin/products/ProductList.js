@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
-import TaskItem from './TaskItem';
+import ProductItem from './ProductItem';
 
-class TaskList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      filterName: '',
-      filterCategory: '',
-      filterStatus: '',
-      filterSrc: '',
-      filterDuration: '',
-      filterDescription: ''
-    };
-  }
+function ProductList (props) {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     filterName: '',
+  //     filterCategory: '',
+  //     filterStatus: '',
+  //     filterSrc: '',
+  //     filterDuration: '',
+  //     filterDescription: ''
+  //   };
+  // }
 
-  onChange = (event) => {
+  const onChangeValue = (event) => {
     var target = event.target;
     var name = target.name;
     var value = target.type === 'checkbox' ? target.checked : target.value;
@@ -30,16 +30,15 @@ class TaskList extends Component {
     });
   }
 
-  render() {
-    var {tasks} = this.props;
-    var elmTasks = tasks.map((task, index) => {
-      return (
-        <TaskItem key={task.id} task={task} index={index + 1}
-          onUpdateStatus={this.props.onUpdateStatus}
-          onDeleteTask={this.props.onDeleteTask}
-          onSelectedItem = {this.props.onSelectedItem}/>
-      )
-    });
+  // const {tasks} = this.props;
+  //   const elmTasks = tasks.map((task, index) => {
+  //     return (
+  //       <ProductItem key={task.id} task={task} index={index + 1}
+  //         onUpdateStatus={this.props.onUpdateStatus}
+  //         onDeleteTask={this.props.onDeleteTask}
+  //         onSelectedItem = {this.props.onSelectedItem}/>
+  //     )
+  //   });
     return (
       <div>
         <table className="table table-bordered table-hover">
@@ -61,34 +60,37 @@ class TaskList extends Component {
               <td></td>
               <td>
                 <input type="text" className="form-control pd-0" name="filterName"
-                  onChange={this.onChange} value={this.state.filerName}/>
+                  onChange={onChangeValue} value={this.state.filerName}/>
               </td>
               <td>
                 <input type="text" className="form-control pd-0" name="filterCategory"
-                  onChange={this.onChange} value={this.state.filerCategory} />
+                  onChange={onChangeValue} value={this.state.filerCategory} />
               </td>
               <td>
                 <input type="text" className="form-control pd-0" name="filterSrc"
-                  onChange={this.onChange} value={this.state.filerSrc} />
+                  onChange={onChangeValue} value={this.state.filerSrc} />
               </td>
               <td>
                 <input type="number" className="form-control pd-0" name="filterDuration"
-                  onChange={this.onChange} value={this.state.filterDuration} />
+                  onChange={onChangeValue} value={this.state.filterDuration} />
               </td>
               <td>
                 <input type="textarea" className="form-control pd-0" name="filterDescription"
-                  onChange={this.onChange} value={this.state.filterDescription} />
+                  onChange={onChangeValue} value={this.state.filterDescription} />
               </td>
               <td></td>
               <td>sửa</td>
               <td>xóa</td>
             </tr>
-            {elmTasks}
+            {/* {elmTasks} */}
+            <ProductItem // key={task.id} task={task} index={index + 1}
+              onUpdateStatus={this.props.onUpdateStatus}
+              onDeleteTask={this.props.onDeleteTask}
+              onSelectedItem = {this.props.onSelectedItem}/>
           </tbody>
         </table>
       </div>
     );
-  }
 }
 
-export default TaskList;
+export default ProductList;

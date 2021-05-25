@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
-function TaskForm ({ handleClose }) {
+function ProductForm ({ handleClose }) {
     const types = ["Action", "Comedy", "Drama", "Fantasy", "Horror", "Mystery", "Romance", "Thriller", "Animation"];
     const [checkedState, setCheckedState] = useState(
         new Array(types.length).fill(false)
@@ -124,9 +124,9 @@ function TaskForm ({ handleClose }) {
                         <button type="submit" className="btn btn-warning" onClick={handleClose}>
                             <span className="fa fa-plus mr-3"></span>Lưu Lại
                         </button>&nbsp;
-                        <button type="button" className="btn btn-danger">
+                        {/* <button type="button" className="btn btn-danger">
                             <span className="fa fa-close mr-3"></span>Hủy Bỏ
-                        </button>
+                        </button> */}
                     </div>
                 </form>
             </div>
@@ -134,4 +134,4 @@ function TaskForm ({ handleClose }) {
     );
 }
 
-export default TaskForm;
+export default ProductForm;
