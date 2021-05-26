@@ -10,7 +10,6 @@ const Navbar = ({ getCollapsed, setUser }) => {
   }, [collapsed]);
 
   const handleLogout = () => {
-      console.log("click");
     localStorage.clear();
     setUser(null);
   }

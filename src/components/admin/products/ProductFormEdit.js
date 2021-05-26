@@ -2,23 +2,23 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Swal from "sweetalert2";
 
-function ProductForm ({ handleClose }) {
+function ProductFormEdit ({ handleClose, product }) {
     const types = ["Action", "Comedy", "Drama", "Fantasy", "Horror", "Mystery", "Romance", "Thriller", "Animation"];
     const [checkedState, setCheckedState] = useState(
         new Array(types.length).fill(false)
     );
-    const [name, setName] = useState("");
+    const [name, setName] = useState(product.film_name);
     const [category, setCategory] = useState([]);
     const [image, setImage] = useState();
-    const [duration, setDuration] = useState("");
-    const [description, setDescription] = useState("");
-    const [status, setStatus] = useState("");
-    
+    const [duration, setDuration] = useState(product.duration);
+    const [description, setDescription] = useState(product.film_description);
+    const [status, setStatus] = useState(product.status);
+
     const handleOnChangeCheckbox = (position) => {
         const updatedCheckedState = checkedState.map((item, index) =>
-          index === position ? !item : item
+            index === position ? !item : item
         );
-    
+
         setCheckedState(updatedCheckedState);
     };
 
@@ -29,8 +29,8 @@ function ProductForm ({ handleClose }) {
     useEffect(() => {
         const categorySelected = [];
         const getCategory = checkedState.map((item, index) => {
-            if (item === true) { 
-                categorySelected.push(types[index]) 
+            if (item === true) {
+                categorySelected.push(types[index])
             }
         });
         setCategory(categorySelected);
@@ -69,8 +69,8 @@ function ProductForm ({ handleClose }) {
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label>Tên:</label>
-                        <input type="text" className="form-control" name="name"
-                            onChange={(e) => setName(e.target.value)}/>
+                        <input type="text" className="form-control" name="name" value={name}
+                               onChange={(e) => setName(e.target.value)}/>
                     </div>
                     <div className="form-group">
                         <label>Category:</label>
@@ -95,29 +95,29 @@ function ProductForm ({ handleClose }) {
                     </div>
                     <div className="form-group">
                         <label>Ảnh Poster:</label>
-                        <input type="file" className="form-control-file" name="picture"              
-                            onChange={(e) => handleFileSelected(e)}
+                        <input type="file" className="form-control-file" name="picture"
+                               onChange={(e) => handleFileSelected(e)}
                         />
                     </div>
                     <div className="form-group">
                         <label>Time Picker:</label>
-                        <input type="text" className="form-control" name="duration"              
-                            onChange={(e) => setDuration(e.target.value)}/>
+                        <input type="text" className="form-control" name="duration" value={duration}
+                               onChange={(e) => setDuration(e.target.value)}/>
                     </div>
                     <div className="form-group">
                         <label>Mô tả:</label>
-                        <input type="textarea" className="form-control" name="description"              
-                            onChange={(e) => setDescription(e.target.value)}/>
+                        <input type="textarea" className="form-control" name="description" value={description}
+                               onChange={(e) => setDescription(e.target.value)}/>
                     </div>
                     <div className="form-group">
                         <label>Trạng thái:</label>
-                        <select className="form-control" name="status" 
-                        onChange={(e) => setStatus(e.target.value)}
-                            >
-                                <option selected>Chọn</option>
-                                <option value="1">Đang chiếu</option>
-                                <option value="2">Sắp chiếu</option>
-                                <option value="0">Ngưng chiếu</option>
+                        <select className="form-control" name="status"
+                                onChange={(e) => setStatus(e.target.value)}
+                        >
+                            <option selected={status === "" ? "selected" : ""}>Chọn</option>
+                            <option value="1" selected={status === "1" ? "selected" : ""}>Đang chiếu</option>
+                            <option value="2" selected={status === "2" ? "selected" : ""}>Sắp chiếu</option>
+                            <option value="0" selected={status === "0" ? "selected" : ""}>Ngưng chiếu</option>
                         </select>
                     </div>
                     <br/>
@@ -135,4 +135,4 @@ function ProductForm ({ handleClose }) {
     );
 }
 
-export default ProductForm;
+export default ProductFormEdit;
