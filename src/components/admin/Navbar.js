@@ -16,7 +16,7 @@ const Navbar = ({ getCollapsed, setUser }) => {
     return (
         <>
             <div className={collapsed ? "side-nav active" : "side-nav"}>
-                <div id={collapsed ? "show-nav" : "hide-nav"}>
+                <div className="btn" id={collapsed ? "show-nav" : "hide-nav"}>
                     <GiHamburgerMenu onClick={() => setCollapsed(!collapsed)}/>
                 </div>
                 <ul className="menu-list-link">
