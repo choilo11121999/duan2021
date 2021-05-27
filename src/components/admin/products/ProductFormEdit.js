@@ -1,8 +1,10 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Swal from "sweetalert2";
+import DurationPicker from "react-duration-picker";
 
 function ProductFormEdit ({ handleClose, product }) {
+    console.log(product)
     const types = ["Action", "Comedy", "Drama", "Fantasy", "Horror", "Mystery", "Romance", "Thriller", "Animation"];
     const [checkedState, setCheckedState] = useState(
         new Array(types.length).fill(false)
@@ -12,7 +14,12 @@ function ProductFormEdit ({ handleClose, product }) {
     const [image, setImage] = useState();
     const [duration, setDuration] = useState(product.duration);
     const [description, setDescription] = useState(product.film_description);
-    const [status, setStatus] = useState(product.status);
+    const [status, setStatus] = useState(product.film_status.toString());
+    //
+    // const updateChecked = checkedState.map((item, index) => {
+    //     const position
+    //     return index === position ? !item : item;
+    // });
 
     const handleOnChangeCheckbox = (position) => {
         const updatedCheckedState = checkedState.map((item, index) =>
@@ -26,6 +33,11 @@ function ProductFormEdit ({ handleClose, product }) {
         setImage(e.target.files[0]);
     }
 
+    const onChangeDuration = (duration) => {
+        const { hours, minutes, seconds } = duration;
+        setDuration(`${hours}:${minutes}:${seconds}`);
+    }
+
     useEffect(() => {
         const categorySelected = [];
         const getCategory = checkedState.map((item, index) => {
@@ -37,8 +49,10 @@ function ProductFormEdit ({ handleClose, product }) {
     }, [checkedState]);
 
     const handleSubmit = (e) => {
+        console.log(duration)
         e.preventDefault();
         let fd = new FormData();
+        fd.append('id', product.id);
         fd.append('film_name', name);
         fd.append('poster', image);
         fd.append('category', category);
@@ -46,7 +60,7 @@ function ProductFormEdit ({ handleClose, product }) {
         fd.append('film_description', description);
         fd.append('film_status', parseInt(status));
         axios
-            .post('/api/products', fd , {
+            .put(`/api/products/${product.id}`, fd , {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
                     "Content-type": "multipart/form-data",
@@ -56,11 +70,15 @@ function ProductFormEdit ({ handleClose, product }) {
                 console.log(res);
                 Swal.fire({
                     icon: 'success',
-                    text: 'Thêm phim thành công!',
+                    text: 'Sửa thành công!',
                 })
             })
             .catch((err) => {
                 console.log(err);
+                Swal.fire({
+                    icon: 'error',
+                    text: 'Sửa không thành công!',
+                })
             });
     }
     return (
@@ -101,8 +119,11 @@ function ProductFormEdit ({ handleClose, product }) {
                     </div>
                     <div className="form-group">
                         <label>Time Picker:</label>
-                        <input type="text" className="form-control" name="duration" value={duration}
-                               onChange={(e) => setDuration(e.target.value)}/>
+                        <DurationPicker
+                            onChange={onChangeDuration}
+                            initialDuration={{ hours: product.duration.substring(0,2), minutes: product.duration.substring(3,5), seconds: product.duration.substring(6) }}
+                            maxHours={5}
+                        />
                     </div>
                     <div className="form-group">
                         <label>Mô tả:</label>
