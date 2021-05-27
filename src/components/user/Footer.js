@@ -56,12 +56,15 @@ const Footer = () => {
           </div>
           <div className="col">
             <h3>Kết nối với chúng tôi</h3>
-            <ul className="d-flex">
-              <li>Facebook</li>
-              <li>Youtube</li>
-              <li>Instagram</li>
-              <li>Zalo</li>
-            </ul>
+            <div className="icon-follow">
+                <ul>
+                    <li><Link className="zoom-icon" id="fb" to="#"></Link></li>
+                    <li><Link className="zoom-icon" id="youtube" to="#" ></Link></li>
+                    <li><Link className="zoom-icon" id="line" to="#"></Link></li>
+                    <li><Link className="zoom-icon" id="insta" to="#"></Link></li>
+                    <li><Link className="zoom-icon" id="zalo" to="#"></Link></li>
+                </ul>
+            </div>
             <div className="cgv-premission">
             </div>
           </div>
@@ -78,7 +81,7 @@ const Footer = () => {
       <div className="container mx-auto footer-address row mt-1">
         <div className="logo-cgv col-3">
         </div>
-        <div className="col-9">
+        <div className="col-9 text-cgv-address">
           <h3>CÔNG TY TNHH CJ CGV VIETNAM</h3>
           <p>Giấy CNĐKDN: 0303675393, đăng ký lần đầu ngày 31/7/2008, đăng ký thay đổi lần thứ 5 ngày 14/10/2015,
              cấp bởi Sở KHĐT thành phố Hồ Chí Minh.</p>

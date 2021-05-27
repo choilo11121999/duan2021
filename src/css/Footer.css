@@ -60,3 +60,30 @@
   background-repeat: repeat-x;
   background-size: contain;
 }
+.icon-follow ul li{
+  display: inline;
+}
+.zoom-icon{
+  display: inline-block;
+  width: 43px;
+  height: 43px;
+}
+.zoom-icon:hover{
+  transition: 0.2s;
+  transform: scale(1.4);
+}
+#fb{
+  background: url(../img/bg-icon-follow-list.png) -6px 0px; 
+}
+#youtube{
+  background: url(../img/bg-icon-follow-list.png) -52px 0px; 
+}
+#insta{
+  background: url(../img/bg-icon-follow-list.png) -97px 0px;
+}
+#line{
+  background: url(../img/bg-icon-follow-list.png) -143px 0px; 
+}
+#zalo{
+  background: url(../img/bg-icon-follow-list.png) -190px 0px; 
+}
