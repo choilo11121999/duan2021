@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Swal from "sweetalert2";
+import DurationPicker from "react-duration-picker";
 
 function ProductForm ({ handleClose }) {
     const types = ["Action", "Comedy", "Drama", "Fantasy", "Horror", "Mystery", "Romance", "Thriller", "Animation"];
@@ -24,6 +25,11 @@ function ProductForm ({ handleClose }) {
 
     const handleFileSelected = (e) => {
         setImage(e.target.files[0]);
+    }
+
+    const onChangeDuration = (duration) => {
+        const { hours, minutes, seconds } = duration;
+        setDuration(`${hours}:${minutes}:${seconds}`);
     }
 
     useEffect(() => {
@@ -61,6 +67,10 @@ function ProductForm ({ handleClose }) {
             })
             .catch((err) => {
                 console.log(err);
+                Swal.fire({
+                    icon: 'error',
+                    text: 'Thêm phim không thành công!',
+                })
             });
     }
     return (
@@ -101,8 +111,11 @@ function ProductForm ({ handleClose }) {
                     </div>
                     <div className="form-group">
                         <label>Time Picker:</label>
-                        <input type="text" className="form-control" name="duration"              
-                            onChange={(e) => setDuration(e.target.value)}/>
+                        <DurationPicker
+                            onChange={onChangeDuration}
+                            initialDuration={{ hours: 1, minutes: 45, seconds: 3 }}
+                            maxHours={3}
+                        />
                     </div>
                     <div className="form-group">
                         <label>Mô tả:</label>
