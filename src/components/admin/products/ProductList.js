@@ -17,7 +17,11 @@ const ProductList = () => {
     }, [reload]);
 
     const getProducts = () => {
-        axios.get('/api/products')
+        axios.get('/api/products', {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            }
+        })
             .then((res) => {
                 let data = res.data.data.data;
                 setListProduct(data);
