@@ -5,12 +5,18 @@ import ProductForm from './ProductForm';
 import { Button, Modal } from 'react-bootstrap';
 function Products (props) {
   const [show, setShow] = useState(false);
+  const [load, setLoad] = useState();
 
     const handleClose = (show) => {
       setShow(false);
     }
     const handleShow = (show) => {
       setShow(true);
+    }
+
+    const getReLoad = (value) => {
+        console.log(value)
+        setLoad(value);
     }
 
     return (
@@ -28,10 +34,10 @@ function Products (props) {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <ProductForm handleClose={handleClose} />
+            <ProductForm handleClose={handleClose} getReLoad={getReLoad}/>
           </Modal.Body>
         </Modal>
-        <ProductList />
+        <ProductList getReLoad={load} />
       </div>
     );
 }
