@@ -11,7 +11,12 @@ const ProductList = () => {
         new Array()
     );
     const [showEditor, setShowEditor] = useState(false);
-
+    const [productId, setProductId] = useState({
+        film_name: "",
+        duration: "",
+        film_description: "",
+        film_status: "",
+    });
     useEffect(() => {
         getProducts()
     }, [reload]);
@@ -32,7 +37,11 @@ const ProductList = () => {
     }
 
     const deleteProduct = (id) => {
-        axios.delete(`/api/products/${id}`)
+        axios.delete(`/api/products/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            }
+        })
             .then((res) => {
                 console.log(res);
                 Swal.fire({
@@ -47,6 +56,17 @@ const ProductList = () => {
                     text: 'Xóa Không thành công!',
                 })
             });
+    }
+
+    const handleEdit = (e) => {
+        const id = e.target.parentNode.parentNode.firstChild.innerText;
+        handleShow();
+        listProduct.forEach(product => {
+            if (product.id.toString() === id) {
+                console.log(product)
+                setProductId(product);
+            }
+        })
     }
 
     const handleDelete = (e) => {
@@ -71,7 +91,6 @@ const ProductList = () => {
     const handleClose = () => {
         setShowEditor(false);
     };
-
     const eleItem = listProduct.map((product, index) => {
         return (
           <tr key={index} className="text-center">
@@ -84,17 +103,7 @@ const ProductList = () => {
               <td>{product.duration}</td>
               <td>{product.film_description}</td>
               <td>{product.film_status === 0 ? "Không chiếu" : product.film_status === 1 ? "Đang chiếu" : "Sắp chiếu"}</td>
-              <td><button className="btn btn-sm btn-primary" onClick={handleShow}>Edit</button></td>
-              <Modal show={showEditor} onHide={handleClose} backdrop="static" keyboard={false}>
-                  <Modal.Header closeButton>
-                      <Modal.Title>
-                          Sửa Phim
-                      </Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                      <ProductFormEdit handleClose={handleClose} product={product} />
-                  </Modal.Body>
-              </Modal>
+              <td><button className="btn btn-sm btn-primary" onClick={(e) => handleEdit(e)}>Edit</button></td>
               <td><button className="btn btn-sm btn-danger" onClick={(e) => handleDelete(e)}>Delete</button></td>
           </tr>
         );
@@ -119,6 +128,16 @@ const ProductList = () => {
           {eleItem}
           </tbody>
         </table>
+          <Modal show={showEditor} onHide={handleClose} backdrop="static" keyboard={false}>
+              <Modal.Header closeButton>
+                  <Modal.Title>
+                      Sửa Phim
+                  </Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                  <ProductFormEdit handleClose={handleClose} product={productId} />
+              </Modal.Body>
+          </Modal>
       </div>
     );
 }
