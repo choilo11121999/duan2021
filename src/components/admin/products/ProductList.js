@@ -7,7 +7,12 @@ import ProductFormEdit from "./ProductFormEdit";
 
 const ProductList = ({ getReLoad }) => {
     const [reload, setReload] = useState(false);
-    console.log(reload)
+    console.log(getReLoad);
+    useEffect(() => {
+        if (getReLoad === true) {
+            setReload(!reload);
+        }
+    }, [getReLoad])
     const [listProduct, setListProduct] = useState(
         new Array()
     );
@@ -35,12 +40,6 @@ const ProductList = ({ getReLoad }) => {
             .catch((err) => {
                 console.log(err)
             });
-    }
-
-    const setload = () => {
-        if (getReLoad === true) {
-            setReload(!reload);
-        }
     }
 
     const deleteProduct = (id) => {

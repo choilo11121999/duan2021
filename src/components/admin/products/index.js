@@ -5,7 +5,7 @@ import ProductForm from './ProductForm';
 import { Button, Modal } from 'react-bootstrap';
 function Products (props) {
   const [show, setShow] = useState(false);
-  const [load, setLoad] = useState();
+  const [load, setLoad] = useState(false);
 
     const handleClose = (show) => {
       setShow(false);

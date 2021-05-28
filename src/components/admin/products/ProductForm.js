@@ -72,7 +72,9 @@ function ProductForm ({ handleClose, getReLoad }) {
                     text: 'Thêm phim không thành công!',
                 })
             });
-        getReLoad(true);
+        setTimeout(() => {
+            getReLoad(true);
+        }, 500);
     }
     return (
         <div className="panel panel-warning">
