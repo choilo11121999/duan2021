@@ -4,40 +4,38 @@ import Swal from "sweetalert2";
 import DurationPicker from "react-duration-picker";
 
 function ProductFormEdit ({ handleClose, product }) {
-    console.log(product)
     const types = ["Action", "Comedy", "Drama", "Fantasy", "Horror", "Mystery", "Romance", "Thriller", "Animation"];
     const [checkedState, setCheckedState] = useState(
         new Array(types.length).fill(false)
     );
+    const [id, setId] = useState(product.id)
     const [name, setName] = useState(product.film_name);
     const [category, setCategory] = useState([]);
-    const [image, setImage] = useState();
+    const [image, setImage] = useState(product.poster);
     const [duration, setDuration] = useState(product.duration);
     const [description, setDescription] = useState(product.film_description);
     const [status, setStatus] = useState(product.film_status.toString());
-    //
-    // const updateChecked = checkedState.map((item, index) => {
-    //     const position
-    //     return index === position ? !item : item;
-    // });
 
-    const handleOnChangeCheckbox = (position) => {
-        const updatedCheckedState = checkedState.map((item, index) =>
-            index === position ? !item : item
-        );
-
+    //Get data category
+    useEffect(() => {
+        setcheckstate();
+    }, [])
+    const setcheckstate = () => {
+        let updatedCheckedState = checkedState;
+        product.category.map((val, index) => {
+            let updatedCheckedState1 = updatedCheckedState.map((item, index) =>{
+                if (updatedCheckedState[index] === true) {
+                    return true;
+                } else {
+                    return index === types.indexOf(val.name) ? true : false;
+                }
+            })
+            updatedCheckedState = updatedCheckedState1;
+        })
         setCheckedState(updatedCheckedState);
-    };
-
-    const handleFileSelected = (e) => {
-        setImage(e.target.files[0]);
     }
 
-    const onChangeDuration = (duration) => {
-        const { hours, minutes, seconds } = duration;
-        setDuration(`${hours}:${minutes}:${seconds}`);
-    }
-
+    //set category
     useEffect(() => {
         const categorySelected = [];
         const getCategory = checkedState.map((item, index) => {
@@ -48,11 +46,28 @@ function ProductFormEdit ({ handleClose, product }) {
         setCategory(categorySelected);
     }, [checkedState]);
 
+    const handleOnChangeCheckbox = (position) => {
+        const updatedCheckedState = checkedState.map((item, index) =>
+            index === position ? !item : item
+        );
+
+        setCheckedState(updatedCheckedState);
+    };
+
+    // const handleFileSelected = (e) => {
+    //     setImage(e.target.files[0]);
+    // }
+
+    const onChangeDuration = (duration) => {
+        const { hours, minutes, seconds } = duration;
+        setDuration(`${hours}:${minutes}:${seconds}`);
+    }
+
     const handleSubmit = (e) => {
-        console.log(duration)
+        console.log(image)
         e.preventDefault();
         let fd = new FormData();
-        fd.append('id', product.id);
+        fd.append('id', id);
         fd.append('film_name', name);
         fd.append('poster', image);
         fd.append('category', category);
@@ -113,9 +128,10 @@ function ProductFormEdit ({ handleClose, product }) {
                     </div>
                     <div className="form-group">
                         <label>Ảnh Poster:</label>
-                        <input type="file" className="form-control-file" name="picture"
-                               onChange={(e) => handleFileSelected(e)}
-                        />
+                        {/*<input type="file" className="form-control-file" name="picture"*/}
+                        {/*       onChange={(e) => handleFileSelected(e)}*/}
+                        {/*/>*/}
+                        <img src={axios.defaults.baseURL + image} />
                     </div>
                     <div className="form-group">
                         <label>Time Picker:</label>

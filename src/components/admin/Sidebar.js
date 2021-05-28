@@ -12,6 +12,7 @@ const Sidebar = ({ getCollapsed, setUser }) => {
   const handleLogout = () => {
     localStorage.clear();
     setUser(null);
+    window.location.href="/user/login"
   }
     return (
         <>
@@ -24,7 +25,7 @@ const Sidebar = ({ getCollapsed, setUser }) => {
                     <li className="menu-item-link"><NavLink activeClassName="active-item-link" to="/admin/products"><FiHome/>Products</NavLink> </li>
                     <li className="menu-item-link"><NavLink activeClassName="active-item-link" to="/admin/shows"><FiHome/>Shows</NavLink> </li>
                     <li className="menu-item-link"><NavLink activeClassName="active-item-link" to="/admin/rooms"><FiHome/>Rooms</NavLink> </li>
-                    <li className="menu-item-link"><Link to="/" onClick={handleLogout}><FiLogOut/>&nbsp; Đăng xuất</Link> </li>
+                    <li className="menu-item-link"><Link to="/user/login" onClick={handleLogout}><FiLogOut/>&nbsp; Đăng xuất</Link> </li>
                 </ul>
             </div>
         </>

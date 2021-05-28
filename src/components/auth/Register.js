@@ -55,7 +55,6 @@ const Register = () => {
     email,
     password,
     password_confirmation,
-    role: 0
   };
   console.log(data);
 

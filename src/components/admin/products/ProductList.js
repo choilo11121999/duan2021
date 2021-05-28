@@ -5,8 +5,14 @@ import Swal from "sweetalert2";
 import {Modal} from "react-bootstrap";
 import ProductFormEdit from "./ProductFormEdit";
 
-const ProductList = () => {
+const ProductList = ({ getReLoad }) => {
     const [reload, setReload] = useState(false);
+    console.log(getReLoad);
+    useEffect(() => {
+        if (getReLoad === true) {
+            setReload(!reload);
+        }
+    }, [getReLoad])
     const [listProduct, setListProduct] = useState(
         new Array()
     );
@@ -18,7 +24,7 @@ const ProductList = () => {
         film_status: "",
     });
     useEffect(() => {
-        getProducts()
+        getProducts();
     }, [reload]);
 
     const getProducts = () => {
@@ -63,7 +69,6 @@ const ProductList = () => {
         handleShow();
         listProduct.forEach(product => {
             if (product.id.toString() === id) {
-                console.log(product)
                 setProductId(product);
             }
         })

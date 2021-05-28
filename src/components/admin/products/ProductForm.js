@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Swal from "sweetalert2";
 import DurationPicker from "react-duration-picker";
 
-function ProductForm ({ handleClose }) {
+function ProductForm ({ handleClose, getReLoad }) {
     const types = ["Action", "Comedy", "Drama", "Fantasy", "Horror", "Mystery", "Romance", "Thriller", "Animation"];
     const [checkedState, setCheckedState] = useState(
         new Array(types.length).fill(false)
@@ -72,6 +72,9 @@ function ProductForm ({ handleClose }) {
                     text: 'Thêm phim không thành công!',
                 })
             });
+        setTimeout(() => {
+            getReLoad(true);
+        }, 500);
     }
     return (
         <div className="panel panel-warning">
