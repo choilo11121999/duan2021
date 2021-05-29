@@ -5,34 +5,36 @@ import DurationPicker from "react-duration-picker";
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 
-function ShowForm ({ handleClose }) {
-    const [name, setName] = useState("");
-    const [showTime, setShowTime] = useState("");
-    const [showDate, setShowDate] = useState("");
-    const [room, setRoom] = useState("");
+function ShowForm ({ handleClose, listShow }) {
+    const [product_id, setProduct_id] = useState("");
+    const [show_time, setShow_time] = useState("");
+    const [show_date, setShow_date] = useState("");
+    const [room_id, setRoom_id] = useState("");
     
     const onChangeShowTime = (showTime) => {
+        console.log(showTime);
         const { hours, minutes, seconds } = showTime;
-        setShowTime(`${hours}:${minutes}:${seconds}`);
+        setShow_time(`${hours}:${minutes}:${seconds}`);
     }
     const onChangeShowDate = (showDate) => {
-        const { days, months, years } = showDate;
-        setShowDate(`${days}:${months}:${years}`);
+        const splitTime = showDate.toLocaleDateString().split(/[/]+/);
+        const days= splitTime[1];
+        const months = splitTime[0];
+        const years = splitTime[2];
+        setShow_date(`${years}-${months}-${days}`);
+        console.log(showDate);
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        let fd = new FormData();
-        fd.append('film_name', name);
-        fd.append('showTime', showTime);
-        fd.append('showDate', showDate);
-        fd.append('room', room);
+        let data = {product_id, show_time, show_date, room_id};
+        console.log(data);
         axios
-            .post('/api/shows', fd , {
+            .post(`/api/shows`, data , {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                    "Content-type": "multipart/form-data",
                 }
+
             })
             .then((res) => {
                 console.log(res);
@@ -55,28 +57,38 @@ function ShowForm ({ handleClose }) {
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label>Tên:</label>
-                        <input type="text" className="form-control" name="name"
-                            onChange={(e) => setName(e.target.value)}/>
+                        <select className="form-control" name="name" 
+                            onChange={(e) => setProduct_id(e.target.value)}
+                            >
+                                <option selected>Chọn</option>
+                                {listShow.map((name, index)  => {
+                                    return <option key={index} value={name.id}>{name.film_name}</option>
+                                })}
+                        </select>
+                    </div>
+                    <div className="form-group">
+                        <label>Room:</label>
+                        <select className="form-control" name="room" 
+                            onChange={(e) => setRoom_id(e.target.value)}>
+                                <option selected>Chọn</option>
+                                <option value="1">Phòng 1</option>
+                                <option value="2">Phòng 2</option>
+                                <option value="3">Phòng 3</option>
+                                <option value="4">Phòng 4</option>
+                        </select>
+                    </div>
+                    <div className="form-group">
+                        <label>Ngày chiếu:</label>
+                        <DayPickerInput showOutsideDays onDayChange={onChangeShowDate}/> 
                     </div>
                     <div className="form-group">
                         <label>Giờ chiếu:</label>
                         <DurationPicker
                             onChange={onChangeShowTime}
-                            initialTime={{ hours: 1, minutes: 45, seconds: 3 }}
+                            initialDuration={{ hours: 1, minutes: 45, seconds: 3 }}
                             maxHours={23}
                         />
-                    </div>
-                    <div className="form-group">
-                        <label>Ngày chiếu:</label>
-                        <DayPickerInput showOutsideDays onDayChange={onChangeShowDate}/> 
-
-                    </div>
-                    <div className="form-group">
-                        <label>Room:</label>
-                        <input type="text" className="form-control" name="room"
-                            onChange={(e) => setRoom(e.target.value)}/>
-                    </div>
-                    <br/>
+                    </div><br/>
                     <div className="text-center">
                         <button type="submit" className="btn btn-warning" onClick={handleClose}>
                             <span className="fa fa-plus mr-3"></span>Lưu Lại

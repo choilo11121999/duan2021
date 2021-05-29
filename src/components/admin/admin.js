@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import '../../css/Admin.css';
-import Sidebar from "./Sidebar";
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import BootstrapNavbar from "./BootstrapNavbar";
 import Products from "./products/index";
 import Shows from "./shows/index";
-// import Rooms from "./rooms/index";
-// import Cinemas from "./cinemas/index";
+import '../../css/Admin.css';
 
 const Admin = ({ setUserLogin }) => {
   const [toggle, setToggle] = useState(false);
@@ -20,16 +18,14 @@ const Admin = ({ setUserLogin }) => {
     <Router>
       <div className="admin-page d-flex">
         <div className="nav-bar">
-          <Sidebar getCollapsed={getCollapsed} setUser={setUser} />
+        <BootstrapNavbar getCollapsed={getCollapsed} setUser={setUser} />
         </div>
-        <div className={toggle ? "content-right" : "content-left"}>
+        {/* <div className={toggle ? "content-right" : "content-left"}>
           <div className="c-admin-content">
             <Route path="/admin/products" exact={true} component={Products}/>
             <Route path="/admin/shows" exact={true} component={Shows}/>
-            {/*<Route path="/admin/rooms" exact={true} component={Rooms}/>*/}
-            {/*<Route path="/admin/cinemas" exact={true} component={Cinemas}/>*/}
           </div>
-        </div>
+        </div> */}
       </div>
     </Router>
   );

@@ -8,7 +8,9 @@
 ul li {
   margin-left: 20px;
 }
-
+.mr-5px{
+  margin-right: 5px;
+}
 .show-menu {
   z-index: 99999;
 }
@@ -43,4 +45,39 @@ ul li {
 
 .active-link {
   color: red
+}
+.nav-item:nth-child(5) {
+  margin-right: 15px;
+}
+#VN, #EN{ 
+  color: white;
+  box-shadow: 0 0 0 0 black;
+  width: 40px;
+  text-align: center;
+  line-height: 22px;
+  padding: 0 0.5rem;
+}
+#VN{
+  background: gray;
+  border-radius: 16% 0 0 16%;
+}
+#EN{
+  background: rgb(235, 40, 40);
+  border-radius: 0 16% 16% 0;
+  margin-left: 0;
+}
+.search-buy-infor{
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  top: 10px;
+  right: 50px;
+}
+.buy-tickets{
+  margin-left: 20px;
+  justify-content: flex-start;
+}
+.news{
+  align-content: center;
+  margin-top: 35px;
 }

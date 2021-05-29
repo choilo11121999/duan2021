@@ -173,7 +173,7 @@ const Register = () => {
                 required
               />
               {passworConfirmationErr ? (
-                <span style={{ color: "red" }}>Mậy khẩu không khớp</span>
+                <span style={{ color: "red" }}>Mật khẩu không khớp</span>
               ) : (
                 ""
               )}
