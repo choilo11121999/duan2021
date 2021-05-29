@@ -53,4 +53,5 @@ const BootstrapNavbar = ({ getCollapsed, setUser }) => {
         </>
     );
 }
-export default BootstrapNavbar;  
+export default BootstrapNavbar; 
+ 
