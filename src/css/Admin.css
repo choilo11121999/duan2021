@@ -52,3 +52,9 @@
 .active-item-link {
   background-color: #3d8dd5;
 }
+h1{
+  font-size: 30px;
+}
+.admin-signout{
+  font-size: 18px;
+}

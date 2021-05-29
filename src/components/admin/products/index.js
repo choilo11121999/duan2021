@@ -20,7 +20,7 @@ function Products (props) {
     }
 
     return (
-      <div className="mr-5">
+      <div className="mr-5 ml-5 mb-5">
         <div className="text-left">
             <h1>Quản Lý Phim</h1><hr/>
         </div>

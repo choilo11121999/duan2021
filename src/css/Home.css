@@ -67,8 +67,10 @@
   height: 60px;
   z-index: -99999px;
 }
-
-.slide-selection,
+.slide {
+  background: url("../img/banner/banner-brick.png") repeat-x;;
+}
+.-selection,
 .event-selection  {
   margin-top: 20px;
 }

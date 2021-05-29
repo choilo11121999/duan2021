@@ -1,6 +1,8 @@
 import { NavLink, Link } from "react-router-dom";
 import './../../css/Header.css';
 import imgLogo from "./../../img/cgvlogo.png";
+import kencine from "../../img/kenhcine.gif";
+import muavengay from "../../img/banner/banner-mua-ve-ngay.png";
 const Header = ({ user, setUserLogin }) => {
   const handleLogout = () => {
     localStorage.clear();
@@ -14,21 +16,24 @@ const Header = ({ user, setUserLogin }) => {
           <ul className="navbar-nav">
             <li className="nav-item">
               <NavLink activeClassName="active-link" className="nav-Navlink p-0" to="/news">
-                Tin mới & ưu đãi
+                <i class="fa fa-newspaper-o mr-5px" aria-hidden="true"></i>Tin mới & ưu đãi
               </NavLink>
             </li>
             <li className="nav-item">
               <NavLink activeClassName="active-link" className="nav-Navlink p-0" to="/my_ticket">
-                Vé của tôi
+                <i className="fa fa-ticket mr-5px" aria-hidden="true"></i>Vé của tôi
               </NavLink>
             </li>
             <li className="nav-item">
               {
                 user ?
-                (<span>{user.name}</span>) :
+                (<div>
+                    <i className="fa fa-user-circle mr-5px" aria-hidden="true"></i>
+                    <span>{user.name}</span>
+                  </div>) :
                 (
                   <NavLink activeClassName="active-link" className="nav-Navlink p-0" to="/user/login">
-                    Đăng nhập
+                    <i className="fa fa-sign-in mr-5px" aria-hidden="true"></i>Đăng nhập
                   </NavLink>
                 )
               }
@@ -38,19 +43,22 @@ const Header = ({ user, setUserLogin }) => {
                user ?
                (
                 <Link className="nav-Navlink p-0" to="/user/login" onClick={handleLogout}>
-                  Đăng xuất
+                  <i className="fa fa-sign-out mr-5px" aria-hidden="true"></i>Đăng xuất
                 </Link>
                ) :
                (
                 <NavLink activeClassName="active-link" className="nav-Navlink p-0" to="/user/register">
-                  Đăng ký
+                  <i className="fa fa-user-plus mr-5px" aria-hidden="true"></i>Đăng ký
                 </NavLink>
                )
              }
             </li>
             <li className="nav-item">
-              <NavLink activeClassName="active-link" className="nav-Navlink p-0" to="/vn">
-                VN/EN
+              <NavLink activeClassName="active-link" className="nav-Navlink" 
+                to="/vn" id="VN">VN
+              </NavLink>
+              <NavLink activeClassName="active-link" className="nav-Navlink" 
+                to="/en" id="EN">EN
               </NavLink>
             </li>
           </ul>
@@ -133,6 +141,10 @@ const Header = ({ user, setUserLogin }) => {
                 </div>
               </li>
             </ul>
+          </div>
+          <div className="search-buy-infor">
+            <a href="#" className="news"><img src={kencine} alt=""/></a>
+            <a href="#" className="buy-tickets"><img src={muavengay} alt=""/></a>
           </div>
         </nav>
       </div>
