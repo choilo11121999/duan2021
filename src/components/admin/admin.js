@@ -4,8 +4,8 @@ import '../../css/Admin.css';
 import Sidebar from "./Sidebar";
 import Products from "./products/index";
 import Shows from "./shows/index";
-import Rooms from "./rooms/index";
-import Cinemas from "./cinemas/index";
+// import Rooms from "./rooms/index";
+// import Cinemas from "./cinemas/index";
 
 const Admin = ({ setUserLogin }) => {
   const [toggle, setToggle] = useState(false);
@@ -26,8 +26,8 @@ const Admin = ({ setUserLogin }) => {
           <div className="c-admin-content">
             <Route path="/admin/products" exact={true} component={Products}/>
             <Route path="/admin/shows" exact={true} component={Shows}/>
-            <Route path="/admin/rooms" exact={true} component={Rooms}/>
-            <Route path="/admin/cinemas" exact={true} component={Cinemas}/>
+            {/*<Route path="/admin/rooms" exact={true} component={Rooms}/>*/}
+            {/*<Route path="/admin/cinemas" exact={true} component={Cinemas}/>*/}
           </div>
         </div>
       </div>

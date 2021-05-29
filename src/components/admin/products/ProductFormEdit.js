@@ -3,18 +3,19 @@ import React, { useEffect, useState } from 'react';
 import Swal from "sweetalert2";
 import DurationPicker from "react-duration-picker";
 
-function ProductFormEdit ({ handleClose, product }) {
+function ProductFormEdit ({ handleClose, product, handleReload }) {
+    const oldposter = "dddd";
     const types = ["Action", "Comedy", "Drama", "Fantasy", "Horror", "Mystery", "Romance", "Thriller", "Animation"];
     const [checkedState, setCheckedState] = useState(
         new Array(types.length).fill(false)
     );
-    const [id, setId] = useState(product.id)
-    const [name, setName] = useState(product.film_name);
+    const [id, setId] = useState(product.id ?? "")
+    const [name, setName] = useState(product.film_name ?? "");
     const [category, setCategory] = useState([]);
-    const [image, setImage] = useState(product.poster);
-    const [duration, setDuration] = useState(product.duration);
-    const [description, setDescription] = useState(product.film_description);
-    const [status, setStatus] = useState(product.film_status.toString());
+    const [oldPoster, setOldPoster] = useState(product.poster ?? "");
+    const [duration, setDuration] = useState(product.duration ?? "");
+    const [description, setDescription] = useState(product.film_description ?? "");
+    const [status, setStatus] = useState(product.film_status.toString() ?? "");
 
     //Get data category
     useEffect(() => {
@@ -54,9 +55,22 @@ function ProductFormEdit ({ handleClose, product }) {
         setCheckedState(updatedCheckedState);
     };
 
-    // const handleFileSelected = (e) => {
-    //     setImage(e.target.files[0]);
-    // }
+    const handleFileSelected = (e) => {
+        const formdata = new FormData();
+        formdata.append('poster', e.target.files[0]);
+        formdata.append('old_poster', oldPoster);
+        axios.post('/api/save/image', formdata, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                "Content-type": "multipart/form-data",
+            }
+        }).then((res) => {
+            console.log(res);
+            setOldPoster(res.data);
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
 
     const onChangeDuration = (duration) => {
         const { hours, minutes, seconds } = duration;
@@ -64,21 +78,22 @@ function ProductFormEdit ({ handleClose, product }) {
     }
 
     const handleSubmit = (e) => {
-        console.log(image)
         e.preventDefault();
-        let fd = new FormData();
-        fd.append('id', id);
-        fd.append('film_name', name);
-        fd.append('poster', image);
-        fd.append('category', category);
-        fd.append('duration', duration);
-        fd.append('film_description', description);
-        fd.append('film_status', parseInt(status));
+        const data = {
+            id,
+            film_name: name,
+            poster: oldPoster,
+            category: category.toString(),
+            duration,
+            film_description: description,
+            film_status: status
+        }
+        console.log(data)
         axios
-            .put(`/api/products/${product.id}`, fd , {
+            .put(`/api/products/${product.id}`, data , {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                    "Content-type": "multipart/form-data",
+                    'accept': 'application/json'
                 }
             })
             .then((res) => {
@@ -86,7 +101,8 @@ function ProductFormEdit ({ handleClose, product }) {
                 Swal.fire({
                     icon: 'success',
                     text: 'Sửa thành công!',
-                })
+                });
+                handleReload(true);
             })
             .catch((err) => {
                 console.log(err);
@@ -126,12 +142,12 @@ function ProductFormEdit ({ handleClose, product }) {
                             })}
                         </ul>
                     </div>
-                    <div className="form-group">
-                        <label>Ảnh Poster:</label>
-                        {/*<input type="file" className="form-control-file" name="picture"*/}
-                        {/*       onChange={(e) => handleFileSelected(e)}*/}
-                        {/*/>*/}
-                        <img src={axios.defaults.baseURL + image} />
+                    <div className="form-group d-flex">
+                        <label htmlFor="file" className="btn btn-sm btn-primary w-25" >Chọn ảnh</label>
+                        <input type="file" className="form-control-file" name="picture" id="file" style={{display:'none'}}
+                               onChange={(e) => handleFileSelected(e)}
+                        />
+                        <span className="ml-2">{oldPoster}</span>
                     </div>
                     <div className="form-group">
                         <label>Time Picker:</label>

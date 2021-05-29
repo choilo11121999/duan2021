@@ -96,6 +96,10 @@ const ProductList = ({ getReLoad }) => {
     const handleClose = () => {
         setShowEditor(false);
     };
+    const handleReload = (val) => {
+        console.log(val)
+        setReload(!reload);
+    }
     const eleItem = listProduct.map((product, index) => {
         return (
           <tr key={index} className="text-center">
@@ -140,7 +144,7 @@ const ProductList = ({ getReLoad }) => {
                   </Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                  <ProductFormEdit handleClose={handleClose} product={productId} />
+                  <ProductFormEdit handleClose={handleClose} product={productId} handleReload={handleReload} />
               </Modal.Body>
           </Modal>
       </div>

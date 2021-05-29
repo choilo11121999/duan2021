@@ -10,7 +10,7 @@ function ProductForm ({ handleClose, getReLoad }) {
     );
     const [name, setName] = useState("");
     const [category, setCategory] = useState([]);
-    const [image, setImage] = useState();
+    const [oldPoster, setOldPoster] = useState("");
     const [duration, setDuration] = useState("");
     const [description, setDescription] = useState("");
     const [status, setStatus] = useState("");
@@ -24,7 +24,20 @@ function ProductForm ({ handleClose, getReLoad }) {
     };
 
     const handleFileSelected = (e) => {
-        setImage(e.target.files[0]);
+        const formdata = new FormData();
+        formdata.append('poster', e.target.files[0]);
+        formdata.append('old_poster', oldPoster);
+        axios.post('/api/save/image', formdata, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                "Content-type": "multipart/form-data",
+            }
+        }).then((res) => {
+            console.log(res);
+            setOldPoster(res.data);
+        }).catch((err) => {
+            console.log(err)
+        })
     }
 
     const onChangeDuration = (duration) => {
@@ -46,7 +59,7 @@ function ProductForm ({ handleClose, getReLoad }) {
         e.preventDefault();
         let fd = new FormData();
         fd.append('film_name', name);
-        fd.append('poster', image);
+        fd.append('poster', oldPoster);
         fd.append('category', category);
         fd.append('duration', duration);
         fd.append('film_description', description);
@@ -55,7 +68,6 @@ function ProductForm ({ handleClose, getReLoad }) {
             .post('/api/products', fd , {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                    "Content-type": "multipart/form-data",
                 }
             })
             .then((res) => {

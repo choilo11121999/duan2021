@@ -1,8 +1,11 @@
 import axios from "axios";
-import { useEffect } from "react";
+import {useEffect, useState} from "react";
+import DayPicker from 'react-day-picker';
+import 'react-day-picker/lib/style.css';
 
 const Booking = () => {
   const arr = [1, 2, 3];
+  const [selectedDay, setSelectedDay] = useState(new Date())
   useEffect(() => {
     axios
     .get("api/select-list/show?product_id=1")
@@ -21,6 +24,20 @@ const Booking = () => {
         </label>
       );
     });
+  const handleDayCLick = (day, { selected, disabled }) => {
+    if (disabled) {
+      // Day is disabled, do nothing
+      return;
+    }
+    if (selected) {
+      // Unselect the day if already selected
+      setSelectedDay(undefined );
+      return;
+    }
+    setSelectedDay(day);
+  }
+  console.log(selectedDay.toLocaleDateString().split(/[/]+/))
+
   return (
     <div>
       <div class="modal fade" id="selectTime" tabindex="-1" role="dialog" aria-labelledby="selectTimeTitle" aria-hidden="true">
@@ -35,6 +52,11 @@ const Booking = () => {
             <div class="modal-body">
               <div>
                 {Days}
+                <DayPicker
+                  onDayClick={handleDayCLick}
+                  selectedDays={selectedDay}
+                  disabledDays={{ before: new Date()}}
+                />
               </div>
             </div>
             <div class="modal-footer">
