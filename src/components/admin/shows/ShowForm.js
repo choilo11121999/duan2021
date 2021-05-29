@@ -16,12 +16,6 @@ function ShowForm ({ handleClose, listShow }) {
         const { hours, minutes, seconds } = showTime;
         setShow_time(`${hours}:${minutes}:${seconds}`);
     }
-    const changeFormatMonth = (_months) => {
-        return _months === "Jan" ? "01" : _months === "Feb" ? "02" : _months === "Mar" ? "03" 
-          : _months === "Apr" ? "04" : _months === "May" ? "05" : _months === "Jun" ? "06" 
-          : _months === "Jul" ? "07" : _months === "Aug" ? "08" : _months === "Sep" ? "09" 
-          : _months === "Oct" ? "10" : _months === "Nov" ? "11" : _months === "Dec" ? "12" : "";
-      }
     const onChangeShowDate = (showDate) => {
         const splitTime = showDate.toLocaleDateString().split(/[/]+/);
         const days= splitTime[1];
