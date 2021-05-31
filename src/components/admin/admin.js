@@ -17,15 +17,9 @@ const Admin = ({ setUserLogin }) => {
   return (
     <Router>
       <div className="admin-page d-flex">
-        <div className="nav-bar">
-        <BootstrapNavbar getCollapsed={getCollapsed} setUser={setUser} />
+        <div className="nav-bar w-100">
+          <BootstrapNavbar getCollapsed={getCollapsed} setUser={setUser} />
         </div>
-        {/* <div className={toggle ? "content-right" : "content-left"}>
-          <div className="c-admin-content">
-            <Route path="/admin/products" exact={true} component={Products}/>
-            <Route path="/admin/shows" exact={true} component={Shows}/>
-          </div>
-        </div> */}
       </div>
     </Router>
   );
