@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ed489c62-51c8-471f-abc9-0dc9c85f9fbb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/admin/products/ProductForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/admin/products/ProductForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/admin/shows/ShowForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/admin/shows/ShowForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/admin/BootstrapNavbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/admin/BootstrapNavbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/Admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/Admin.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

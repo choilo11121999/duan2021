@@ -21,13 +21,13 @@ const BootstrapNavbar = ({ getCollapsed, setUser }) => {
     }
     return (
         <>
-            <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
+            <Navbar bg="light" variant="light" expand="lg" sticky="top">
                 <Navbar.Brand href="/home">CGV Admin</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="mr-auto">
-                        <NavLink activeClassName="active-link mr-3" to="/admin/products">Products{ }</NavLink>
-                        <NavLink activeClassName="active-link ml-3" to="/admin/shows">Shows{ }</NavLink>                                                                              
+                    <Nav className="mr-auto navbar-link">
+                        <NavLink activeClassName="active-link-admin mr-3" to="/admin/products">Products{ }</NavLink>
+                        <NavLink activeClassName="active-link-admin ml-3" to="/admin/shows">Shows{ }</NavLink>
                     </Nav>
                     <Form inline>
                         <Button variant="warning" href="/user/login" onClick={handleLogout}

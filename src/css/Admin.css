@@ -58,15 +58,7 @@ h1{
 .admin-signout{
   font-size: 18px;
 }
-.navbar-dark .navbar-nav a{
-  color: white;
-  font-size: 1.25rem;
-  text-decoration: none;
-}
-.navbar-dark .navbar-nav a:hover, .navbar-dark .navbar-nav a:active{
-  color: aqua;
-  list-style: none;
-}
+
 .active-link-admin {
-  color: aqua;
+  color: red
 }
