@@ -55,6 +55,43 @@
   margin: 0 0 20px;
 }
 
+.movie-playing .main .category-product .list-product .product-item .product-img {
+  position: relative;
+}
+.movie-playing .main .category-product .list-product .product-item .product-info{
+  max-height: none;
+  height: 140px;
+  min-height: 55px;
+  width: 100%;
+  position: relative;
+}
+.movie-playing .main .category-product .list-product .product-item .product-info .product-name {
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-family: "Helvetica Neue", Verdana, Arial, sans-serif;
+  color: #636363;
+  text-rendering: optimizeLegibility;
+  line-height: 1.4;
+}
+.movie-playing .main .category-product .list-product .product-item .product-info .product-name a {
+  color: #333 !important;
+  font-size: 15px;
+  font-weight: bold;
+  text-transform: none;
+}
+.movie-playing .main .category-product .list-product .product-item .product-info .movie-info{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.movie-playing .main .category-product .list-product .product-item .product-info .movie-info .movie-info-bold{
+  font-weight: bold;
+  font-size: 13px;
+}
+.movie-playing .main .category-product .list-product .product-item .product-info .movie-info .movie-info-normal{
+  font-size: 14px;
+}
 .movie-playing .main .category-product .add-to-links .button {
   outline: none;
   cursor: pointer;

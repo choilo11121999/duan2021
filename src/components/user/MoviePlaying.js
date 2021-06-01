@@ -36,39 +36,33 @@ const MoviePlaying = () => {
           <ul className="list-product row">
             <li className="product-item col-3">
               <div className="product-img">
-                <a href="#">
-                  <img src={s1} />
-                </a>
+                <a href="#"><img src={s1} /></a>
               </div>
               <div className="product-info">
                 <h2 className="product-name">
                   <a href="#">Bo gia</a>
                 </h2>
                 <div className="movie-info">
-                  <span className="movie-info-bold">Thể loại :</span>
-                  <span className="movie-info-normal">
-                    Hành động, phiêu lưu
-                  </span>
+                  <span className="movie-info-bold">Thể loại: </span>
+                  <span className="movie-info-normal">Hành động, phiêu lưu</span>
                 </div>
                 <div className="movie-info">
-                  <span className="movie-info-bold">Thời lượng :</span>
+                  <span className="movie-info-bold">Thời lượng: </span>
                   <span className="movie-info-normal">110 phút</span>
                 </div>
                 <div className="movie-info">
-                  <span className="movie-info-bold">Khởi chiếu :</span>
+                  <span className="movie-info-bold">Khởi chiếu: </span>
                   <span className="movie-info-normal">20-04-2021</span>
                 </div>
               </div>
               <ul className="add-to-links d-flex px-3">
                   <li>
-                      <button type="button" className="button btn-like">Like <span>1k</span></button>
+                    <button type="button" className="button btn-like">Like <span>1k</span></button>
                   </li>
                   <li>
-                      <button type="button" title="Mua vé" className="button btn-booking">
-                          <span>
-                              <span>Mua vé</span>
-                          </span>
-                      </button>
+                    <button type="button" title="Mua vé" className="button btn-booking">
+                      <span><span>Mua vé</span></span>
+                    </button>
                   </li>
               </ul>
             </li>
