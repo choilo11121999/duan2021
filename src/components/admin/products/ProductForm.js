@@ -33,7 +33,6 @@ function ProductForm ({ handleClose, getReLoad }) {
                 "Content-type": "multipart/form-data",
             }
         }).then((res) => {
-            console.log(res);
             setOldPoster(res.data);
         }).catch((err) => {
             console.log(err)
@@ -71,7 +70,6 @@ function ProductForm ({ handleClose, getReLoad }) {
                 }
             })
             .then((res) => {
-                console.log(res);
                 Swal.fire({
                     icon: 'success',
                     text: 'Thêm phim thành công!',
@@ -129,7 +127,7 @@ function ProductForm ({ handleClose, getReLoad }) {
                         <DurationPicker
                             onChange={onChangeDuration}
                             initialDuration={{ hours: 1, minutes: 45, seconds: 3 }}
-                            maxHours={5}
+                            maxHours={3}
                         />
                     </div>
                     <div className="form-group">

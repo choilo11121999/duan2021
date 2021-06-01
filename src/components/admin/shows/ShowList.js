@@ -2,15 +2,21 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import Swal from "sweetalert2";
 
-const ShowList = ({getListShow}) => {
+const ShowList = ({getListShow, load}) => {
     const [reload, setReload] = useState(false);
     const [listShow, setListShow] = useState(
         new Array()
     );
+    const [listShowDate, setListShowDate] = useState(
+        new Array()
+    );
     const [showEditor, setShowEditor] = useState(false);
-
     useEffect(() => {
-        getShows()
+            setReload(!reload);
+    }, [load])
+    useEffect(() => {
+        getShows();
+        getShowList()
     }, [reload]);
 
     const getShows = () => {
@@ -20,7 +26,6 @@ const ShowList = ({getListShow}) => {
             }
         })
             .then((res) => {
-                console.log(res);
                 let data = res.data.data;
                 setListShow(data);
                 getListShow(data);
@@ -28,15 +33,37 @@ const ShowList = ({getListShow}) => {
             .catch((err) => {
                 console.log(err)
             });
-    }
-    const eleItem = listShow.map((timeList, index) => {
+    };
+    const getShowList = () => {
+        const url = `/api/select-list/show`;
+        axios.get( url, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            }
+        })
+            .then((res) => {
+                let data = res.data.data;
+                setListShowDate(data);
+            })
+            .catch((err) => {
+                console.log(err)
+            });
+    };
+
+    const eleItem = listShowDate.map((product, index) => {
+        let name = "";
+        listShow.forEach((val, index) => {
+            if (val.id === product.product_id) {
+                name = val.film_name;
+            }
+        })
         return (
             <tr key={index} className="text-center">
-                <td>{timeList.id}</td>
-                <td>{timeList.film_name}</td>
-                <td>{timeList.room}</td>
-                <td>{timeList.showDate}</td>
-                <td>{timeList.showTime}</td>
+                <td>{product.id}</td>
+                <td>{name}</td>
+                <td>{product.show_date}</td>
+                <td>{product.show_time}</td>
+                <td>{product.room_id}</td>
             </tr>
         );
     })
@@ -47,9 +74,9 @@ const ShowList = ({getListShow}) => {
             <tr>
               <th className="text-center">ID</th>
               <th className="text-center">Tên</th>
-              <th className="text-center">Phòng chiếu</th>
               <th className="text-center">Ngày chiếu</th>
               <th className="text-center">Giờ chiếu</th>
+              <th className="text-center">Phòng chiếu</th>
             </tr>
           </thead>
           <tbody>

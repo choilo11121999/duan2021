@@ -6,6 +6,7 @@ import { Button, Modal } from 'react-bootstrap';
 function Show (props) {
   const [show, setShow] = useState(false);
   const [listShow, setListShow] = useState();
+  const [load, setLoad] = useState(false);
     const handleClose = (show) => {
       setShow(false);
     }
@@ -14,7 +15,10 @@ function Show (props) {
     }
     const getListShow = (data) => {
       setListShow(data);
-      console.log(data);
+    }
+
+    const getLoad = (val) => {
+        setLoad(!load);
     }
     return (
       <div className="mr-5 ml-5 mb-5">
@@ -31,10 +35,10 @@ function Show (props) {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <ShowForm handleClose={handleClose} listShow={listShow} />
+            <ShowForm handleClose={handleClose} listShow={listShow} getLoad={getLoad} />
           </Modal.Body>
         </Modal>
-        <ShowList getListShow={getListShow}/>
+        <ShowList getListShow={getListShow} load={load}/>
       </div>
     );
 }

@@ -1,34 +1,27 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Swal from "sweetalert2";
-import DurationPicker from "react-duration-picker";
 import DayPickerInput from 'react-day-picker/DayPickerInput';
+import TimePicker from 'react-time-picker';
 import 'react-day-picker/lib/style.css';
 
-function ShowForm ({ handleClose, listShow }) {
+function ShowForm ({ handleClose, listShow, getLoad }) {
     const [product_id, setProduct_id] = useState("");
-    const [show_time, setShow_time] = useState("");
     const [show_date, setShow_date] = useState("");
+    const [show_time, setShow_time] = useState('10:00:00');
     const [room_id, setRoom_id] = useState("");
-    
-    const onChangeShowTime = (showTime) => {
-        console.log(showTime);
-        const { hours, minutes, seconds } = showTime;
-        setShow_time(`${hours}:${minutes}:${seconds}`);
-    }
+
     const onChangeShowDate = (showDate) => {
         const splitTime = showDate.toLocaleDateString().split(/[/]+/);
         const days= splitTime[1];
         const months = splitTime[0];
         const years = splitTime[2];
         setShow_date(`${years}-${months}-${days}`);
-        console.log(showDate);
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
         let data = {product_id, show_time, show_date, room_id};
-        console.log(data);
         axios
             .post(`/api/shows`, data , {
                 headers: {
@@ -37,7 +30,6 @@ function ShowForm ({ handleClose, listShow }) {
 
             })
             .then((res) => {
-                console.log(res);
                 Swal.fire({
                     icon: 'success',
                     text: 'Thêm giờ chiếu thành công!',
@@ -50,6 +42,9 @@ function ShowForm ({ handleClose, listShow }) {
                     text: 'Thêm giờ chiếu không thành công!',
                 })
             });
+        setTimeout(() => {
+            getLoad(true);
+        }, 500)
     }
     return (
         <div className="panel panel-warning">
@@ -83,10 +78,12 @@ function ShowForm ({ handleClose, listShow }) {
                     </div>
                     <div className="form-group">
                         <label>Giờ chiếu:</label>
-                        <DurationPicker
-                            onChange={onChangeShowTime}
-                            initialDuration={{ hours: 1, minutes: 45, seconds: 3 }}
-                            maxHours={23}
+                        <TimePicker
+                            onChange={setShow_time}
+                            value={show_time}
+                            locale="sv-sv"
+                            minTime="8:00"
+                            maxTime="20:00"
                         />
                     </div><br/>
                     <div className="text-center">
