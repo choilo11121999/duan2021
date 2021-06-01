@@ -127,7 +127,7 @@ function ProductForm ({ handleClose, getReLoad }) {
                         <DurationPicker
                             onChange={onChangeDuration}
                             initialDuration={{ hours: 1, minutes: 45, seconds: 3 }}
-                            maxHours={5}
+                            maxHours={3}
                         />
                     </div>
                     <div className="form-group">

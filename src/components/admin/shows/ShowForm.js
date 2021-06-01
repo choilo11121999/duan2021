@@ -82,6 +82,8 @@ function ShowForm ({ handleClose, listShow, getLoad }) {
                             onChange={setShow_time}
                             value={show_time}
                             locale="sv-sv"
+                            minTime="8:00"
+                            maxTime="20:00"
                         />
                     </div><br/>
                     <div className="text-center">
