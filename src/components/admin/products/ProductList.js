@@ -6,11 +6,8 @@ import ProductFormEdit from "./ProductFormEdit";
 
 const ProductList = ({ getReLoad }) => {
     const [reload, setReload] = useState(false);
-    console.log(getReLoad);
     useEffect(() => {
-        if (getReLoad === true) {
             setReload(!reload);
-        }
     }, [getReLoad])
     const [listProduct, setListProduct] = useState(
         new Array()
@@ -48,7 +45,6 @@ const ProductList = ({ getReLoad }) => {
             }
         })
             .then((res) => {
-                console.log(res);
                 Swal.fire({
                     icon: 'success',
                     text: 'Xóa thành công!',
@@ -75,7 +71,6 @@ const ProductList = ({ getReLoad }) => {
 
     const handleDelete = (e) => {
         const id = e.target.parentNode.parentNode.firstChild.innerText;
-        console.log(id)
         Swal.fire({
             title: 'Do you want to delete this product?',
             showCancelButton: true,
@@ -96,7 +91,6 @@ const ProductList = ({ getReLoad }) => {
         setShowEditor(false);
     };
     const handleReload = (val) => {
-        console.log(val)
         setReload(!reload);
     }
     const eleItem = listProduct.map((product, index) => {

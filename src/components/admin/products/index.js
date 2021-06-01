@@ -15,8 +15,7 @@ function Products (props) {
     }
 
     const getReLoad = (value) => {
-        console.log(value)
-        setLoad(value);
+        setLoad(!load);
     }
 
     return (

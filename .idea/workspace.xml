@@ -3,11 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="ed489c62-51c8-471f-abc9-0dc9c85f9fbb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/admin/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/admin/admin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/admin/products/ProductForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/admin/products/ProductForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/admin/products/ProductFormEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/admin/products/ProductFormEdit.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/admin/products/ProductList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/admin/products/ProductList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/user/Booking.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user/Booking.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/admin/products/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/admin/products/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/admin/shows/ShowForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/admin/shows/ShowForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/admin/shows/ShowList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/admin/shows/ShowList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/admin/shows/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/admin/shows/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +62,9 @@
       <workItem from="1621947927376" duration="5843000" />
       <workItem from="1621991917670" duration="5100000" />
       <workItem from="1622077367305" duration="23670000" />
-      <workItem from="1622270741781" duration="11189000" />
+      <workItem from="1622270741781" duration="12938000" />
+      <workItem from="1622435880313" duration="12683000" />
+      <workItem from="1622530001193" duration="2539000" />
     </task>
     <servers />
   </component>
