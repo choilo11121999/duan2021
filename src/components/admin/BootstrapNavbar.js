@@ -8,12 +8,7 @@ import Shows from "./shows/index";
 import Admin from "./admin";
 import '../../css/Admin.css';
 
-const BootstrapNavbar = ({ getCollapsed, setUser }) => {
-    const [collapsed, setCollapsed] = useState(false);
-    useEffect(() => {
-        getCollapsed(collapsed);
-    }, [collapsed]);
-
+const BootstrapNavbar = ({ setUser }) => {
     const handleLogout = () => {
         localStorage.clear();
         setUser(null);
@@ -36,15 +31,9 @@ const BootstrapNavbar = ({ getCollapsed, setUser }) => {
                 </Navbar.Collapse>
             </Navbar><br />
             <Switch>
-                <Route exact path="/admin">
-                    <Admin />
-                </Route>
-                <Route path="/admin/products">
-                    <Products />
-                </Route>
-                <Route path="/admin/shows">
-                    <Shows />
-                </Route>
+                <Route exact path="/admin"><Admin /></Route>
+                <Route path="/admin/products"><Products /></Route>
+                <Route path="/admin/shows"><Shows /></Route>
             </Switch>
         </>
     );

@@ -6,11 +6,6 @@ import Shows from "./shows/index";
 import '../../css/Admin.css';
 
 const Admin = ({ setUserLogin }) => {
-  const [toggle, setToggle] = useState(false);
-  const getCollapsed = (value) => {
-    setToggle(value);
-  }
-
   const setUser = (value) => {
     setUserLogin(value);
   }
@@ -18,7 +13,7 @@ const Admin = ({ setUserLogin }) => {
     <Router>
       <div className="admin-page d-flex">
         <div className="nav-bar w-100">
-          <BootstrapNavbar getCollapsed={getCollapsed} setUser={setUser} />
+          <BootstrapNavbar setUser={setUser} />
         </div>
       </div>
     </Router>
