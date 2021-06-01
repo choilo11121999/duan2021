@@ -21,35 +21,31 @@ const BootstrapNavbar = ({ getCollapsed, setUser }) => {
     }
     return (
         <>
-            <div className="row">
-                <div className="col-md-12">
-                    <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
-                        <Navbar.Brand href="/home">CGV Admin</Navbar.Brand>
-                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                        <Navbar.Collapse id="basic-navbar-nav">
-                            <Nav className="mr-auto">
-                                <Nav.Link href="/admin/products">Products</Nav.Link>
-                                <Nav.Link href="/admin/shows">Shows</Nav.Link>
-                            </Nav>
-                            <Form inline>
-                                <Button variant="warning" href="/user/login" onClick={handleLogout}
-                                    ><i className="fa fa-sign-out admin-signout" aria-hidden="true">&nbsp; Đăng xuất</i></Button>
-                            </Form> 
-                        </Navbar.Collapse>
-                    </Navbar><br />
-                    <Switch>
-                        <Route exact path="/admin">
-                            <Admin />
-                        </Route>
-                        <Route path="/admin/products">
-                            <Products />
-                        </Route>
-                        <Route path="/admin/shows">
-                            <Shows />
-                        </Route>
-                    </Switch>
-                </div>
-            </div>
+            <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
+                <Navbar.Brand href="/home">CGV Admin</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="mr-auto">
+                        <NavLink activeClassName="active-link mr-3" to="/admin/products">Products{ }</NavLink>
+                        <NavLink activeClassName="active-link ml-3" to="/admin/shows">Shows{ }</NavLink>                                                                              
+                    </Nav>
+                    <Form inline>
+                        <Button variant="warning" href="/user/login" onClick={handleLogout}
+                            ><i className="fa fa-sign-out admin-signout" aria-hidden="true">&nbsp; Đăng xuất</i></Button>
+                    </Form> 
+                </Navbar.Collapse>
+            </Navbar><br />
+            <Switch>
+                <Route exact path="/admin">
+                    <Admin />
+                </Route>
+                <Route path="/admin/products">
+                    <Products />
+                </Route>
+                <Route path="/admin/shows">
+                    <Shows />
+                </Route>
+            </Switch>
         </>
     );
 }
