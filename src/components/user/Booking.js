@@ -1,11 +1,8 @@
 import axios from "axios";
-import {useEffect, useState} from "react";
-import DayPicker from 'react-day-picker';
-import 'react-day-picker/lib/style.css';
+import {useEffect} from "react";
+import { Button } from "react-bootstrap";
 
 const Booking = () => {
-  const arr = [1, 2, 3];
-  const [selectedDay, setSelectedDay] = useState(new Date())
   useEffect(() => {
     axios
     .get("api/select-list/show?product_id=1")
@@ -16,52 +13,72 @@ const Booking = () => {
       
     });
   }, []);
-  const Days = arr.map((value, index) => {
-      return (
-        <label key={index}>
-          {value}
-          <input type="radio" name="day" id={index} value={value} />
-        </label>
-      );
-    });
-  const handleDayCLick = (day, { selected, disabled }) => {
-    if (disabled) {
-      // Day is disabled, do nothing
-      return;
-    }
-    if (selected) {
-      // Unselect the day if already selected
-      setSelectedDay(undefined );
-      return;
-    }
-    setSelectedDay(day);
-  }
-  console.log(selectedDay.toLocaleDateString().split(/[/]+/))
 
   return (
     <div>
-      <div class="modal fade" id="selectTime" tabindex="-1" role="dialog" aria-labelledby="selectTimeTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="selectTimeTitle">Chọn ngày và giờ</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <div className="modal fade modal-z-index" id="selectTime" tabindex="-1" role="dialog" aria-labelledby="selectTimeTitle" aria-hidden="true">
+        <div className="modal-dialog modal-dialog-centered" role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="selectTimeTitle">Chọn ngày và giờ</h5>
+              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
-              <div>
-                {Days}
-                <DayPicker
-                  onDayClick={handleDayCLick}
-                  selectedDays={selectedDay}
-                  disabledDays={{ before: new Date()}}
-                />
+            <div className="modal-body">
+              <div className="c-booking-items">
+                <Button show active variant="light" className="clearfix item-button">
+                  <div className="items-left">
+                    <span className="items-top">06</span>
+                    <span className="items-top">Wed</span>
+                  </div>
+                  <div className="items-right"><span>02</span></div>
+                </Button>{' '}
+                <Button show active variant="light" className="clearfix item-button">
+                  <div className="items-left">
+                    <span className="items-top">06</span>
+                    <span className="items-bottom">Thur</span>
+                  </div>
+                  <div className="items-right"><span>03</span></div>
+                </Button>{' '}
+                <Button show active variant="light" className="clearfix item-button">
+                  <div className="items-left">
+                    <span className="items-top">06</span>
+                    <span className="items-bottom">Fri</span>
+                  </div>
+                  <div className="items-right"><span>04</span></div>
+                </Button>{' '}
+              </div>
+              <div className="c-booking-room">
+                <div className="room-title">Phòng số 1: </div>
+                <div className="room-time">
+                  <Button variant="light">14:00 PM</Button>{' '}<Button variant="light">14:00 PM</Button>{' '}
+                  <Button variant="light">14:00 PM</Button>{' '}<Button variant="light">14:00 PM</Button>{' '}
+                  <Button variant="light">14:00 PM</Button>{' '}
+                </div>
+                <div className="room-title">Phòng số 2:</div>
+                <div className="room-time">
+                  <Button variant="light">14:00 PM</Button>{' '}<Button variant="light">14:00 PM</Button>{' '}
+                  <Button variant="light">14:00 PM</Button>{' '}<Button variant="light">14:00 PM</Button>{' '}
+                  <Button variant="light">14:00 PM</Button>{' '}
+                </div>
+                <div className="room-title">Phòng số 3:</div>
+                <div className="room-time">
+                  <Button variant="light">14:00 PM</Button>{' '}<Button variant="light">14:00 PM</Button>{' '}
+                  <Button variant="light">14:00 PM</Button>{' '}<Button variant="light">14:00 PM</Button>{' '}
+                  <Button variant="light">14:00 PM</Button>{' '}
+                </div>
+                <div className="room-title">Phòng số 4:</div>
+                <div className="room-time">
+                  <Button variant="light">14:00 PM</Button>{' '}<Button variant="light">14:00 PM</Button>{' '}
+                  <Button variant="light">14:00 PM</Button>{' '}<Button variant="light">14:00 PM</Button>{' '}
+                  <Button variant="light">14:00 PM</Button>{' '}
+                </div>
               </div>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-              <button type="button" class="btn btn-primary">Đặt vé</button>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" data-dismiss="modal">Đóng</button>
+              <button type="button" className="btn btn-primary">Đặt vé</button>
             </div>
           </div>
         </div>

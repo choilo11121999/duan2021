@@ -62,3 +62,47 @@
 .detail-trailer input[type='radio'] {
   display: none;
 }
+
+/* Booking.css */
+.c-booking-items{
+  border-bottom: 2px solid black;
+  z-index: 999;
+}
+.c-booking-items .item-button{
+  margin-bottom: 20px;
+}
+.c-booking-items .item-button .items-left{
+  float: left; 
+  display: inline-grid;
+  margin-right: 15px;
+}
+.c-booking-items .item-button .items-left .items-top{
+}
+.c-booking-items .item-button .items-left .items-bottom{
+}
+.c-booking-items .items-right{
+  float: right;
+  display: inline-grid;
+  font-size: 32px;
+  font-weight: 600;
+}
+.c-booking-room{
+  margin-top: 25px;
+  z-index: 999;
+}
+.c-booking-room .room-title{
+  font-size: 19px;
+  font-weight: 600;
+}
+.c-booking-room .room-time{
+  margin-bottom: 10px;
+  border-bottom: 1px solid black;
+}
+.c-booking-room .room-time button{
+ 
+}
+.c-booking-room .room-time button:hover{
+  background-color: aqua;
+  color: black;
+}
+
