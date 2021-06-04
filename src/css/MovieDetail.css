@@ -50,7 +50,7 @@
   padding-bottom: 10px;
 }
 
-.detail-trailer {
+.detail-trailer input[type='radio']-trailer {
   margin-top: 30px;
   margin-bottom: 30px;
 }
@@ -61,4 +61,38 @@
 
 .detail-trailer input[type='radio'] {
   display: none;
+}
+
+/* Booking.css */
+.c-booking-items{
+  border-bottom: 2px solid black;
+  z-index: 999;
+  display: inline-flex;
+}
+.items-left{
+  float: left; 
+  display: inline-grid;
+  margin-right: 15px;
+}
+.items-right{
+  float: right;
+  display: inline-grid;
+  font-size: 32px;
+  font-weight: 600;
+}
+.c-booking-room{
+  margin-top: 25px;
+  z-index: 999;
+}
+.c-booking-room .room-title{
+  font-size: 19px;
+  font-weight: 600;
+}
+.c-booking-room .room-time{
+  margin-top: 10px;
+  display: inline-flex;
+  border-bottom: 1px solid black;
+}
+.c-booking-room .room-time:last-child{
+  border-bottom: none;
 }

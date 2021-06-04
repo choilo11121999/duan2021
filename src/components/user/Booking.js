@@ -1,11 +1,17 @@
 import axios from "axios";
 import {useEffect, useState} from "react";
-import DayPicker from 'react-day-picker';
-import 'react-day-picker/lib/style.css';
+import { Button } from "react-bootstrap";
 
 const Booking = () => {
-  const arr = [1, 2, 3];
-  const [selectedDay, setSelectedDay] = useState(new Date())
+  const [valueRadio, setValueRadio] = useState('detail');
+  const handleChecked = (e) => {
+    e.preventDefault();
+    if(e.target.checked) {
+      setValueRadio(true);
+    } else {
+      setValueRadio(false)
+    }
+  };
   useEffect(() => {
     axios
     .get("api/select-list/show?product_id=1")
@@ -16,52 +22,133 @@ const Booking = () => {
       
     });
   }, []);
-  const Days = arr.map((value, index) => {
-      return (
-        <label key={index}>
-          {value}
-          <input type="radio" name="day" id={index} value={value} />
-        </label>
-      );
-    });
-  const handleDayCLick = (day, { selected, disabled }) => {
-    if (disabled) {
-      // Day is disabled, do nothing
-      return;
-    }
-    if (selected) {
-      // Unselect the day if already selected
-      setSelectedDay(undefined );
-      return;
-    }
-    setSelectedDay(day);
-  }
-  console.log(selectedDay.toLocaleDateString().split(/[/]+/))
 
   return (
     <div>
-      <div class="modal fade" id="selectTime" tabindex="-1" role="dialog" aria-labelledby="selectTimeTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="selectTimeTitle">Chọn ngày và giờ</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <div className="modal fade modal-z-index" id="selectTime" tabindex="-1" role="dialog" aria-labelledby="selectTimeTitle" aria-hidden="true">
+        <div className="modal-dialog modal-dialog-centered" role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="selectTimeTitle">Chọn ngày và giờ</h5>
+              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
-              <div>
-                {Days}
-                <DayPicker
-                  onDayClick={handleDayCLick}
-                  selectedDays={selectedDay}
-                  disabledDays={{ before: new Date()}}
-                />
+            <div className="modal-body">
+              <div className="c-booking-items">
+                <div className="radio-btn d-flex justify-content-center mb-3 mr-2" 
+                  onChange={(e) => setValueRadio(e.target.value)}>
+                  <label className="btn btn-light btn-sm">
+                    <div className="items-left">
+                      <span className="items-top">06</span>
+                      <span className="items-top">Wed</span>
+                    </div>
+                    <div className="items-right"><span>02</span></div>
+                    <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
+                  </label>
+                </div>
+                <div className="radio-btn d-flex justify-content-center mb-3 mr-2" 
+                  onChange={(e) => setValueRadio(e.target.value)}>
+                  <label className="btn btn-light btn-sm">
+                    <div className="items-left">
+                      <span className="items-top">06</span>
+                      <span className="items-top">Wed</span>
+                    </div>
+                    <div className="items-right"><span>02</span></div>
+                    <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
+                  </label>
+                </div>
+                <div className="radio-btn d-flex justify-content-center mb-3 mr-2" 
+                  onChange={(e) => setValueRadio(e.target.value)}>
+                  <label className="btn btn-light btn-sm">
+                    <div className="items-left">
+                      <span className="items-top">06</span>
+                      <span className="items-top">Wed</span>
+                    </div>
+                    <div className="items-right"><span>02</span></div>
+                    <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
+                  </label>
+                </div>
+              </div>
+              <div className="c-booking-room">
+                <div className="room-title">Phòng số 1: </div>
+                <div className="room-time">
+                  <div className="radio-btn d-flex justify-content-center mb-3 mr-2" 
+                    onChange={(e) => setValueRadio(e.target.value)}>
+                    <label className="btn btn-dark btn-sm">14:00
+                      <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
+                    </label>
+                  </div>
+                  <div className="radio-btn d-flex justify-content-center mb-3 mr-2" 
+                    onChange={(e) => setValueRadio(e.target.value)}>
+                    <label className="btn btn-dark btn-sm">14:00
+                      <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
+                    </label>
+                  </div>
+                  <div className="radio-btn d-flex justify-content-center mb-3 mr-2" 
+                    onChange={(e) => setValueRadio(e.target.value)}>
+                    <label className="btn btn-dark btn-sm">14:00
+                      <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
+                    </label>
+                  </div>
+                  <div className="radio-btn d-flex justify-content-center mb-3 mr-2" 
+                    onChange={(e) => setValueRadio(e.target.value)}>
+                    <label className="btn btn-dark btn-sm">14:00
+                      <input id="detail" className="d-none" value="detail" name="select" type="radio" />
+                    </label>
+                  </div>
+                </div>
+                <div className="room-title">Phòng số 2:</div>
+                <div className="room-time">
+                  <div className="radio-btn d-flex justify-content-center mb-3 mr-2" 
+                    onChange={(e) => setValueRadio(e.target.value)}>
+                    <label className="btn btn-dark btn-sm">14:00
+                      <input id="detail" className="d-none" value="detail" name="select" type="radio" />
+                    </label>
+                  </div>
+                  <div className="radio-btn d-flex justify-content-center mb-3 mr-2" 
+                    onChange={(e) => setValueRadio(e.target.value)}>
+                    <label className="btn btn-dark btn-sm">14:00
+                      <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
+                    </label>
+                  </div>
+                  <div className="radio-btn d-flex justify-content-center mb-3 mr-2" 
+                    onChange={(e) => setValueRadio(e.target.value)}>
+                    <label className="btn btn-dark btn-sm">14:00
+                      <input id="detail" className="d-none" value="detail" name="select" type="radio" />
+                    </label>
+                  </div>
+                </div>
+                <div className="room-title">Phòng số 3:</div>
+                <div className="room-time">
+                  <div className="radio-btn d-flex justify-content-center mb-3 mr-2" 
+                    onChange={(e) => setValueRadio(e.target.value)}>
+                    <label className="btn btn-dark btn-sm">14:00
+                      <input id="detail" className="d-none" value="detail" name="select" type="radio" />
+                    </label>
+                  </div>
+                  <div className="radio-btn d-flex justify-content-center mb-3 mr-2" 
+                    onChange={(e) => setValueRadio(e.target.value)}>
+                    <label className="btn btn-dark btn-sm">14:00
+                      <input id="detail" className="d-none" value="detail" name="select" type="radio" />
+                    </label>
+                  </div>
+                </div>
+                <div className="room-title">Phòng số 4:</div>
+                <div className="room-time">
+                  <div className="radio-btn d-flex justify-content-center mb-3 mr-2" 
+                    onChange={(e) => setValueRadio(e.target.value)}>
+                    <label className="btn btn-dark btn-sm">14:00
+                      <input id="detail" className="d-none" value="detail" name="select" type="radio" />
+                    </label>
+                  </div>
+                  
+                </div>
               </div>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-              <button type="button" class="btn btn-primary">Đặt vé</button>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" data-dismiss="modal">Đóng</button>
+              <button type="button" className="btn btn-primary">Đặt vé</button>
             </div>
           </div>
         </div>
