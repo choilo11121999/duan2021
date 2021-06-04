@@ -43,7 +43,7 @@ const MoviePlaying = () => {
         <div className="main-header">
           <h2>Nội dung phim</h2>
         </div> 
-        <div className="main-body d-flex justify-content-between">
+        <div className="main-body d-flex justify-content-between mb-3">
           <div className="main-body-img">
             <img src={ImgTest} />
           </div>
@@ -57,7 +57,7 @@ const MoviePlaying = () => {
             <p><strong>Ngôn ngữ: </strong>Chọi</p>
             <p><strong>Rated: </strong></p>
             <div className="main-body-btn">
-              <button className="btn btn-primary btn-sm">Like</button>
+              <button className="btn btn-primary btn-sm mr-2">Like</button>
               <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#selectTime">
                 Mua vé
               </button>

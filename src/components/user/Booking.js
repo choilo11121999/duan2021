@@ -1,8 +1,17 @@
 import axios from "axios";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import { Button } from "react-bootstrap";
 
 const Booking = () => {
+  const [valueRadio, setValueRadio] = useState('detail');
+  const handleChecked = (e) => {
+    e.preventDefault();
+    if(e.target.checked) {
+      setValueRadio(true);
+    } else {
+      setValueRadio(false)
+    }
+  };
   useEffect(() => {
     axios
     .get("api/select-list/show?product_id=1")
@@ -27,52 +36,113 @@ const Booking = () => {
             </div>
             <div className="modal-body">
               <div className="c-booking-items">
-                <Button show active variant="light" className="clearfix item-button">
-                  <div className="items-left">
-                    <span className="items-top">06</span>
-                    <span className="items-top">Wed</span>
-                  </div>
-                  <div className="items-right"><span>02</span></div>
-                </Button>{' '}
-                <Button show active variant="light" className="clearfix item-button">
-                  <div className="items-left">
-                    <span className="items-top">06</span>
-                    <span className="items-bottom">Thur</span>
-                  </div>
-                  <div className="items-right"><span>03</span></div>
-                </Button>{' '}
-                <Button show active variant="light" className="clearfix item-button">
-                  <div className="items-left">
-                    <span className="items-top">06</span>
-                    <span className="items-bottom">Fri</span>
-                  </div>
-                  <div className="items-right"><span>04</span></div>
-                </Button>{' '}
+                <div className="radio-btn d-flex justify-content-center mb-3 mr-2" 
+                  onChange={(e) => setValueRadio(e.target.value)}>
+                  <label className="btn btn-light btn-sm">
+                    <div className="items-left">
+                      <span className="items-top">06</span>
+                      <span className="items-top">Wed</span>
+                    </div>
+                    <div className="items-right"><span>02</span></div>
+                    <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
+                  </label>
+                </div>
+                <div className="radio-btn d-flex justify-content-center mb-3 mr-2" 
+                  onChange={(e) => setValueRadio(e.target.value)}>
+                  <label className="btn btn-light btn-sm">
+                    <div className="items-left">
+                      <span className="items-top">06</span>
+                      <span className="items-top">Wed</span>
+                    </div>
+                    <div className="items-right"><span>02</span></div>
+                    <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
+                  </label>
+                </div>
+                <div className="radio-btn d-flex justify-content-center mb-3 mr-2" 
+                  onChange={(e) => setValueRadio(e.target.value)}>
+                  <label className="btn btn-light btn-sm">
+                    <div className="items-left">
+                      <span className="items-top">06</span>
+                      <span className="items-top">Wed</span>
+                    </div>
+                    <div className="items-right"><span>02</span></div>
+                    <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
+                  </label>
+                </div>
               </div>
               <div className="c-booking-room">
                 <div className="room-title">Phòng số 1: </div>
                 <div className="room-time">
-                  <Button variant="light">14:00 PM</Button>{' '}<Button variant="light">14:00 PM</Button>{' '}
-                  <Button variant="light">14:00 PM</Button>{' '}<Button variant="light">14:00 PM</Button>{' '}
-                  <Button variant="light">14:00 PM</Button>{' '}
+                  <div className="radio-btn d-flex justify-content-center mb-3 mr-2" 
+                    onChange={(e) => setValueRadio(e.target.value)}>
+                    <label className="btn btn-dark btn-sm">14:00
+                      <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
+                    </label>
+                  </div>
+                  <div className="radio-btn d-flex justify-content-center mb-3 mr-2" 
+                    onChange={(e) => setValueRadio(e.target.value)}>
+                    <label className="btn btn-dark btn-sm">14:00
+                      <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
+                    </label>
+                  </div>
+                  <div className="radio-btn d-flex justify-content-center mb-3 mr-2" 
+                    onChange={(e) => setValueRadio(e.target.value)}>
+                    <label className="btn btn-dark btn-sm">14:00
+                      <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
+                    </label>
+                  </div>
+                  <div className="radio-btn d-flex justify-content-center mb-3 mr-2" 
+                    onChange={(e) => setValueRadio(e.target.value)}>
+                    <label className="btn btn-dark btn-sm">14:00
+                      <input id="detail" className="d-none" value="detail" name="select" type="radio" />
+                    </label>
+                  </div>
                 </div>
                 <div className="room-title">Phòng số 2:</div>
                 <div className="room-time">
-                  <Button variant="light">14:00 PM</Button>{' '}<Button variant="light">14:00 PM</Button>{' '}
-                  <Button variant="light">14:00 PM</Button>{' '}<Button variant="light">14:00 PM</Button>{' '}
-                  <Button variant="light">14:00 PM</Button>{' '}
+                  <div className="radio-btn d-flex justify-content-center mb-3 mr-2" 
+                    onChange={(e) => setValueRadio(e.target.value)}>
+                    <label className="btn btn-dark btn-sm">14:00
+                      <input id="detail" className="d-none" value="detail" name="select" type="radio" />
+                    </label>
+                  </div>
+                  <div className="radio-btn d-flex justify-content-center mb-3 mr-2" 
+                    onChange={(e) => setValueRadio(e.target.value)}>
+                    <label className="btn btn-dark btn-sm">14:00
+                      <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
+                    </label>
+                  </div>
+                  <div className="radio-btn d-flex justify-content-center mb-3 mr-2" 
+                    onChange={(e) => setValueRadio(e.target.value)}>
+                    <label className="btn btn-dark btn-sm">14:00
+                      <input id="detail" className="d-none" value="detail" name="select" type="radio" />
+                    </label>
+                  </div>
                 </div>
                 <div className="room-title">Phòng số 3:</div>
                 <div className="room-time">
-                  <Button variant="light">14:00 PM</Button>{' '}<Button variant="light">14:00 PM</Button>{' '}
-                  <Button variant="light">14:00 PM</Button>{' '}<Button variant="light">14:00 PM</Button>{' '}
-                  <Button variant="light">14:00 PM</Button>{' '}
+                  <div className="radio-btn d-flex justify-content-center mb-3 mr-2" 
+                    onChange={(e) => setValueRadio(e.target.value)}>
+                    <label className="btn btn-dark btn-sm">14:00
+                      <input id="detail" className="d-none" value="detail" name="select" type="radio" />
+                    </label>
+                  </div>
+                  <div className="radio-btn d-flex justify-content-center mb-3 mr-2" 
+                    onChange={(e) => setValueRadio(e.target.value)}>
+                    <label className="btn btn-dark btn-sm">14:00
+                      <input id="detail" className="d-none" value="detail" name="select" type="radio" />
+                    </label>
+                  </div>
                 </div>
                 <div className="room-title">Phòng số 4:</div>
                 <div className="room-time">
-                  <Button variant="light">14:00 PM</Button>{' '}<Button variant="light">14:00 PM</Button>{' '}
-                  <Button variant="light">14:00 PM</Button>{' '}<Button variant="light">14:00 PM</Button>{' '}
-                  <Button variant="light">14:00 PM</Button>{' '}
+                  <div className="radio-btn d-flex justify-content-center mb-3 mr-2" 
+                    onChange={(e) => setValueRadio(e.target.value)}>
+                    <label className="btn btn-dark btn-sm">14:00
+                      <input id="detail" className="d-none" value="detail" name="select" type="radio" />
+                    </label>
+                  </div>
+                  
                 </div>
               </div>
             </div>
