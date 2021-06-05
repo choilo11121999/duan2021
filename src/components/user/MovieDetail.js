@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./../../css/MovieDetail.css";
 import ImgTest from './../../img/selection/1.jpg';
-import Booking from "./Booking";
+import Booking from "./BookingTime";
 
 const MoviePlaying = () => {
   const [valueRadio, setValueRadio] = useState('detail');
