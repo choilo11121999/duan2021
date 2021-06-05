@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import "./../../css/MoviePlaying.css";
 
-const MoviePlaying = () => {
+const MoviePlaying = ({ getIdBooking }) => {
   const urlImg = axios.defaults.baseURL;
   const [listMovie, setListMovie] = useState(
     new Array()
@@ -23,6 +23,7 @@ const MoviePlaying = () => {
         console.log(err);
       })
   }
+
   return (
     <div className="container movie-playing">
       <div className="breadcrums">
@@ -49,10 +50,10 @@ const MoviePlaying = () => {
             {
               listMovie.map((movie, index) => {
                 return(
-                  <li className="product-item col-3">
+                  <li key={index} className="product-item col-3">
                     <div className="product-img">
                       <a href="#">
-                        <img className="h-80" src={urlImg+movie.poster} />
+                        <img className="rounded" src={urlImg+movie.poster} style={{width: "250px", height: "350px", border: "2px solid #333"}}/>
                       </a>
                     </div>
                     <div className="product-info">
@@ -69,21 +70,15 @@ const MoviePlaying = () => {
                         <span className="movie-info-bold">Thời lượng: </span>
                         <span className="movie-info-normal">{movie.duration}</span>
                       </div>
-                      <div className="movie-info">
-                        <span className="movie-info-bold">Khởi chiếu: </span>
-                        <span className="movie-info-normal">20-04-2021</span>
-                      </div>
                     </div>
-                    <ul className="add-to-links d-flex px-3">
+                    <ul className="add-to-links d-flex justify-content-between">
                         <li>
-                          <button type="button" className="button btn-like">Like <span>{movie.linke}</span></button>
+                          <button type="button" className="button btn-like">Like <span>{movie.like}</span></button>
                         </li>
                         <li>
-                          <button type="button" title="Mua vé" className="button btn-booking">
-                            <span>
+                          <Link to="/movie/booking_time" type="button" title="Mua vé" className="button btn-booking" onClick={() => getIdBooking(movie.id)}>
                               <span>Mua vé</span>
-                            </span>
-                          </button>
+                          </Link>
                         </li>
                     </ul>
                   </li>

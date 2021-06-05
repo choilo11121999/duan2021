@@ -10,13 +10,14 @@ import Login from './auth/Login';
 import Register from './auth/Register';
 import Admin from './admin/admin.js';
 import Products from './admin/products/index';
-import Booking from './user/Booking';
+import BookingTime from './user/BookingTime';
 import { useEffect, useState } from 'react';
 import axios from 'axios'; 
 
 const App = () => {
   const [user, setUser] = useState('');
   const [productName, setProductName] = useState('');
+  const [idBooking, setIdBooking] = useState("");
   const role = localStorage.getItem('role');
   console.log("role",role);
   useEffect(() => {
@@ -40,6 +41,10 @@ const App = () => {
   const setProductNameFromHome = (product_name) => {
     setProductName(product_name);
   };
+
+  const getIdBooking = (id) => {
+    setIdBooking(id);
+  }
   return (
     <Router>
       {
@@ -51,14 +56,13 @@ const App = () => {
           <div className="App"> 
             <Header user={user} setUserLogin={setUserLogin} />
 
-            {/* Router */}
             <Route path="/" exact component={() => <Home setProductNameFromHome={setProductNameFromHome} phimName={productName} />} />
             <Route path="/user/login" component={() => <Login setUserLogin={setUserLogin} />}/>
             <Route path="/user/register" component={Register}/>
-            <Route path="/movie/movie_playing" component={MoviePlaying} />
+            <Route path="/movie/movie_playing" component={() => <MoviePlaying getIdBooking={getIdBooking} />} />
             <Route path="/movie/movie_upcoming" component={MovieUpComing} />
             <Route path={`/movie/movie_detail/${productName}`} component={MovieDetail} />
-            <Route path="/movie/movie_detail/booking" component={Booking} />
+            <Route path="/movie/booking_time" component={() => <BookingTime idBooking={idBooking} />} />
 
             <Footer />
           </div>
