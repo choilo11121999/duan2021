@@ -59,8 +59,7 @@
 }
 .movie-playing .main .category-product .list-product .product-item .product-info{
   max-height: none;
-  height: 115px;
-  min-height: 55px;
+  height: 80px;
   width: 100%;
   position: relative;
 }
@@ -107,7 +106,6 @@
   text-transform: uppercase;
   vertical-align: middle;
   white-space: nowrap;
-  margin: 0 10px;
 }
 
 .movie-playing .main .category-product .add-to-links .button > span {
@@ -116,7 +114,8 @@
   padding: 5px;
 }
 
-.movie-playing .main .category-product .add-to-links .btn-booking {
+.movie-playing .main .category-product .add-to-links .btn-booking,
+.movie-playing .main .category-product .add-to-links .btn-like {
   background: none no-repeat scroll 0 0 #e71a0f;
   border-radius: 5px;
 }

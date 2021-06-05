@@ -71,7 +71,7 @@ const MoviePlaying = ({ getIdBooking }) => {
                         <span className="movie-info-normal">{movie.duration}</span>
                       </div>
                     </div>
-                    <ul className="add-to-links d-flex justify-content-between">
+                    <ul className="add-to-links d-flex justify-content-between mt-3">
                         <li>
                           <button type="button" className="button btn-like">Like <span>{movie.like}</span></button>
                         </li>
