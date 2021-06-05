@@ -33,7 +33,7 @@ const BookingTime = ({ idBooking }) => {
   timeData.map((time, index) => {
     Object.keys(roomData).forEach(key => {
       if (time.room_id.toString() === key)
-        roomData[key].push(time.show_time)
+        roomData[key].push(time.show_time.substring(0, 5))
     });
   })
   const getTime = (date) => {
