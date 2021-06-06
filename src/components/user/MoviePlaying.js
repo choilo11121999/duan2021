@@ -76,7 +76,7 @@ const MoviePlaying = ({ getIdBooking }) => {
                           <button type="button" className="button btn-like">Like <span>{movie.like}</span></button>
                         </li>
                         <li>
-                          <Link to="/movie/booking_time" type="button" title="Mua vé" className="button btn-booking" onClick={() => getIdBooking(movie.id)}>
+                          <Link to={`/movie/booking_time/${movie.id}`} type="button" title="Mua vé" className="button btn-booking" onClick={() => getIdBooking(movie.id)}>
                               <span>Mua vé</span>
                           </Link>
                         </li>

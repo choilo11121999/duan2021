@@ -1,10 +1,15 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./../../css/MovieDetail.css";
 import ImgTest from './../../img/selection/1.jpg';
-import Booking from "./BookingTime";
 
-const MoviePlaying = () => {
+const MovieDetail = ({ movie, getIdBooking }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+  const urlImg = axios.defaults.baseURL;
+  console.log(movie);
   const [valueRadio, setValueRadio] = useState('detail');
 
   const handleChecked = (e) => {
@@ -15,7 +20,7 @@ const MoviePlaying = () => {
       setValueRadio(false)
     }
   };
-
+  const { id, film_name, poster, duration, like, film_description } = movie;
   return (
     <div className="movie-detail">
       <div className="breadcrums">
@@ -35,7 +40,7 @@ const MoviePlaying = () => {
             <span>/</span>
           </li>
           <li className="category3">
-            <strong>Ten phim</strong>
+            <strong>{film_name}</strong>
           </li>
         </ul>
       </div>
@@ -45,23 +50,21 @@ const MoviePlaying = () => {
         </div> 
         <div className="main-body d-flex justify-content-between mb-3">
           <div className="main-body-img">
-            <img src={ImgTest} />
+          <img src={urlImg+poster} className="rounded border border-primary" width={260} height={370} />
           </div>
           <div className="main-body-description">
-            <h3>Ten phim</h3>
+            <h3>{film_name}</h3>
             <p><strong>Đạo diễn: </strong>Chọi</p>
             <p><strong>Diễn viên: </strong>Chọi</p>
             <p><strong>Thể loại: </strong>Chọi</p>
             <p><strong>Khởi chiếu: </strong>Chọi</p>
-            <p><strong>Thời lượng: </strong>Chọi</p>
+            <p><strong>Thời lượng: </strong>{duration}</p>
             <p><strong>Ngôn ngữ: </strong>Chọi</p>
-            <p><strong>Rated: </strong></p>
             <div className="main-body-btn">
-              <button className="btn btn-primary btn-sm mr-2">Like</button>
-              <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#selectTime">
-                Mua vé
-              </button>
-              <Booking />
+              <button className="btn btn-primary btn-sm mr-2">Like &nbsp; {like}</button>
+              <Link to={`/movie/booking_time/${id}`} title="Mua vé" className="button btn-sm btn-danger" onClick={() => getIdBooking(id)}>
+                  Mua vé
+              </Link>
             </div>
           </div>
         </div>
@@ -99,10 +102,7 @@ const MoviePlaying = () => {
             valueRadio === 'detail' ? (
               <div className="detail">
                 <p>
-                  Sau khi bản thân bỗng nhiên sở hữu “Bàn tay diệt quỷ”, võ sĩ MMA Yong Hoo (Park Seo Joon thủ vai) 
-                  đã dấn thân vào hành trình trừ tà, trục quỷ đối đầu với Giám Mục Bóng Tối (Woo Do Hwan) – tên quỷ 
-                  Satan đột lốt người. Từ đó sự thật về cái chết của cha Yong Hoo cũng dần được hé lộ cũng như nguyên 
-                  nhân anh trở thành “người được chọn”.
+                  {film_description}
                 </p>
               </div>
               ) : (
@@ -117,4 +117,4 @@ const MoviePlaying = () => {
   );
 };
 
-export default MoviePlaying;
+export default MovieDetail;
