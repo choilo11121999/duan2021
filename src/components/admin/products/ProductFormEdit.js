@@ -4,8 +4,7 @@ import Swal from "sweetalert2";
 import DurationPicker from "react-duration-picker";
 
 function ProductFormEdit ({ handleClose, product, handleReload }) {
-    const oldposter = "dddd";
-    const types = ["Action", "Comedy", "Drama", "Fantasy", "Horror", "Mystery", "Romance", "Thriller", "Animation"];
+    const types = ["Hành động", "Hài kịch", "Kịch", "Viễn tưởng", "Kinh dị", "Huyền bí", "Lãng mạn", "Cảm động", "Hoạt hình"];
     const [checkedState, setCheckedState] = useState(
         new Array(types.length).fill(false)
     );
@@ -117,12 +116,12 @@ function ProductFormEdit ({ handleClose, product, handleReload }) {
             <div className="panel-body">
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label>Tên:</label>
+                        <label>Tên phim:</label>
                         <input type="text" className="form-control" name="name" value={name}
                                onChange={(e) => setName(e.target.value)}/>
                     </div>
                     <div className="form-group">
-                        <label>Category:</label>
+                        <label>Thể loại:</label>
                         <ul className="list-types d-flex flex-wrap justify-content-start p-0">
                             {types.map((name, index) => {
                                 return (
@@ -150,7 +149,7 @@ function ProductFormEdit ({ handleClose, product, handleReload }) {
                         <span className="ml-2">{oldPoster}</span>
                     </div>
                     <div className="form-group">
-                        <label>Time Picker:</label>
+                        <label>Thời lượng phim:</label>
                         <DurationPicker
                             onChange={onChangeDuration}
                             initialDuration={{ hours: product.duration.substring(0,2), minutes: product.duration.substring(3,5), seconds: product.duration.substring(6) }}
@@ -159,8 +158,7 @@ function ProductFormEdit ({ handleClose, product, handleReload }) {
                     </div>
                     <div className="form-group">
                         <label>Mô tả:</label>
-                        <input type="textarea" className="form-control" name="description" value={description}
-                               onChange={(e) => setDescription(e.target.value)}/>
+                        <textarea className="form-control" name="description" rows="3" onChange={(e) => setDescription(e.target.value)} value={description}></textarea>
                     </div>
                     <div className="form-group">
                         <label>Trạng thái:</label>
