@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import DurationPicker from "react-duration-picker";
 
 function ProductForm ({ handleClose, getReLoad }) {
-    const types = ["Action", "Comedy", "Drama", "Fantasy", "Horror", "Mystery", "Romance", "Thriller", "Animation"];
+    const types = ["Hành động", "Hài kịch", "Kịch", "Viễn tưởng", "Kinh dị", "Huyền bí", "Lãng mạn", "Cảm động", "Hoạt hình"];
     const [checkedState, setCheckedState] = useState(
         new Array(types.length).fill(false)
     );
@@ -91,12 +91,12 @@ function ProductForm ({ handleClose, getReLoad }) {
             <div className="panel-body">
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label>Tên:</label>
+                        <label>Tên phim:</label>
                         <input type="text" className="form-control" name="name"
                             onChange={(e) => setName(e.target.value)}/>
                     </div>
                     <div className="form-group">
-                        <label>Category:</label>
+                        <label>Thể loại:</label>
                         <ul className="list-types d-flex flex-wrap justify-content-start p-0">
                             {types.map((name, index) => {
                                 return (
@@ -117,23 +117,23 @@ function ProductForm ({ handleClose, getReLoad }) {
                         </ul>
                     </div>
                     <div className="form-group">
-                        <label>Ảnh Poster:</label>
-                        <input type="file" className="form-control-file" name="picture"              
-                            onChange={(e) => handleFileSelected(e)}
+                        <label htmlFor="file" className="btn btn-sm btn-primary w-25" >Chọn ảnh</label>
+                        <input type="file" className="form-control-file" name="picture" id="file" style={{display:'none'}}
+                               onChange={(e) => handleFileSelected(e)}
                         />
+                        <span className="ml-2">{oldPoster}</span>
                     </div>
                     <div className="form-group">
-                        <label>Time Picker:</label>
+                        <label>Thời lượng phim:</label>
                         <DurationPicker
                             onChange={onChangeDuration}
-                            initialDuration={{ hours: 1, minutes: 45, seconds: 3 }}
+                            initialDuration={{ hours: 1, minutes: 45, seconds: 0 }}
                             maxHours={3}
                         />
                     </div>
                     <div className="form-group">
                         <label>Mô tả:</label>
-                        <input type="textarea" className="form-control" name="description"              
-                            onChange={(e) => setDescription(e.target.value)}/>
+                        <textarea className="form-control" name="description" rows="3" onChange={(e) => setDescription(e.target.value)}></textarea>
                     </div>
                     <div className="form-group">
                         <label>Trạng thái:</label>

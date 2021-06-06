@@ -26,8 +26,8 @@ const BootstrapNavbar = ({ getCollapsed, setUser }) => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto navbar-link">
-                        <NavLink activeClassName="active-link-admin mr-3" to="/admin/products">Products{ }</NavLink>
-                        <NavLink activeClassName="active-link-admin ml-3" to="/admin/shows">Shows{ }</NavLink>
+                        <NavLink activeClassName="active-link-admin mr-3" to="/admin/products" style={{fontSize: "20px"}}>Quản Lý Phim</NavLink>
+                        <NavLink activeClassName="active-link-admin ml-3" to="/admin/shows" style={{fontSize: "20px"}}>Quản lý giờ chiếu</NavLink>
                     </Nav>
                     <Form inline>
                         <Button variant="warning" href="/user/login" onClick={handleLogout}
