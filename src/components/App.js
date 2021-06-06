@@ -18,6 +18,9 @@ const App = () => {
   const [user, setUser] = useState('');
   const [productName, setProductName] = useState('');
   const [idBooking, setIdBooking] = useState("");
+  const [movie, setMovie] = useState({
+    id: ""
+  });
   const role = localStorage.getItem('role');
   console.log("role",role);
   useEffect(() => {
@@ -45,6 +48,10 @@ const App = () => {
   const getIdBooking = (id) => {
     setIdBooking(id);
   }
+
+  const getMovie = (movie) => {
+    setMovie(movie);
+  }
   return (
     <Router>
       {
@@ -56,13 +63,13 @@ const App = () => {
           <div className="App"> 
             <Header user={user} setUserLogin={setUserLogin} />
 
-            <Route path="/" exact component={() => <Home setProductNameFromHome={setProductNameFromHome} phimName={productName} />} />
-            <Route path="/user/login" component={() => <Login setUserLogin={setUserLogin} />}/>
-            <Route path="/user/register" component={Register}/>
-            <Route path="/movie/movie_playing" component={() => <MoviePlaying getIdBooking={getIdBooking} />} />
-            <Route path="/movie/movie_upcoming" component={MovieUpComing} />
-            <Route path={`/movie/movie_detail/${productName}`} component={MovieDetail} />
-            <Route path="/movie/booking_time" component={() => <BookingTime idBooking={idBooking} />} />
+            <Route path="/" exact component={() => <Home setProductNameFromHome={setProductNameFromHome} phimName={productName} getIdBooking={getIdBooking} getMovie={getMovie} />} />
+            <Route path="/user/login" exact component={() => <Login setUserLogin={setUserLogin} />}/>
+            <Route path="/user/register" exact component={Register}/>
+            <Route path="/movie/movie_playing" exact component={() => <MoviePlaying getIdBooking={getIdBooking} />} />
+            <Route path="/movie/movie_upcoming" exact component={MovieUpComing} />
+            <Route path={`/movie/movie_detail/${movie.id}`} exact component={() => <MovieDetail movie={movie} getIdBooking={getIdBooking} />} />
+            <Route path={`/movie/booking_time/${idBooking}`} exact component={() => <BookingTime idBooking={idBooking} />} />
 
             <Footer />
           </div>
