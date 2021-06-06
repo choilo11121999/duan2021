@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import DurationPicker from "react-duration-picker";
 
 function ProductFormEdit ({ handleClose, product, handleReload }) {
-    const types = ["Hành động", "Hài kịch", "Kịch", "Viễn tưởng", "Kinh dị", "Huyền bí", "Lãng mạn", "Cảm động", "Hoạt hình"];
+    const types = ["Hành Động", "Hài Kịch", "Drama", "Kỳ Thú", "Kinh Dị", "Bí Ẩn", "Lãng Mạn", "Kịch Tính", "Hoạt Hình"];
     const [checkedState, setCheckedState] = useState(
         new Array(types.length).fill(false)
     );
@@ -23,6 +23,7 @@ function ProductFormEdit ({ handleClose, product, handleReload }) {
     const setcheckstate = () => {
         let updatedCheckedState = checkedState;
         product.category.map((val, index) => {
+            console.log(val);
             let updatedCheckedState1 = updatedCheckedState.map((item, index) =>{
                 if (updatedCheckedState[index] === true) {
                     return true;
@@ -134,8 +135,9 @@ function ProductFormEdit ({ handleClose, product, handleReload }) {
                                             value={name}
                                             checked={checkedState[index]}
                                             onChange={() => handleOnChangeCheckbox(index)}
+                                            style={{cursor: "pointer"}}
                                         />
-                                        <label className="form-check-label" htmlFor={`custom-checkbox-${index}`}>{name}</label>
+                                        <label className="form-check-label" htmlFor={`custom-checkbox-${index}`} style={{cursor: "pointer"}}>{name}</label>
                                     </li>
                                 );
                             })}

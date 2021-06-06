@@ -20,7 +20,7 @@ const MovieDetail = ({ movie, getIdBooking }) => {
       setValueRadio(false)
     }
   };
-  const { id, film_name, poster, duration, like, film_description } = movie;
+  const { id, film_name, poster, duration, like, film_description, film_status } = movie;
   return (
     <div className="movie-detail">
       <div className="breadcrums">
@@ -34,9 +34,17 @@ const MovieDetail = ({ movie, getIdBooking }) => {
             <span>/</span>
           </li>
           <li className="category2">
-            <Link to="/movie/movie_playing">
-              Phim đang chiếu
-            </Link>
+            {
+              film_status === 1 ? (
+                <Link to="/movie/movie_playing">
+                  Phim đang chiếu
+                </Link>
+              ) : (
+                <Link to="/movie/movie_upcoming">
+                  Phim sắp chiếu
+                </Link>
+              )
+            }
             <span>/</span>
           </li>
           <li className="category3">

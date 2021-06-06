@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./../../css/MoviePlaying.css";
 
-const MovieUpcoming = () => {
+const MovieUpcoming = ({ getMovie }) => {
   const urlImg = axios.defaults.baseURL;
   const [listMovie, setListMovie] = useState(
     new Array()
@@ -50,13 +50,13 @@ const MovieUpcoming = () => {
                 return(
                   <li key={index} className="product-item col-3">
                     <div className="product-img">
-                      <a href="#">
+                      <Link to={`/movie/movie_detail/${movie.id}`} onClick={() => getMovie(movie)}>
                         <img className="rounded" src={urlImg+movie.poster} style={{width: "250px", height: "350px", border: "2px solid #333"}}/>
-                      </a>
+                      </Link>
                     </div>
                     <div className="product-info">
                       <h2 className="product-name">
-                        <a href="#">{movie.film_name}</a>
+                        <Link to={`/movie/movie_detail/${movie.id}`} onClick={() => getMovie(movie)}>{movie.film_name}</Link>
                       </h2>
                       <div className="movie-info">
                         <span className="movie-info-bold">Thể loại: </span>
