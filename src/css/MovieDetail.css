@@ -95,3 +95,17 @@
 .c-booking-room .room-time:last-child{
   border-bottom: none;
 }
+.c-booking-stats {
+  display: flex;
+}
+.c-booking-stats .booking-stats-id{
+  margin-right: 50px;
+}
+.c-booking-stats .booking-stats-id .booking-stats-items{
+  display: flex;
+}
+.c-booking-stats .booking-stats-id .booking-stats-title{
+  font-size: 19px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}

@@ -13,6 +13,10 @@ import Products from './admin/products/index';
 import BookingTime from './user/BookingTime';
 import { useEffect, useState } from 'react';
 import axios from 'axios'; 
+import BookingStatRoomOne from './user/BookingStat/BookingStatRoomOne';
+import BookingStatRoomTwo from './user/BookingStat/BookingStatRoomTwo';
+import BookingStatRoomThree from './user/BookingStat/BookingStatRoomThree';
+import BookingStatRoomFour from './user/BookingStat/BookingStatRoomFour';
 
 const App = () => {
   const [user, setUser] = useState('');
@@ -63,7 +67,11 @@ const App = () => {
             <Route path="/movie/movie_upcoming" component={MovieUpComing} />
             <Route path={`/movie/movie_detail/${productName}`} component={MovieDetail} />
             <Route path="/movie/booking_time" component={() => <BookingTime idBooking={idBooking} />} />
-
+            <Route path="/movie/booking_stat_01" component={() => <BookingStatRoomOne idBooking={idBooking} />} />
+            <Route path="/movie/booking_stat_02" component={() => <BookingStatRoomTwo idBooking={idBooking} />} />
+            <Route path="/movie/booking_stat_03" component={() => <BookingStatRoomThree idBooking={idBooking} />} />
+            <Route path="/movie/booking_stat_04" component={() => <BookingStatRoomFour idBooking={idBooking} />} />
+            
             <Footer />
           </div>
         )
