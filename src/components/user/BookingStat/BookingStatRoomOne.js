@@ -68,16 +68,16 @@ function BookingStatRoomOne ({ idBooking, dateBooking, timeBooking, user }) {
     })
   }
 
-
   return (
     <>
     <div className="container my-4 p-4 border border-secondary rounded">
       <div className="header">
         <h5 className="title booking-stats-title">Chọn ghế - Phòng 1</h5>
       </div>
-      <div className="mx-auto p-5 border border-primary rounded w-50 text-center">screene</div>
-      <div className="row mt-4">
-        <div className="col-6 row w-50 mx-auto">
+      <div className="row mt-4 c-booking-stats">
+        <div className="col-1"></div>
+        <div className="col-6 row w-50 mx-auto booking-stats-list-items">
+          <div className="p-5 border border-primary rounded w-100 text-center c-screen mb-5">screen</div>
           {
             seatId.map((seat, index) => {
               return (
@@ -118,11 +118,13 @@ function BookingStatRoomOne ({ idBooking, dateBooking, timeBooking, user }) {
             })
           }
         </div>
-        <div className="col-2 d-flex flex-column">
-          <div className="btn btn-outline-success">Normal</div>
-          <div className="btn btn-outline-primary">Vip</div>
-          <div className="btn btn-outline-danger">Sweetbox</div>
+        <div className="col-2"></div>
+        <div className="d-flex col-2 flex-column booking-stats-type">
+          <div className="btn btn-outline-success booking-type-items">Normal</div>
+          <div className="btn btn-outline-primary booking-type-items">Vip</div>
+          <div className="btn btn-outline-danger booking-type-items">Sweetbox</div>
         </div>
+        <div className="col-1"></div>
       </div>
 
       <div className="footer d-flex justify-content-between mt-5">
