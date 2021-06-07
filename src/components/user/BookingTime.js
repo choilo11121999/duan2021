@@ -136,7 +136,9 @@ const BookingTime = ({ idBooking }) => {
       </div>
       <div className="footer d-flex justify-content-between">
         <Link to="/movie/movie_playing" type="button" className="btn btn-secondary align-left" >Chọn phim</Link>
-        <button type="button" className="btn btn-primary">Chọn ghế</button>
+        <button type="button" className="btn btn-primary">
+          <Link to="/movie/booking_stat">Chọn ghế</Link>
+        </button>
       </div>
     </div>
   );
