@@ -3,11 +3,12 @@ import {useEffect, useState} from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const BookingTime = ({ idBooking }) => {
+const BookingTime = ({ idBooking, getIdDateTimeBooking }) => {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
-  const [valueTime, setValueTime] = useState();
+  const [valueDate, setValueDate] = useState("");
+  const [valueTime, setValueTime] = useState("");
   const [dateData, setDateData] = useState(new Array());
   const [timeData, setTimeData] = useState(new Array());
   const listDate = [];
@@ -40,6 +41,7 @@ const BookingTime = ({ idBooking }) => {
     });
   })
   const getTime = (date) => {
+    setValueDate(date);
     axios
     .get(`api/select-list/show?product_id=${idBooking}&show_date=${date}`)
     .then((res) => {
@@ -49,8 +51,6 @@ const BookingTime = ({ idBooking }) => {
       console.log(err);
     });
   }
-
-  console.log(valueTime);
 
   return (
     <div className="container my-4 p-4 border border-secondary rounded">
@@ -87,7 +87,7 @@ const BookingTime = ({ idBooking }) => {
                 {
                   roomData[1].map((time, index) => (
                     <label key={index} className="btn btn-light btn-sm mx-1" onClick={(e) => setValueTime(e.currentTarget.querySelector("input").value)}>{time}
-                      <input id={time} className ="d-none" value={time} name="select" type="radio" />
+                      <input id={time} className ="d-none" value={`1-${time}`} name="select" type="radio" />
                     </label>
                   ))
                 }
@@ -100,7 +100,7 @@ const BookingTime = ({ idBooking }) => {
                 {
                   roomData[2].map((time, index) => (
                     <label key={index} className="btn btn-light btn-sm mx-1" onClick={(e) => setValueTime(e.currentTarget.querySelector("input").value)}>{time}
-                      <input id={time} className ="d-none" value={time} name="select" type="radio" />
+                      <input id={time} className ="d-none" value={`2-${time}`} name="select" type="radio" />
                     </label>
                   ))
                 }
@@ -113,7 +113,7 @@ const BookingTime = ({ idBooking }) => {
                 {
                   roomData[3].map((time, index) => (
                     <label key={index} className="btn btn-light btn-sm mx-1" onClick={(e) => setValueTime(e.currentTarget.querySelector("input").value)}>{time}
-                      <input id={time} className ="d-none" value={time} name="select" type="radio" />
+                      <input id={time} className ="d-none" value={`4-${time}`} name="select" type="radio" />
                     </label>
                   ))
                 }
@@ -126,7 +126,7 @@ const BookingTime = ({ idBooking }) => {
                 {
                   roomData[4].map((time, index) => (
                     <label key={index} className="btn btn-light btn-sm mx-1" onClick={(e) => setValueTime(e.currentTarget.querySelector("input").value)}>{time}
-                      <input id="detail" className ="d-none" value={time} name="select" type="radio" />
+                      <input id="detail" className ="d-none" value={`4-${time}`} name="select" type="radio" />
                     </label>
                   ))
                 }
@@ -137,7 +137,12 @@ const BookingTime = ({ idBooking }) => {
       <div className="footer d-flex justify-content-between">
         <Link to="/movie/movie_playing" type="button" className="btn btn-secondary align-left" >Chọn phim</Link>
         <button type="button" className="btn btn-primary">
-          <Link to="/movie/booking_stat">Chọn ghế</Link>
+          <Link to={valueTime[0] === "1" ? `/movie/booking_stat_01/${idBooking}` :
+                    valueTime[0] === "2" ? `/movie/booking_stat_02/${idBooking}` :
+                    valueTime[0] === "3" ? `/movie/booking_stat_04/${idBooking}` :
+                    `/movie/booking_stat_04/${idBooking}`}
+                    onClick={() => getIdDateTimeBooking(idBooking, valueDate, valueTime.substr(2))}
+          >Chọn ghế</Link>
         </button>
       </div>
     </div>

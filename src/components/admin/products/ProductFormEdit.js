@@ -23,7 +23,6 @@ function ProductFormEdit ({ handleClose, product, handleReload }) {
     const setcheckstate = () => {
         let updatedCheckedState = checkedState;
         product.category.map((val, index) => {
-            console.log(val);
             let updatedCheckedState1 = updatedCheckedState.map((item, index) =>{
                 if (updatedCheckedState[index] === true) {
                     return true;

@@ -2,7 +2,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./../../css/MovieDetail.css";
-import ImgTest from './../../img/selection/1.jpg';
 
 const MovieDetail = ({ movie, getIdBooking }) => {
   useEffect(() => {
@@ -12,15 +11,7 @@ const MovieDetail = ({ movie, getIdBooking }) => {
   console.log(movie);
   const [valueRadio, setValueRadio] = useState('detail');
 
-  const handleChecked = (e) => {
-    e.preventDefault();
-    if(e.target.checked) {
-      setValueRadio(true);
-    } else {
-      setValueRadio(false)
-    }
-  };
-  const { id, film_name, poster, duration, like, film_description, film_status } = movie;
+  const { id, film_name, category, poster, duration, like, film_description, film_status, director, actor } = movie;
   return (
     <div className="movie-detail">
       <div className="breadcrums">
@@ -62,12 +53,14 @@ const MovieDetail = ({ movie, getIdBooking }) => {
           </div>
           <div className="main-body-description">
             <h3>{film_name}</h3>
-            <p><strong>Đạo diễn: </strong>Chọi</p>
-            <p><strong>Diễn viên: </strong>Chọi</p>
-            <p><strong>Thể loại: </strong>Chọi</p>
+            <p><strong>Đạo diễn: </strong>{director}</p>
+            <p><strong>Diễn viên: </strong>{actor}</p>
+            <p><strong>Thể loại: </strong>{category.map((value, index) => {
+                  return index < category.length -1 ?  value.name + ", " : value.name;
+              })}</p>
             <p><strong>Khởi chiếu: </strong>Chọi</p>
             <p><strong>Thời lượng: </strong>{duration}</p>
-            <p><strong>Ngôn ngữ: </strong>Chọi</p>
+            <p><strong>Ngôn ngữ: </strong>Tiếng Việt</p>
             <div className="main-body-btn">
               <button className="btn btn-primary btn-sm mr-2">Like &nbsp; {like}</button>
               <Link to={`/movie/booking_time/${id}`} title="Mua vé" className="button btn-sm btn-danger" onClick={() => getIdBooking(id)}>

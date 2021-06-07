@@ -9,7 +9,6 @@ import MovieDetail from './user/MovieDetail';
 import Login from './auth/Login';
 import Register from './auth/Register';
 import Admin from './admin/admin.js';
-import Products from './admin/products/index';
 import BookingTime from './user/BookingTime';
 import { useEffect, useState } from 'react';
 import axios from 'axios'; 
@@ -22,6 +21,8 @@ const App = () => {
   const [user, setUser] = useState('');
   const [productName, setProductName] = useState('');
   const [idBooking, setIdBooking] = useState("");
+  const [dateBooking, setDateBooking] = useState("");
+  const [timeBooking, setTimeBooking] = useState("");
   const [movie, setMovie] = useState({
     id: ""
   });
@@ -53,6 +54,12 @@ const App = () => {
     setIdBooking(id);
   }
 
+  const getIdDateTimeBooking = (id, date, time) => {
+    setIdBooking(id);
+    setDateBooking(date);
+    setTimeBooking(time)
+  }
+
   const getMovie = (movie) => {
     setMovie(movie);
   }
@@ -73,11 +80,11 @@ const App = () => {
             <Route path="/movie/movie_playing" exact component={() => <MoviePlaying getIdBooking={getIdBooking} getMovie={getMovie} />} />
             <Route path="/movie/movie_upcoming" exact component={() => <MovieUpComing getMovie={getMovie} />} />
             <Route path={`/movie/movie_detail/${movie.id}`} exact component={() => <MovieDetail movie={movie} getIdBooking={getIdBooking} />} />
-            <Route path={`/movie/booking_time/${idBooking}`} exact component={() => <BookingTime idBooking={idBooking} />} />
-            <Route path="/movie/booking_stat_01" component={() => <BookingStatRoomOne idBooking={idBooking} />} />
-            <Route path="/movie/booking_stat_02" component={() => <BookingStatRoomTwo idBooking={idBooking} />} />
-            <Route path="/movie/booking_stat_03" component={() => <BookingStatRoomThree idBooking={idBooking} />} />
-            <Route path="/movie/booking_stat_04" component={() => <BookingStatRoomFour idBooking={idBooking} />} />
+            <Route path={`/movie/booking_time/${idBooking}`} exact component={() => <BookingTime idBooking={idBooking} getIdDateTimeBooking={getIdDateTimeBooking} />} />
+            <Route path={`/movie/booking_stat_01/${idBooking}`} component={() => <BookingStatRoomOne idBooking={idBooking} dateBooking={dateBooking} timeBooking={timeBooking} user={user} />} />
+            <Route path={`/movie/booking_stat_02/${idBooking}`} component={() => <BookingStatRoomTwo idBooking={idBooking} />} />
+            <Route path={`/movie/booking_stat_03/${idBooking}`} component={() => <BookingStatRoomThree idBooking={idBooking} />} />
+            <Route path={`/movie/booking_stat_04/${idBooking}`} component={() => <BookingStatRoomFour idBooking={idBooking} />} />
 
             <Footer />
           </div>
