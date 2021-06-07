@@ -96,64 +96,19 @@
   border-bottom: none;
 }
 .c-booking-stats {
-  display: flex;
   position: relative;
   z-index: 1;
-  min-height: 450px;
 }
-.c-booking-stats .booking-stats-id{
-  margin-right: 50px;
-  position: absolute;
-  top: 0;
-  left: 100px;
-}
-.c-booking-stats .booking-stats-id .booking-stats-list-items{
-  display: flex;
-}
-.c-booking-stats .booking-stats-id .booking-stats-title{
-  font-size: 19px;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-.c-booking-stats .booking-stats-list-row{
-  display: inline-block;
-  position: absolute;
-  bottom: 44px;
-  left: 0;
-}
-#row-room-3{
-  bottom: -11px;
-}
-.c-booking-stats .booking-stats-list-row .booking-stats-row{
-  display: flex !important;
-  justify-content: center !important;
-  margin-bottom: 1rem !important;
-  margin-right: 3rem;
-}
-.booking-stats-items{
-  display: flex !important;
-  justify-content: center !important;
-  margin-bottom: 1rem !important;
-  margin-right: 0.5rem;
-}
-.c-booking-stats .booking-stats-type{
-  position: absolute;
-  bottom: 58px;
-  right: 0;
-}
-.booking-stats-title{
-  margin-bottom: 30px;
+.c-booking-stats .booking-stats-type .booking-type-items{
+  margin: 0.5rem 0px;
 }
 .c-screen{
-  max-width: 250px;
+  max-width: 450px;
   margin-bottom: 30px;
   min-height: 100px;
   background-color: blueviolet;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   font-size: 23px;
   font-weight: 700;
   color: aqua;
-  text-align: center;
+  margin-left: 155px;
 }
