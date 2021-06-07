@@ -108,7 +108,7 @@ const Register = () => {
               Email:
               <input
                 type="email"
-                placeholder="Enter email"
+                placeholder="Nhập email"
                 className="form-control"
                 name="email"
                 id="email"
@@ -127,7 +127,7 @@ const Register = () => {
               Tên người dùng:
               <input
                 type="text"
-                placeholder="Enter name"
+                placeholder="Nhập tên"
                 className="form-control"
                 name="name"
                 id="name"
@@ -146,7 +146,7 @@ const Register = () => {
               Mật khẩu:
               <input
                 type="password"
-                placeholder="Enter password"
+                placeholder="Nhập mật khẩu"
                 className="form-control"
                 name="password"
                 id="password"
@@ -165,7 +165,7 @@ const Register = () => {
               Nhập lại mật khẩu:
               <input
                 type="password"
-                placeholder="Enter password confirmation"
+                placeholder="Nhập lại mật khẩu"
                 className="form-control"
                 name="password-confirmation"
                 id="password-confirmation"

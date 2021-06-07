@@ -10,6 +10,7 @@ import Login from './auth/Login';
 import Register from './auth/Register';
 import Admin from './admin/admin.js';
 import BookingTime from './user/BookingTime';
+import ChangePassword from './auth/ChangePassword';
 import { useEffect, useState } from 'react';
 import axios from 'axios'; 
 import BookingStatRoomOne from './user/BookingStat/BookingStatRoomOne';
@@ -85,7 +86,7 @@ const App = () => {
             <Route path={`/movie/booking_stat_02/${idBooking}`} component={() => <BookingStatRoomTwo idBooking={idBooking} />} />
             <Route path={`/movie/booking_stat_03/${idBooking}`} component={() => <BookingStatRoomThree idBooking={idBooking} />} />
             <Route path={`/movie/booking_stat_04/${idBooking}`} component={() => <BookingStatRoomFour idBooking={idBooking} />} />
-
+            <Route path="/user/change_password" exact component={ChangePassword}/>
             <Footer />
           </div>
         )
