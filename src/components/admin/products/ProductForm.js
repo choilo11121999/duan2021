@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import DurationPicker from "react-duration-picker";
 
 function ProductForm ({ handleClose, getReLoad }) {
-    const types = ["Action", "Comedy", "Drama", "Fantasy", "Horror", "Mystery", "Romance", "Thriller", "Animation"];
+    const types = ["Hành Động", "Hài Kịch", "Drama", "Kỳ Thú", "Kinh Dị", "Bí Ẩn", "Lãng Mạn", "Kịch Tính", "Hoạt Hình"];
     const [checkedState, setCheckedState] = useState(
         new Array(types.length).fill(false)
     );
@@ -91,16 +91,16 @@ function ProductForm ({ handleClose, getReLoad }) {
             <div className="panel-body">
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label>Tên:</label>
+                        <label>Tên phim:</label>
                         <input type="text" className="form-control" name="name"
                             onChange={(e) => setName(e.target.value)}/>
                     </div>
                     <div className="form-group">
-                        <label>Category:</label>
+                        <label>Thể loại:</label>
                         <ul className="list-types d-flex flex-wrap justify-content-start p-0">
                             {types.map((name, index) => {
                                 return (
-                                    <li key={index} className="form-check form-check-inline mr-0 ml-3 w-25">
+                                    <li key={index} className="form-check form-check-inline mr-0 ml-3 w-25" >
                                         <input
                                             className="form-check-input"
                                             type="checkbox"
@@ -109,31 +109,32 @@ function ProductForm ({ handleClose, getReLoad }) {
                                             value={name}
                                             checked={checkedState[index]}
                                             onChange={() => handleOnChangeCheckbox(index)}
+                                            style={{cursor: "pointer"}}
                                         />
-                                        <label className="form-check-label" htmlFor={`custom-checkbox-${index}`}>{name}</label>
+                                        <label className="form-check-label" htmlFor={`custom-checkbox-${index}`} style={{cursor: "pointer"}}>{name}</label>
                                     </li>
                                 );
                             })}
                         </ul>
                     </div>
                     <div className="form-group">
-                        <label>Ảnh Poster:</label>
-                        <input type="file" className="form-control-file" name="picture"              
-                            onChange={(e) => handleFileSelected(e)}
+                        <label htmlFor="file" className="btn btn-sm btn-primary w-25" >Chọn ảnh</label>
+                        <input type="file" className="form-control-file" name="picture" id="file" style={{display:'none'}}
+                               onChange={(e) => handleFileSelected(e)}
                         />
+                        <span className="ml-2">{oldPoster}</span>
                     </div>
                     <div className="form-group">
-                        <label>Time Picker:</label>
+                        <label>Thời lượng phim:</label>
                         <DurationPicker
                             onChange={onChangeDuration}
-                            initialDuration={{ hours: 1, minutes: 45, seconds: 3 }}
+                            initialDuration={{ hours: 1, minutes: 45, seconds: 0 }}
                             maxHours={3}
                         />
                     </div>
                     <div className="form-group">
                         <label>Mô tả:</label>
-                        <input type="textarea" className="form-control" name="description"              
-                            onChange={(e) => setDescription(e.target.value)}/>
+                        <textarea className="form-control" name="description" rows="3" onChange={(e) => setDescription(e.target.value)}></textarea>
                     </div>
                     <div className="form-group">
                         <label>Trạng thái:</label>

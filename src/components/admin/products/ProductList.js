@@ -95,30 +95,30 @@ const ProductList = ({ getReLoad }) => {
     }
     const eleItem = listProduct.map((product, index) => {
         return (
-          <tr key={index} className="text-center">
+          <tr key={index} className="text-center align-center">
               <td>{product.id}</td>
               <td>{product.film_name}</td>
               <td>{product.category.map((value, index) => {
                   return index < product.category.length -1 ?  value.name + ", " : value.name;
               })}</td>
-              <td className="w-25"><img className="w-25" src={axios.defaults.baseURL + product.poster} /></td>
+              <td className="w-25"><img className="w-25 rounded border" src={axios.defaults.baseURL + product.poster} /></td>
               <td>{product.duration}</td>
               <td>{product.film_description}</td>
               <td>{product.film_status === 0 ? "Không chiếu" : product.film_status === 1 ? "Đang chiếu" : "Sắp chiếu"}</td>
-              <td><button className="btn btn-sm btn-primary" onClick={(e) => handleEdit(e)}>Edit</button></td>
-              <td><button className="btn btn-sm btn-danger" onClick={(e) => handleDelete(e)}>Delete</button></td>
+              <td><button className="btn btn-sm btn-primary" onClick={(e) => handleEdit(e)}>Sửa</button></td>
+              <td><button className="btn btn-sm btn-danger" onClick={(e) => handleDelete(e)}>Xóa</button></td>
           </tr>
         );
     })
     return (
       <div>
-        <table className="table table-bordered">
+        <table className="table table-bordered rounded">
           <thead>
             <tr>
               <th className="text-center">ID</th>
               <th className="text-center">Tên</th>
-              <th className="text-center">Category</th>
-              <th className="text-center">Poster</th>
+              <th className="text-center">Thể loại</th>
+              <th className="text-center">Ảnh</th>
               <th className="text-center">Thời gian phim</th>
               <th className="text-center">Mô tả</th>
               <th className="text-center">Trạng thái</th>

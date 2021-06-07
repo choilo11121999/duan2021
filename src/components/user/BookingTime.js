@@ -4,6 +4,9 @@ import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const BookingTime = ({ idBooking }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   const [valueTime, setValueTime] = useState();
   const [dateData, setDateData] = useState(new Array());
   const [timeData, setTimeData] = useState(new Array());
@@ -132,7 +135,7 @@ const BookingTime = ({ idBooking }) => {
         </div>
       </div>
       <div className="footer d-flex justify-content-between">
-        <Link to="/movie/movie_playing" type="button" className="btn btn-secondary align-left" >Quay lại</Link>
+        <Link to="/movie/movie_playing" type="button" className="btn btn-secondary align-left" >Chọn phim</Link>
         <button type="button" className="btn btn-primary">
           <Link to="/movie/booking_stat">Chọn ghế</Link>
         </button>

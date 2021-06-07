@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import "./../../css/MoviePlaying.css";
 
-const MoviePlaying = ({ getIdBooking }) => {
+const MoviePlaying = ({ getIdBooking, getMovie }) => {
   const urlImg = axios.defaults.baseURL;
   const [listMovie, setListMovie] = useState(
     new Array()
@@ -52,13 +52,13 @@ const MoviePlaying = ({ getIdBooking }) => {
                 return(
                   <li key={index} className="product-item col-3">
                     <div className="product-img">
-                      <a href="#">
+                      <Link to={`/movie/movie_detail/${movie.id}`} onClick={() => getMovie(movie)}>
                         <img className="rounded" src={urlImg+movie.poster} style={{width: "250px", height: "350px", border: "2px solid #333"}}/>
-                      </a>
+                      </Link>
                     </div>
                     <div className="product-info">
                       <h2 className="product-name">
-                        <a href="#">{movie.film_name}</a>
+                        <Link to={`/movie/movie_detail/${movie.id}`} onClick={() => getMovie(movie)}>{movie.film_name}</Link>
                       </h2>
                       <div className="movie-info">
                         <span className="movie-info-bold">Thể loại: </span>
@@ -76,7 +76,7 @@ const MoviePlaying = ({ getIdBooking }) => {
                           <button type="button" className="button btn-like">Like <span>{movie.like}</span></button>
                         </li>
                         <li>
-                          <Link to="/movie/booking_time" type="button" title="Mua vé" className="button btn-booking" onClick={() => getIdBooking(movie.id)}>
+                          <Link to={`/movie/booking_time/${movie.id}`} type="button" title="Mua vé" className="button btn-booking" onClick={() => getIdBooking(movie.id)}>
                               <span>Mua vé</span>
                           </Link>
                         </li>

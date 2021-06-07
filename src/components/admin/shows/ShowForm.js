@@ -62,7 +62,7 @@ function ShowForm ({ handleClose, listShow, getLoad }) {
                         </select>
                     </div>
                     <div className="form-group">
-                        <label>Room:</label>
+                        <label>Phòng chiếu:</label>
                         <select className="form-control" name="room" 
                             onChange={(e) => setRoom_id(e.target.value)}>
                                 <option selected>Chọn</option>
