@@ -1,7 +1,13 @@
-import React, {Component, useState} from 'react';
+import axios from 'axios';
+import React, {Component, useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 
 function BookingStatRoomOne ({ idBooking, dateBooking, timeBooking, user }) {
+  useEffect(() => {
+    axios.get('/api/select-list/room').then((res) => {
+      console.log(res);
+    })
+  })
   console.log(idBooking, dateBooking, timeBooking);
   const seatId = [];
   for(let i = 1; i < 20; i++) {
@@ -44,14 +50,22 @@ function BookingStatRoomOne ({ idBooking, dateBooking, timeBooking, user }) {
     } 
   }
   console.log(show_room);
-  const data = {
-    user_id: user.id,
-    show_id: idBooking,
-    show_room
-  }
+  
 
   const handlePostData = () => {
+    const data = {
+      user_id: user.id,
+      show_id: idBooking,
+      show_room
+    }
     console.log(data);
+    axios.post('/api/payment/calculate_payment', data)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
   }
 
 
@@ -62,8 +76,8 @@ function BookingStatRoomOne ({ idBooking, dateBooking, timeBooking, user }) {
         <h5 className="title booking-stats-title">Chọn ghế - Phòng 1</h5>
       </div>
       <div className="mx-auto p-5 border border-primary rounded w-50 text-center">screene</div>
-      <div className="d-flex mt-4">
-        <div className="row w-50 mx-auto">
+      <div className="row mt-4">
+        <div className="col-6 row w-50 mx-auto">
           {
             seatId.map((seat, index) => {
               return (
@@ -104,17 +118,17 @@ function BookingStatRoomOne ({ idBooking, dateBooking, timeBooking, user }) {
             })
           }
         </div>
-        <div className="d-flex flex-column">
-          <div className="btn btn-outline-success"></div><span>Normal</span>
-          <div className="btn btn-outline-primary"></div><span>Vip</span>
-          <div className="btn btn-outline-danger"></div><span>Sweetbox</span>
+        <div className="col-2 d-flex flex-column">
+          <div className="btn btn-outline-success">Normal</div>
+          <div className="btn btn-outline-primary">Vip</div>
+          <div className="btn btn-outline-danger">Sweetbox</div>
         </div>
       </div>
 
       <div className="footer d-flex justify-content-between mt-5">
         <Link to={`/movie/booking_time/${idBooking}`} className="btn btn-secondary align-left" >Quay lại</Link>
         <div>Gia ve</div>
-        <Link to="/payment" className="btn btn-primary" onClick={() => handlePostData}>Thanh toán</Link>
+        <Link to="#" className="btn btn-primary" onClick={() => handlePostData()}>Thanh toán</Link>
       </div>
     </div>
     </>
