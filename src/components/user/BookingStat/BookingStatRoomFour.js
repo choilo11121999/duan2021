@@ -1,224 +1,119 @@
 import React, {Component, useState} from 'react';
 import { Link } from 'react-router-dom';
 
-function BookingStatRoomFour (props) {
+function BookingStatRoomFour ({ idBooking, dateBooking, timeBooking, user }) {
+  console.log(idBooking, dateBooking, timeBooking);
+  const seatId = [];
+  for(let i = 1; i < 30; i++) {
+    i <= 5 ? seatId.push(`A${i}`) :
+    i <= 10 ? seatId.push(`B${i-5}`) :
+    i <= 15 ? seatId.push(`C${i-10}`) :
+    i <= 20 ? seatId.push(`D${i-15}`) :
+    i <= 25 ? seatId.push(`E${i-20}`) :
+    seatId.push(`F${i-25}`)
+  }
+  const [checkedState, setCheckedState] = useState(
+    new Array(seatId.length).fill(false)
+  );
+
+  const handleOnChangeCheckbox = (position) => {
+    const updatedCheckedState = checkedState.map((item, index) =>
+      index === position ? !item : item
+    );
+    setCheckedState(updatedCheckedState);
+  }
+
+  const [show_room, setShow_room] = useState([]);
+  const getInfoBooking = (status, id, seat_row, seat_column, type) => {
+    console.log(status, id, seat_row, seat_column, type);
+    let check = true;
+    if (status) {
+      show_room.forEach(room => {
+        if (room.id === id) {
+          check = false;
+        }
+      });
+      if (check) {
+        const updateShowRoom = [...show_room, {id, room_id: 4, show_id: idBooking, seat_column, seat_row, condition: "empty", type}]
+        setShow_room(updateShowRoom);
+      }
+    } else {
+      const updateShowRoom = show_room.filter(room => room.id !== id);
+      setShow_room(updateShowRoom);
+    } 
+  }
+  console.log(show_room);
+  const data = {
+    user_id: user.id,
+    show_id: idBooking,
+    show_room
+  }
+
+  const handlePostData = () => {
+    console.log(data);
+  }
   return (
     <>
       <div className="container my-4 p-4 border border-secondary rounded">
         <div className="header">
           <h5 className="title booking-stats-title">Chọn ghế - Phòng 4</h5>
         </div>
-        <div className="body c-booking-stats">
-          <div className="booking-stats-list-row" id="row-room-3">
-            <div className="radio-btn booking-stats-row">
-              <label className="btn btn-outline-info btn-sm">A
-                <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
-              </label>
-            </div>
-            <div className="radio-btn booking-stats-row">
-              <label className="btn btn-outline-info btn-sm">B
-                <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
-              </label>
-            </div>
-            <div className="radio-btn booking-stats-row">
-              <label className="btn btn-outline-info btn-sm">C
-                <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
-              </label>
-            </div>
-            <div className="radio-btn booking-stats-row">
-              <label className="btn btn-outline-info btn-sm">D
-                <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
-              </label>
-            </div>
-            <div className="radio-btn booking-stats-row">
-              <label className="btn btn-outline-info btn-sm">E
-                <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
-              </label>
-            </div>
-            <div className="radio-btn booking-stats-row">
-                <label className="btn btn-outline-info btn-sm">F
-                  <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
-                </label>
-              </div>
+        <div className="p-5 border border-primary rounded w-50 text-center c-screen">screen</div>
+        <div className="row mt-4 c-booking-stats">
+          <div className="col-6 row w-50 mx-auto booking-stats-list-items">
+            {
+              seatId.map((seat, index) => {
+                return (
+                  <div key={index} className="form-check col-3 my-2" >
+                    <input
+                        className="form-check-input d-none"
+                        type="checkbox"
+                        id={`custom-checkbox-${index}`}
+                        name={seat}
+                        value={seat}
+                        checked={checkedState[index]}
+                        onChange={() => handleOnChangeCheckbox(index)}
+                        style={{cursor: "pointer"}}
+                    />
+                    {
+                      seat[0] === "C" ? (
+                        <label
+                          className={`form-check-label btn ${checkedState[index] ? "btn-primary" : "btn-outline-primary"}`} 
+                          htmlFor={`custom-checkbox-${index}`} style={{cursor: "pointer"}}
+                          onClick={() => getInfoBooking(!checkedState[index], index+1, seat[0], seat.substr(1), "vip")}
+                        >{seat}</label>
+                      ) : seat[0] === "E" ? (
+                        <label
+                          className={`form-check-label btn ${checkedState[index] ? "btn-danger" : "btn-outline-danger"}`} 
+                          htmlFor={`custom-checkbox-${index}`} style={{cursor: "pointer"}}
+                          onClick={() => getInfoBooking(!checkedState[index], index+1, seat[0], seat.substr(1), "sweetbox")}
+                        >{seat}</label>
+                      ) : (
+                        <label
+                          className={`form-check-label btn ${checkedState[index] ? "btn-success" : "btn-outline-success"}`} 
+                          htmlFor={`custom-checkbox-${index}`} style={{cursor: "pointer"}}
+                          onClick={() => getInfoBooking(!checkedState[index], index+1, seat[0], seat.substr(1), "normal")}
+                        >{seat}</label>
+                      )
+                    }
+                </div>
+                );
+              })
+            }
           </div>
-          <div id="room-4" className="booking-stats-id">
-            <div className="c-screen">SCREEN</div>
-            <div className="booking-stats-list-items">
-              <div className="radio-btn booking-stats-items">
-                <label className="btn btn-success btn-sm">A00
-                  <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
-                </label>
-              </div>
-              <div className="radio-btn booking-stats-items">
-                <label className="btn btn-success btn-sm">A00
-                  <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
-                </label>
-              </div>
-              <div className="radio-btn booking-stats-items">
-                <label className="btn btn-success btn-sm">A00
-                  <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
-                </label>
-              </div>
-              <div className="radio-btn booking-stats-items">
-                <label className="btn btn-success btn-sm">A00
-                  <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
-                </label>
-              </div>
-              <div className="radio-btn booking-stats-items">
-                <label className="btn btn-success btn-sm">A00
-                  <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
-                </label>
-              </div>
-            </div>
-            <div className="booking-stats-list-items">
-              <div className="radio-btn booking-stats-items">
-                <label className="btn btn-success btn-sm">A00
-                  <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
-                </label>
-              </div>
-              <div className="radio-btn booking-stats-items">
-                <label className="btn btn-success btn-sm">A00
-                  <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
-                </label>
-              </div>
-              <div className="radio-btn d-flex justify-content-icenter mb-3 mr-2">
-                <label className="btn btn-success btn-sm">A00
-                  <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
-                </label>
-              </div>
-              <div className="radio-btn booking-stats-items">
-                <label className="btn btn-success btn-sm">A00
-                  <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
-                </label>
-              </div>
-              <div className="radio-btn booking-stats-items">
-                <label className="btn btn-success btn-sm">A00
-                  <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
-                </label>
-              </div>
-            </div>
-            <div className="booking-stats-list-items">
-              <div className="radio-btn booking-stats-items">
-                <label className="btn btn-primary btn-sm">A00
-                  <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
-                </label>
-              </div>
-              <div className="radio-btn booking-stats-items">
-                <label className="btn btn-primary btn-sm">A00
-                  <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
-                </label>
-              </div>
-              <div className="radio-btn booking-stats-items">
-                <label className="btn btn-primary btn-sm">A00
-                  <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
-                </label>
-              </div>
-              <div className="radio-btn booking-stats-items">
-                <label className="btn btn-primary btn-sm">A00
-                  <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
-                </label>
-              </div>
-              <div className="radio-btn booking-stats-items">
-                <label className="btn btn-primary btn-sm">A00
-                  <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
-                </label>
-              </div>
-            </div>
-            <div className="booking-stats-list-items"> 
-              <div className="radio-btn booking-stats-items">
-                <label className="btn btn-success btn-sm">A00
-                  <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
-                </label>
-              </div>
-              <div className="radio-btn booking-stats-items">
-                <label className="btn btn-primary btn-sm">A00
-                  <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
-                </label>
-              </div>
-              <div className="radio-btn booking-stats-items">
-                <label className="btn btn-primary btn-sm">A00
-                  <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
-                </label>
-              </div>
-              <div className="radio-btn booking-stats-items">
-                <label className="btn btn-primary btn-sm">A00
-                  <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
-                </label>
-              </div>
-              <div className="radio-btn booking-stats-items">
-                <label className="btn btn-success btn-sm">A00
-                  <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
-                </label>
-              </div>
-            </div>
-            <div className="booking-stats-list-items">
-              <div className="radio-btn booking-stats-items">
-                <label className="btn btn-success btn-sm">A00
-                  <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
-                </label>
-              </div>
-              <div className="radio-btn booking-stats-items">
-                <label className="btn btn-success btn-sm">A00
-                  <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
-                </label>
-              </div>
-              <div className="radio-btn booking-stats-items">
-                <label className="btn btn-primary btn-sm">A00
-                  <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
-                </label>
-              </div>
-              <div className="radio-btn booking-stats-items">
-                <label className="btn btn-success btn-sm">A00
-                  <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
-                </label>
-              </div>
-              <div className="radio-btn booking-stats-items">
-                <label className="btn btn-success btn-sm">A00
-                  <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
-                </label>
-              </div>
-            </div>
-            <div className="booking-stats-list-items">
-              <div className="radio-btn booking-stats-items">
-                <label className="btn btn-danger btn-sm">A00
-                  <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
-                </label>
-              </div>
-              <div className="radio-btn booking-stats-items">
-                <label className="btn btn-danger btn-sm">A00
-                  <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
-                </label>
-              </div>
-              <div className="radio-btn booking-stats-items">
-                <label className="btn btn-danger btn-sm">A00
-                  <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
-                </label>
-              </div>
-              <div className="radio-btn booking-stats-items">
-                <label className="btn btn-danger btn-sm">A00
-                  <input id="detail" className ="d-none" value="detail" name="select" type="radio" />
-                </label>
-              </div>
-            </div>
-          </div>
-          <div className="booking-stats-type">
-            <div className="radio-btn booking-type-items">
-              <label className="btn btn-success btn-sm">Normal</label>
-            </div>
-            <div className="radio-btn booking-type-items">
-              <label className="btn btn-primary btn-sm">Vip</label>
-            </div>
-            <div className="radio-btn booking-type-items">
-              <label className="btn btn-danger btn-sm">Sweetbox</label>
-            </div>
+          <div className="d-flex col-2 flex-column booking-stats-type">
+            <div className="btn btn-outline-success booking-type-items">Normal</div>
+            <div className="btn btn-outline-primary booking-type-items">Vip</div>
+            <div className="btn btn-outline-danger booking-type-items">Sweetbox</div>
           </div>
         </div>
-        <div className="footer d-flex justify-content-between">
-          <Link to="/movie/booking_time" type="button" className="btn btn-secondary align-left" >Quay lại</Link>
-          <button type="button" className="btn btn-primary"><Link to="/payment">Thanh toán</Link></button>
+        <div className="footer d-flex justify-content-between mt-5">
+          <Link to={`/movie/booking_time/${idBooking}`} className="btn btn-secondary align-left" >Quay lại</Link>
+          <div>Gia ve</div>
+          <Link to="/payment" className="btn btn-primary" onClick={() => handlePostData}>Thanh toán</Link>
         </div>
       </div>
-      </>
+    </>
   );
 }
 

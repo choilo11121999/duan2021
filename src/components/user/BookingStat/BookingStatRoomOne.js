@@ -10,7 +10,6 @@ function BookingStatRoomOne ({ idBooking, dateBooking, timeBooking, user }) {
     i <= 12 ? seatId.push(`C${i-8}`) :
     i <= 16 ? seatId.push(`D${i-12}`) :
     seatId.push(`E${i-16}`)
-    
   }
   const [checkedState, setCheckedState] = useState(
     new Array(seatId.length).fill(false)
@@ -18,10 +17,9 @@ function BookingStatRoomOne ({ idBooking, dateBooking, timeBooking, user }) {
 
   const handleOnChangeCheckbox = (position) => {
     const updatedCheckedState = checkedState.map((item, index) =>
-          index === position ? !item : item
-        );
-    
-        setCheckedState(updatedCheckedState);
+      index === position ? !item : item
+    );
+    setCheckedState(updatedCheckedState);
   }
 
   const [show_room, setShow_room] = useState([]);
@@ -109,7 +107,6 @@ function BookingStatRoomOne ({ idBooking, dateBooking, timeBooking, user }) {
           <div className="btn btn-outline-danger booking-type-items">Sweetbox</div>
         </div>
       </div>
-
       <div className="footer d-flex justify-content-between mt-5">
         <Link to={`/movie/booking_time/${idBooking}`} className="btn btn-secondary align-left" >Quay lại</Link>
         <div>Gia ve</div>
