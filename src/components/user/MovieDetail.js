@@ -63,7 +63,7 @@ const MovieDetail = ({ movie, getIdBooking }) => {
             <p><strong>Ngôn ngữ: </strong>Tiếng Việt</p>
             <div className="main-body-btn">
               <button className="btn btn-primary btn-sm mr-2">Like &nbsp; {like}</button>
-              <Link to={`/movie/booking_time/${id}`} title="Mua vé" className="button btn-sm btn-danger" onClick={() => getIdBooking(id)}>
+              <Link to={`/movie/booking_time/${id}`} title="Mua vé" className="button btn btn-sm btn-danger" onClick={() => getIdBooking(id)}>
                   Mua vé
               </Link>
             </div>
