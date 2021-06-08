@@ -46,7 +46,7 @@ const Home = ({ setProductNameFromHome, phimName, getIdBooking, getMovie }) => {
     axios.get('/api/select-list/product?film_status=1')
       .then((res) => {
         console.log(res.data.data);
-        setListMovie(res.data.data);
+        setListMovie(res.data.data.reverse());
       })
       .catch((err) => {
         console.log(err);
@@ -139,7 +139,7 @@ const Home = ({ setProductNameFromHome, phimName, getIdBooking, getMovie }) => {
               </div>
               <div className="product-content position-absolute px-3" style={{bottom: "5px", left: "0", width: "100%"}}>
                 <h3 style={{color: "#fff", textAlign: "center"}}>{movie.film_name}</h3>
-                <div className="d-flex justify-content-between">
+                <div className="d-flex justify-content-around">
                   <Link to={`/movie/movie_detail/${movie.id}`} title="Xem chi tiết" className="button btn-sm btn-danger" onClick={() => getMovie(movie)}>
                       Xem chi tiết
                   </Link>

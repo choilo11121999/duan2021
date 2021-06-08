@@ -99,15 +99,11 @@
   position: relative;
   z-index: 1;
 }
-.c-booking-stats .booking-stats-type {
-  margin-top: 16%;
-}
 .c-booking-stats .booking-stats-type .booking-type-items{
   margin: 0.5rem 0px;
 }
-.c-screen{
-  background-color: blueviolet;
-  font-size: 23px;
-  font-weight: 700;
-  color: aqua;
+
+.col-2 {
+  max-width: 20%;
+  flex: 0 0 17.666667%;
 }

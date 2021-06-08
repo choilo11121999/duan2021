@@ -27,7 +27,6 @@ function ShowForm ({ handleClose, listShow, getLoad }) {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 }
-
             })
             .then((res) => {
                 Swal.fire({

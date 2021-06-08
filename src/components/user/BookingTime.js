@@ -61,7 +61,7 @@ const BookingTime = ({ idBooking, getIdDateTimeBooking }) => {
         <div className="c-booking-items">
           <div className="radio-btn btn-group-toggle d-flex justify-content-center mb-3 mr-2" data-toggle="buttons">
             {
-              listDate2.map((date, index) => {
+              listDate2.reverse().map((date, index) => {
                 const day = new Date(date);
                 const dayWeek = day.toString().slice(0,3)
                 const dateArr = date.split(/[-]+/);
@@ -113,7 +113,7 @@ const BookingTime = ({ idBooking, getIdDateTimeBooking }) => {
                 {
                   roomData[3].map((time, index) => (
                     <label key={index} className="btn btn-light btn-sm mx-1" onClick={(e) => setValueTime(e.currentTarget.querySelector("input").value)}>{time}
-                      <input id={time} className ="d-none" value={`4-${time}`} name="select" type="radio" />
+                      <input id={time} className ="d-none" value={`3-${time}`} name="select" type="radio" />
                     </label>
                   ))
                 }
@@ -135,15 +135,14 @@ const BookingTime = ({ idBooking, getIdDateTimeBooking }) => {
         </div>
       </div>
       <div className="footer d-flex justify-content-between">
-        <Link to="/movie/movie_playing" type="button" className="btn btn-secondary align-left" >Chọn phim</Link>
-        <button type="button" className="btn btn-primary">
+        <Link to="/movie/movie_playing" type="button" className="btn btn-secondary align-left" ><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp; Chọn phim</Link>
           <Link to={valueTime[0] === "1" ? `/movie/booking_stat_01/${idBooking}` :
                     valueTime[0] === "2" ? `/movie/booking_stat_02/${idBooking}` :
-                    valueTime[0] === "3" ? `/movie/booking_stat_04/${idBooking}` :
+                    valueTime[0] === "3" ? `/movie/booking_stat_03/${idBooking}` :
                     `/movie/booking_stat_04/${idBooking}`}
                     onClick={() => getIdDateTimeBooking(idBooking, valueDate, valueTime.substr(2))}
-          >Chọn ghế</Link>
-        </button>
+                    className="btn btn-danger"
+          >Chọn ghế &nbsp;<i class="fa fa-arrow-right" aria-hidden="true"></i></Link>
       </div>
     </div>
   );
