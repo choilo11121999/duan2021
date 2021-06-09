@@ -87,6 +87,8 @@ const App = () => {
             <Route path="/" exact component={() => <Home setProductNameFromHome={setProductNameFromHome} phimName={productName} getIdBooking={getIdBooking} getMovie={getMovie} />} />
             <Route path="/user/login" exact component={() => <Login setUserLogin={setUserLogin} />}/>
             <Route path="/user/register" exact component={Register}/>
+            <Route path="/user/change_info" exact component={ChangeInfo}/>
+            <Route path="/user/change_password" exact component={ChangePassword}/>
             <Route path="/movie/movie_playing" exact component={() => <MoviePlaying getIdBooking={getIdBooking} getMovie={getMovie} />} />
             <Route path="/movie/movie_upcoming" exact component={() => <MovieUpComing getMovie={getMovie} />} />
             <Route path={`/movie/movie_detail/${movie.id}`} exact component={() => <MovieDetail movie={movie} getIdBooking={getIdBooking} />} />
