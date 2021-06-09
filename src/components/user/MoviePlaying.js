@@ -16,7 +16,7 @@ const MoviePlaying = ({ getIdBooking, getMovie }) => {
   const getMoviePlaying = () => {
     axios.get('/api/select-list/product?film_status=1')
       .then((res) => {
-        setListMovie(res.data.data);
+        setListMovie(res.data.data.reverse());
       })
       .catch((err) => {
         console.log(err);

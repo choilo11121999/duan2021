@@ -102,13 +102,8 @@
 .c-booking-stats .booking-stats-type .booking-type-items{
   margin: 0.5rem 0px;
 }
-.c-screen{
-  max-width: 450px;
-  margin-bottom: 30px;
-  min-height: 100px;
-  background-color: blueviolet;
-  font-size: 23px;
-  font-weight: 700;
-  color: aqua;
-  margin-left: 155px;
+
+.col-2 {
+  max-width: 20%;
+  flex: 0 0 17.666667%;
 }

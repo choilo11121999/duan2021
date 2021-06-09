@@ -27,6 +27,7 @@ const ShowList = ({getListShow, load}) => {
         })
             .then((res) => {
                 let data = res.data.data;
+                console.log(data);
                 setListShow(data);
                 getListShow(data);
             })

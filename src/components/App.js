@@ -18,6 +18,8 @@ import BookingStatRoomOne from './user/BookingStat/BookingStatRoomOne';
 import BookingStatRoomTwo from './user/BookingStat/BookingStatRoomTwo';
 import BookingStatRoomThree from './user/BookingStat/BookingStatRoomThree';
 import BookingStatRoomFour from './user/BookingStat/BookingStatRoomFour';
+import Payment from './user/Payment';
+import PaymentSucess from './user/PaymentSuccess';
 
 const App = () => {
   const [user, setUser] = useState('');
@@ -28,6 +30,7 @@ const App = () => {
   const [movie, setMovie] = useState({
     id: ""
   });
+  const [urlPay, setUrlPay] = useState("");
   const role = localStorage.getItem('role');
   console.log("role",role);
   useEffect(() => {
@@ -65,6 +68,11 @@ const App = () => {
   const getMovie = (movie) => {
     setMovie(movie);
   }
+
+  const getUrlPay = (url) => {
+    setUrlPay(url);
+  }
+
   return (
     <Router>
       {
@@ -83,12 +91,13 @@ const App = () => {
             <Route path="/movie/movie_upcoming" exact component={() => <MovieUpComing getMovie={getMovie} />} />
             <Route path={`/movie/movie_detail/${movie.id}`} exact component={() => <MovieDetail movie={movie} getIdBooking={getIdBooking} />} />
             <Route path={`/movie/booking_time/${idBooking}`} exact component={() => <BookingTime idBooking={idBooking} getIdDateTimeBooking={getIdDateTimeBooking} />} />
-            <Route path={`/movie/booking_stat_01/${idBooking}`} component={() => <BookingStatRoomOne idBooking={idBooking} dateBooking={dateBooking} timeBooking={timeBooking} user={user} />} />
-            <Route path={`/movie/booking_stat_02/${idBooking}`} component={() => <BookingStatRoomTwo idBooking={idBooking} />} />
-            <Route path={`/movie/booking_stat_03/${idBooking}`} component={() => <BookingStatRoomThree idBooking={idBooking} />} />
-            <Route path={`/movie/booking_stat_04/${idBooking}`} component={() => <BookingStatRoomFour idBooking={idBooking} />} />
-            <Route path="/user/change_password" exact component={ChangePassword}/>
-            <Route path="/user/change_info" exact component={ChangeInfo}/>
+            <Route path={`/movie/booking_stat_01/${idBooking}`} component={() => <BookingStatRoomOne idBooking={idBooking} dateBooking={dateBooking} timeBooking={timeBooking} user={user} getUrlPay={getUrlPay} />} />
+            <Route path={`/movie/booking_stat_02/${idBooking}`} component={() => <BookingStatRoomTwo idBooking={idBooking} dateBooking={dateBooking} timeBooking={timeBooking} user={user} getUrlPay={getUrlPay} />} />
+            <Route path={`/movie/booking_stat_03/${idBooking}`} component={() => <BookingStatRoomThree idBooking={idBooking} dateBooking={dateBooking} timeBooking={timeBooking} user={user} getUrlPay={getUrlPay} />} />
+            <Route path={`/movie/booking_stat_04/${idBooking}`} component={() => <BookingStatRoomFour idBooking={idBooking} dateBooking={dateBooking} timeBooking={timeBooking} user={user} getUrlPay={getUrlPay} />} />
+            <Route path="/payment" component={() => <Payment urlPay={urlPay} />} />
+            <Route path="/payment_success" component={() => <PaymentSucess />} />
+
             <Footer />
           </div>
         )
