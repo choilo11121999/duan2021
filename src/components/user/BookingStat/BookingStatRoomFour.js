@@ -223,7 +223,7 @@ function BookingStatRoomFour ({ idBooking, dateBooking, timeBooking, user, getUr
     <>
     <div className="container my-4 p-0 border border-secondary rounded">
       <div className="header">
-        <h3 className="title booking-stats-title m-3">Chọn ghế - Phòng 3</h3>
+        <h3 className="title booking-stats-title m-3">Chọn ghế - Phòng 4</h3>
       </div>
       <div className="row mt-4 c-booking-stats">
         <div className="p-5 border border-primary rounded text-center mb-5" style={{width: "450px", marginLeft: "15%"}}>screen</div>

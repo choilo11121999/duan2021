@@ -45,7 +45,7 @@ const BookingTime = ({ idBooking, getIdDateTimeBooking }) => {
     axios
     .get(`api/select-list/show?product_id=${idBooking}&show_date=${date}`)
     .then((res) => {
-      setTimeData(res.data.data);
+      setTimeData(res.data.data.reverse());
     })
     .catch((err) => {
       console.log(err);

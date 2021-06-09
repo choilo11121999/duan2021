@@ -97,6 +97,8 @@ const App = () => {
             <Route path={`/movie/booking_stat_04/${idBooking}`} component={() => <BookingStatRoomFour idBooking={idBooking} dateBooking={dateBooking} timeBooking={timeBooking} user={user} getUrlPay={getUrlPay} />} />
             <Route path="/payment" component={() => <Payment urlPay={urlPay} />} />
             <Route path="/payment_success" component={() => <PaymentSucess />} />
+            <Route path="/user/change_password" component={ChangePassword} />
+            <Route path="/user/change_info" component={ChangeInfo} />
 
             <Footer />
           </div>

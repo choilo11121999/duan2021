@@ -58,11 +58,11 @@ ul li {
   padding: 0 0.5rem;
 }
 #VN{
-  background: gray;
+  background: rgb(235, 40, 40);
   border-radius: 16% 0 0 16%;
 }
 #EN{
-  background: rgb(235, 40, 40);
+  background: gray;
   border-radius: 0 16% 16% 0;
   margin-left: 0;
 }

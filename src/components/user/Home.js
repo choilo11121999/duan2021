@@ -79,7 +79,7 @@ const Home = ({ setProductNameFromHome, phimName, getIdBooking, getMovie }) => {
   }
 
   return (
-    <div className="container home">
+    <div className="container home mb-4">
       {/* Slide show */}
       <div id="slide-banner" className="carousel slide slide-banner w-100" data-ride="carousel">
         <ol className="carousel-indicators">
@@ -93,25 +93,25 @@ const Home = ({ setProductNameFromHome, phimName, getIdBooking, getMovie }) => {
         </ol>
         <div className="carousel-inner">
           <div className="carousel-item active">
-            <img className="d-block w-100 h-100" src={i1} alt="First slide"/>
+            <img className="rounded border border-secondary d-block w-100 h-100" src={i1} alt="First slide"/>
           </div>
           <div className="carousel-item">
-            <img className="d-block w-100 h-100" src={i2} alt="Second slide"/>
+            <img className="rounded border border-secondary d-block w-100 h-100" src={i2} alt="Second slide"/>
           </div>
           <div className="carousel-item">
-            <img className="d-block w-100 h-100" src={i3} alt="Third slide"/>
+            <img className="rounded border border-secondary d-block w-100 h-100" src={i3} alt="Third slide"/>
           </div>
           <div className="carousel-item">
-            <img className="d-block w-100 h-100" src={i4} alt="Third slide"/>
+            <img className="rounded border border-secondary d-block w-100 h-100" src={i4} alt="Third slide"/>
           </div>
           <div className="carousel-item">
-            <img className="d-block w-100 h-100" src={i5} alt="Third slide"/>
+            <img className="rounded border border-secondary d-block w-100 h-100" src={i5} alt="Third slide"/>
           </div>
           <div className="carousel-item">
-            <img className="d-block w-100 h-100" src={i6} alt="Third slide"/>
+            <img className="rounded border border-secondary d-block w-100 h-100" src={i6} alt="Third slide"/>
           </div>
           <div className="carousel-item">
-            <img className="d-block w-100 h-100" src={i7} alt="Third slide"/>
+            <img className="rounded border border-secondary d-block w-100 h-100" src={i7} alt="Third slide"/>
           </div>
         </div>
         <a className="carousel-control-prev" href="#slide-banner" role="button" data-slide="prev">
@@ -159,7 +159,7 @@ const Home = ({ setProductNameFromHome, phimName, getIdBooking, getMovie }) => {
         <div className="event-selection-title">
           <h2></h2>
         </div>
-        <div id="event-selection" className="carousel slide event-selection carousel-multi-item w-100" data-ride="carousel">
+        <div id="event-selection" className="carousel slide event-selection carousel-multi-item w-100 mt-4" data-ride="carousel">
           <ol className="carousel-indicators">
             <li data-target="#event-selection" data-slide-to="0" className="active"></li>
             <li data-target="#event-selection" data-slide-to="1"></li>
@@ -168,32 +168,32 @@ const Home = ({ setProductNameFromHome, phimName, getIdBooking, getMovie }) => {
             <div className="carousel-item active">
               <div className="row">
                 <div className="col-3 event">
-                  <img className="d-block w-100 h-100" src={e1} alt="First slide"/>
+                  <img className="rounded border border-secondary d-block w-100 h-100" src={e1} alt="First slide"/>
                 </div>
                 <div className="col-3 event">
-                  <img className="d-block w-100 h-100" src={e2} alt="First slide"/>
+                  <img className="rounded border border-secondary d-block w-100 h-100" src={e2} alt="First slide"/>
                 </div>
                 <div className="col-3 event">
-                  <img className="d-block w-100 h-100" src={e3} alt="First slide"/>
+                  <img className="rounded border border-secondary d-block w-100 h-100" src={e3} alt="First slide"/>
                 </div>
                 <div className="col-3 event">
-                  <img className="d-block w-100 h-100" src={e4} alt="First slide"/>
+                  <img className="rounded border border-secondary d-block w-100 h-100" src={e4} alt="First slide"/>
                 </div>
               </div>
             </div>
             <div className="carousel-item">
               <div className="row">
                 <div className="col-3 event">
-                  <img className="d-block w-100 h-100" src={e5} alt="First slide"/>
+                  <img className="rounded border border-secondary d-block w-100 h-100" src={e5} alt="First slide"/>
                 </div>
                 <div className="col-3 event">
-                  <img className="d-block w-100 h-100" src={e6} alt="First slide"/>
+                  <img className="rounded border border-secondary d-block w-100 h-100" src={e6} alt="First slide"/>
                 </div>
                 <div className="col-3 event">
-                  <img className="d-block w-100 h-100" src={e7} alt="First slide"/>
+                  <img className="rounded border border-secondary d-block w-100 h-100" src={e7} alt="First slide"/>
                 </div>
                 <div className="col-3 event">
-                  <img className="d-block w-100 h-100" src={e8} alt="First slide"/>
+                  <img className="rounded border border-secondary d-block w-100 h-100" src={e8} alt="First slide"/>
                 </div>
               </div>
             </div>

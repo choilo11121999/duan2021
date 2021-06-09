@@ -35,11 +35,11 @@ const Header = ({ user, setUserLogin }) => {
                     </NavLink>
                     <div className="menu">
                       <div className="list-menu d-flex flex-column">
-                        <NavLink activeClassName="active-link" to="/user/change_password" className="">
-                          Đổi mật khẩu
-                        </NavLink>
                         <NavLink activeClassName="active-link" to="/user/change_info" className="">
                           Sửa thông tin
+                        </NavLink>
+                        <NavLink activeClassName="active-link" to="/user/change_password" className="">
+                          Đổi mật khẩu
                         </NavLink>
                       </div>
                     </div>
