@@ -49,7 +49,7 @@ const Login = ({ setUserLogin }) => {
   }
 
   return (
-    <div className="login">
+    <div className="login rounded">
       <div className="login-header">
         <h2 className="text-center w-100 font-weight-bold">Đăng Nhập</h2>
       </div>
@@ -85,10 +85,10 @@ const Login = ({ setUserLogin }) => {
       </div>
       <div className="login-footer">
         <div>
-          <Link to="/user/forgot_password">Quên mật khẩu?</Link>
+          <Link to="/user/forgot_password" className="text-primary">Quên mật khẩu?</Link>
         </div>
         <div>
-          Bạn chưa có tài khoản? <Link to="/user/register">Đăng ký</Link>
+          Bạn chưa có tài khoản? <Link to="/user/register" className="text-primary">Đăng ký</Link>
         </div>
       </div>
     </div>

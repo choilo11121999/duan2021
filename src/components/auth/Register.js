@@ -94,7 +94,7 @@ const Register = () => {
   }
 
   return (
-    <div className="register">
+    <div className="register rounded">
       <div className="register-header">
         <h2 className="text-center w-100 font-weight-bold">Đăng ký</h2>
       </div>
@@ -202,7 +202,7 @@ const Register = () => {
       </div>
       <div className="register-footer">
         <p>
-          Bạn đã có tài khoản rồi? <Link to="/user/login">Đăng nhập</Link>.
+          Bạn đã có tài khoản rồi? <Link to="/user/login" className="text-primary">Đăng nhập</Link>.
         </p>
       </div>
     </div>
