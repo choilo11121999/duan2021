@@ -10,6 +10,8 @@ import Login from './auth/Login';
 import Register from './auth/Register';
 import Admin from './admin/admin.js';
 import BookingTime from './user/BookingTime';
+import ChangePassword from './auth/ChangePassword';
+import ChangeInfo from './auth/ChangeInfo';
 import { useEffect, useState } from 'react';
 import axios from 'axios'; 
 import BookingStatRoomOne from './user/BookingStat/BookingStatRoomOne';

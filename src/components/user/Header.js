@@ -24,13 +24,27 @@ const Header = ({ user, setUserLogin }) => {
                 <i className="fa fa-ticket mr-5px" aria-hidden="true"></i>Vé của tôi
               </NavLink>
             </li>
-            <li className="nav-item">
+            <li className="nav-item show-menu">
               {
                 user ?
-                (<div>
-                    <i className="fa fa-user-circle mr-5px" aria-hidden="true"></i>
-                    <span>{user.name}</span>
-                  </div>) :
+                (
+                  <>
+                    <NavLink activeClassName="active-link" className="nav-Navlink p-0" to="/user">
+                      <i className="fa fa-user-circle mr-5px" aria-hidden="true"></i>
+                      <span>{user.name}</span>
+                    </NavLink>
+                    <div className="menu">
+                      <div className="list-menu d-flex flex-column">
+                        <NavLink activeClassName="active-link" to="/user/change_password" className="">
+                          Đổi mật khẩu
+                        </NavLink>
+                        <NavLink activeClassName="active-link" to="/user/change_info" className="">
+                          Sửa thông tin
+                        </NavLink>
+                      </div>
+                    </div>
+                  </>
+                ) :
                 (
                   <NavLink activeClassName="active-link" className="nav-Navlink p-0" to="/user/login">
                     <i className="fa fa-sign-in mr-5px" aria-hidden="true"></i>Đăng nhập
@@ -38,7 +52,7 @@ const Header = ({ user, setUserLogin }) => {
                 )
               }
             </li>
-            <li className="nav-item">
+            <li className="nav-item ">
              {
                user ?
                (
