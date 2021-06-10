@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import base64 from 'uuid-base64';
 
@@ -77,12 +77,15 @@ function BookingStatRoomOne ({ idBooking, dateBooking, timeBooking, user, getUrl
       setShow_room(updateShowRoom);
     } 
     setGetpay(!getpay)
-  }  
+  }
+
+  const {location} = useHistory();
+  console.log(location);
 
   const handlePostData = () => {
     const datapayment = {
       notifyUrl: "https://momo.vn",
-      returnUrl: "http://localhost:3000/payment_success",
+      returnUrl: "http://45.77.241.194:5000/payment_success",
       orderId: base64.encode(uuidv4()),
       // amount: calcPayment,
       amount: 1000,
