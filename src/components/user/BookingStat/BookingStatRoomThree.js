@@ -100,6 +100,7 @@ function BookingStatRoomThree ({ idBooking, dateBooking, timeBooking, user, getU
       const databooked =  {
         "user_id": user.id,
         "show_id": idBooking,
+        "product_id": listShowRoom.product_id,
         show_room,
         "paid_amount": calcPayment,
         "mem_pts_plus": pointMem

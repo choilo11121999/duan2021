@@ -102,6 +102,7 @@ function BookingStatRoomFour ({ idBooking, dateBooking, timeBooking, user, getUr
       const databooked =  {
         "user_id": user.id,
         "show_id": idBooking,
+        "product_id": listShowRoom.product_id,
         show_room,
         "paid_amount": calcPayment,
         "mem_pts_plus": pointMem
