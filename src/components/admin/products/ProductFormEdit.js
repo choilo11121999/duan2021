@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Swal from "sweetalert2";
 import DurationPicker from "react-duration-picker";
+import { act } from 'react-dom/test-utils';
 
 function ProductFormEdit ({ handleClose, product, handleReload }) {
     const types = ["Hành Động", "Hài Kịch", "Drama", "Kì Thú", "Kinh Dị", "Bí Ẩn", "Lãng Mạng", "Kịch Tính", "Hoạt Hình"];
@@ -11,6 +12,9 @@ function ProductFormEdit ({ handleClose, product, handleReload }) {
     const [id, setId] = useState(product.id ?? "")
     const [name, setName] = useState(product.film_name ?? "");
     const [category, setCategory] = useState([]);
+    const [director, setDirector] = useState(product.director ?? "");
+    const [actor, setActor] = useState(product.actor ?? "");
+    const [language , setLanguage] = useState(product.language ?? "");
     const [oldPoster, setOldPoster] = useState(product.poster ?? "");
     const [trailer, setTrailer] = useState(product.film_trailer ?? "");
     const [duration, setDuration] = useState(product.duration ?? "");
@@ -84,6 +88,9 @@ function ProductFormEdit ({ handleClose, product, handleReload }) {
             poster: oldPoster,
             category: category.toString(),
             film_trailer: trailer,
+            director,
+            actor,
+            language,
             duration,
             film_description: description,
             film_status: status
@@ -153,6 +160,21 @@ function ProductFormEdit ({ handleClose, product, handleReload }) {
                         <label>Trailer:</label>
                         <input type="text" className="form-control" name="name" value={trailer}
                                onChange={(e) => setTrailer(e.target.value)}/>
+                    </div>
+                    <div className="form-group">
+                        <label>Đạo diễn:</label>
+                        <input type="text" className="form-control" name="name" value={director}
+                            onChange={(e) => setDirector(e.target.value)}/>
+                    </div>
+                    <div className="form-group">
+                        <label>Diễn viên:</label>
+                        <input type="text" className="form-control" name="name" value={actor}
+                            onChange={(e) => setActor(e.target.value)}/>
+                    </div>
+                    <div className="form-group">
+                        <label>Ngôn ngữ:</label>
+                        <input type="text" className="form-control" name="name" value={language}
+                            onChange={(e) => setLanguage(e.target.value)}/>
                     </div>
                     <div className="form-group">
                         <label>Thời lượng phim:</label>

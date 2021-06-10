@@ -9,9 +9,11 @@ const MoviePlaying = ({ getIdBooking, getMovie }) => {
     new Array()
   );
 
+  const [reload, setReload] = useState(false);
+
   useEffect(() => {
     getMoviePlaying();
-  }, []);
+  }, [reload]);
 
   const getMoviePlaying = () => {
     axios.get('/api/select-list/product?film_status=1')
@@ -21,6 +23,17 @@ const MoviePlaying = ({ getIdBooking, getMovie }) => {
       .catch((err) => {
         console.log(err);
       })
+  }
+
+  const sendLike = (id) => {
+    axios.post('/api/like', {product_id: id}, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    }).then()
+    setTimeout(() => {
+      setReload(!reload);
+    }, 300);
   }
 
   return (
@@ -72,7 +85,7 @@ const MoviePlaying = ({ getIdBooking, getMovie }) => {
                     </div>
                     <ul className="add-to-links d-flex justify-content-between mt-3 mx-2">
                         <li>
-                          <button type="button" className="button btn-like"><i class="fa fa-thumbs-up" aria-hidden="true"></i><span>{movie.like}</span></button>
+                          <button type="button" className="button btn-like" onClick={() => sendLike(movie.id)}><i class="fa fa-thumbs-up" aria-hidden="true"></i><span>&nbsp;{movie.like}</span></button>
                         </li>
                         <li>
                           <Link to={`/movie/booking_time/${movie.id}`} type="button" title="Mua vé" className="button btn-booking" onClick={() => getIdBooking(movie.id)}>

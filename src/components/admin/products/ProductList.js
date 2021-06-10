@@ -94,14 +94,18 @@ const ProductList = ({ getReLoad }) => {
         setReload(!reload);
     }
     const eleItem = listProduct.map((product, index) => {
+        console.log(product);
         return (
           <tr key={index} className="text-center align-center">
               <td>{product.id}</td>
               <td>{product.film_name}</td>
+              <td>{product.director}</td>
+              <td>{product.actor}</td>
               <td>{product.category.map((value, index) => {
                   return index < product.category.length -1 ?  value.name + ", " : value.name;
               })}</td>
-              <td className="w-25"><img className="w-25 rounded border" src={axios.defaults.baseURL + product.poster} /></td>
+              <td ><img className="rounded border" src={axios.defaults.baseURL + product.poster} style={{width: "100px"}} /></td>
+              <td>{product.language}</td>
               <td>{product.duration}</td>
               <td>{product.film_description}</td>
               <td>{product.film_status === 0 ? "Không chiếu" : product.film_status === 1 ? "Đang chiếu" : "Sắp chiếu"}</td>
@@ -117,8 +121,11 @@ const ProductList = ({ getReLoad }) => {
             <tr>
               <th className="text-center">ID</th>
               <th className="text-center">Tên</th>
+              <th className="text-center">Đạo diễn</th>
+              <th className="text-center">Diễn viên</th>
               <th className="text-center">Thể loại</th>
               <th className="text-center">Ảnh</th>
+              <th className="text-center">Ngôn ngữ</th>
               <th className="text-center">Thời gian phim</th>
               <th className="text-center">Mô tả</th>
               <th className="text-center">Trạng thái</th>

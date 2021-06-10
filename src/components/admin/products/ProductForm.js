@@ -15,6 +15,9 @@ function ProductForm ({ handleClose, getReLoad }) {
     const [duration, setDuration] = useState("");
     const [description, setDescription] = useState("");
     const [status, setStatus] = useState("");
+    const [director, setDirector] = useState("");
+    const [actor, setActor] = useState("");
+    const [language , setLanguage] = useState("");
     
     const handleOnChangeCheckbox = (position) => {
         const updatedCheckedState = checkedState.map((item, index) =>
@@ -61,6 +64,9 @@ function ProductForm ({ handleClose, getReLoad }) {
         fd.append('film_name', name);
         fd.append('poster', oldPoster);
         fd.append('film_trailer', trailer);
+        fd.append('director', director);
+        fd.append('actor', actor);
+        fd.append('language', language);
         fd.append('category', category);
         fd.append('duration', duration);
         fd.append('film_description', description);
@@ -130,6 +136,21 @@ function ProductForm ({ handleClose, getReLoad }) {
                         <label>Trailer:</label>
                         <input type="text" className="form-control" name="name"
                             onChange={(e) => setTrailer(e.target.value)}/>
+                    </div>
+                    <div className="form-group">
+                        <label>Đạo diễn:</label>
+                        <input type="text" className="form-control" name="name"
+                            onChange={(e) => setDirector(e.target.value)}/>
+                    </div>
+                    <div className="form-group">
+                        <label>Diễn viên:</label>
+                        <input type="text" className="form-control" name="name"
+                            onChange={(e) => setActor(e.target.value)}/>
+                    </div>
+                    <div className="form-group">
+                        <label>Ngôn ngữ:</label>
+                        <input type="text" className="form-control" name="name" value="Tiếng Việt"
+                            onChange={(e) => setLanguage(e.target.value)}/>
                     </div>
                     <div className="form-group">
                         <label>Thời lượng phim:</label>

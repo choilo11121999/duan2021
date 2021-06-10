@@ -22,6 +22,7 @@ import Payment from './user/Payment';
 import PaymentSucess from './user/PaymentSuccess';
 import Recommend from './user/Recommend';
 import PrivateRoute from './auth/PrivateRouter';
+import ForgotPassword from './auth/ForgotPassword';
 
 const App = () => {
   const [user, setUser] = useState('');
@@ -91,6 +92,7 @@ const App = () => {
             <Route path="/user/register" exact component={Register}/>
             <Route path="/user/change_info" exact component={() => <ChangeInfo user={user} setUserLogin={setUserLogin} />}/>
             <Route path="/user/change_password" exact component={() => <ChangePassword setUserLogin={setUserLogin} />}/>
+            <Route path="/user/forgot_password" exact component={ForgotPassword} />
             <Route path="/movie/movie_playing" exact component={() => <MoviePlaying getIdBooking={getIdBooking} getMovie={getMovie} />} />
             <Route path="/movie/movie_upcoming" exact component={() => <MovieUpComing getMovie={getMovie} />} />
             <Route path={`/movie/movie_detail/${movie.id}`} exact component={() => <MovieDetail movie={movie} getIdBooking={getIdBooking} />} />

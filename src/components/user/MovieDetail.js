@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import "./../../css/MovieDetail.css";
 
 const MovieDetail = ({ movie, getIdBooking }) => {
+  console.log(movie);
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
@@ -21,7 +22,7 @@ const MovieDetail = ({ movie, getIdBooking }) => {
   }
 
 
-  const { id, film_name, category, poster, duration, like, film_description, film_status, director, actor, film_trailer } = movie;
+  const { id, film_name, category, poster, duration, like, film_description, film_status, director, actor, film_trailer, language } = movie;
   return (
     <div className="movie-detail">
       <div className="breadcrums">
@@ -68,13 +69,12 @@ const MovieDetail = ({ movie, getIdBooking }) => {
             <p><strong>Thể loại: </strong>{category.map((value, index) => {
                   return index < category.length -1 ?  value.name + ", " : value.name;
               })}</p>
-            <p><strong>Khởi chiếu: </strong>Chọi</p>
             <p><strong>Thời lượng: </strong>{duration}</p>
-            <p><strong>Ngôn ngữ: </strong>Tiếng Việt</p>
-            <div className="main-body-btn">
+            <p><strong>Ngôn ngữ: </strong>{language}</p>
+            <div className="main-body-btn" style={{marginTop: "100px"}}>
               <button className="btn btn-primary btn-sm mr-2">Like &nbsp; {like}</button>
               <Link to={`/movie/booking_time/${id}`} title="Mua vé" className="button btn btn-sm btn-danger" onClick={() => getIdBooking(id)}>
-                  Mua vé
+                <i class="fa fa-credit-card" aria-hidden="true"></i>&nbsp; Mua vé
               </Link>
             </div>
           </div>

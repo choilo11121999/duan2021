@@ -108,14 +108,12 @@
   white-space: nowrap;
 }
 
-.movie-playing .main .category-product .add-to-links .button > span {
-  border: 1px solid #f07469;
-  font-weight: bold;
-  padding: 5px;
+.movie-playing .main .category-product .add-to-links .btn-booking {
+  background: none no-repeat scroll 0 0 #e71a0f;
+  border-radius: 5px;
 }
 
-.movie-playing .main .category-product .add-to-links .btn-booking,
 .movie-playing .main .category-product .add-to-links .btn-like {
-  background: none no-repeat scroll 0 0 #e71a0f;
+  background: none no-repeat scroll 0 0 #0917e0;
   border-radius: 5px;
 }

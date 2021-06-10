@@ -75,7 +75,7 @@ function ChangeInfo ({ user, setUserLogin }) {
               <label>Số điện thoại:
                 <input type="text" name="phone" id="phone"
                   placeholder="Nhập số điện thoại"
-                  className="form-control" required
+                  className="form-control"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)} 
                 />
@@ -85,7 +85,7 @@ function ChangeInfo ({ user, setUserLogin }) {
               <label>Địa chỉ:
                 <input type="text" name="address" id="address"
                   placeholder="Nhập địa chỉ"
-                  className="form-control" required
+                  className="form-control"
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
                 />
@@ -96,7 +96,7 @@ function ChangeInfo ({ user, setUserLogin }) {
                 <input
                   type="text" name="city"id="city"
                   placeholder="Nhập thành phố"
-                  className="form-control" required
+                  className="form-control"
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
                 />
