@@ -70,7 +70,7 @@ function BookingStatRoomFour ({ idBooking, dateBooking, timeBooking, user, getUr
         }
       });
       if (check) {
-        const updateShowRoom = [...show_room, {id, room_id: 1, show_id, seat_column, seat_row, condition: "empty", type}]
+        const updateShowRoom = [...show_room, {id, room_id: 4, show_id, seat_column, seat_row, condition: "empty", type}]
         setShow_room(updateShowRoom);
       }
     } else {

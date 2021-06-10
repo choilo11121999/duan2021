@@ -69,7 +69,7 @@ function BookingStatRoomThree ({ idBooking, dateBooking, timeBooking, user, getU
         }
       });
       if (check) {
-        const updateShowRoom = [...show_room, {id, room_id: 1, show_id, seat_column, seat_row, condition: "empty", type}]
+        const updateShowRoom = [...show_room, {id, room_id: 3, show_id, seat_column, seat_row, condition: "empty", type}]
         setShow_room(updateShowRoom);
       }
     } else {
