@@ -70,13 +70,13 @@ const MoviePlaying = ({ getIdBooking, getMovie }) => {
                         <span className="movie-info-normal">{movie.duration}</span>
                       </div>
                     </div>
-                    <ul className="add-to-links d-flex justify-content-between mt-3">
+                    <ul className="add-to-links d-flex justify-content-between mt-3 mx-2">
                         <li>
-                          <button type="button" className="button btn-like">Like <span>{movie.like}</span></button>
+                          <button type="button" className="button btn-like"><i class="fa fa-thumbs-up" aria-hidden="true"></i><span>{movie.like}</span></button>
                         </li>
                         <li>
                           <Link to={`/movie/booking_time/${movie.id}`} type="button" title="Mua vé" className="button btn-booking" onClick={() => getIdBooking(movie.id)}>
-                              <span>Mua vé</span>
+                            <i class="fa fa-credit-card" aria-hidden="true"></i>&nbsp; Mua vé
                           </Link>
                         </li>
                     </ul>

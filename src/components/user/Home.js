@@ -57,6 +57,7 @@ const Home = ({ setProductNameFromHome, phimName, getIdBooking, getMovie, user }
       }
     })
       .then((res) => {
+        console.log(res);
         setListMovieSuggest(res.data.data.reverse());
       })
       .catch((err) => {
@@ -156,16 +157,18 @@ const Home = ({ setProductNameFromHome, phimName, getIdBooking, getMovie, user }
             <div className="product position-relative text" key={movie.id}>
               <img src={urlImg+movie.poster} className="rounded border border-primary mx-auto d-block" width={260} height={370} />
               <div className="btn-trailer position-absolute text-center" style={{top: "30%", left: "0", width: "100%"}}>
-                <button className="btn btn-lg btn-danger" onClick={() => handleShow(movie.film_trailer)}>Xem Trailer</button>
+                <button className="btn btn-lg btn-danger" onClick={() => handleShow(movie.film_trailer)}>
+                  <i class="fa fa-play" aria-hidden="true"></i>&nbsp; Xem Trailer
+                </button>
               </div>
               <div className="product-content position-absolute px-3 pb-3 ml-2" style={{bottom: "0", left: "0", width: "260px", background: "rgba(0,0,0,0.5)"}}>
                 <h3 style={{color: "#fff", textAlign: "center"}}>{movie.film_name}</h3>
                 <div className="d-flex justify-content-around">
                   <Link to={`/movie/movie_detail/${movie.id}`} title="Xem chi tiết" className="button btn-sm btn-danger" onClick={() => getMovie(movie)}>
-                      Xem chi tiết
+                  <i class="fa fa-info" aria-hidden="true"></i>&nbsp; Xem chi tiết
                   </Link>
                   <Link to={`/movie/booking_time/${movie.id}`} title="Mua vé" className="button btn-sm btn-danger" onClick={() => getIdBooking(movie.id)}>
-                      Mua vé
+                    <i class="fa fa-credit-card" aria-hidden="true"></i>&nbsp; Mua vé
                   </Link>
                 </div>
               </div>
@@ -195,37 +198,24 @@ const Home = ({ setProductNameFromHome, phimName, getIdBooking, getMovie, user }
                 <div className="product position-relative" key={movie.id}>
                   <img src={urlImg+movie.poster} className="rounded border border-primary mx-auto d-block" width={260} height={370} />
                   <div className="btn-trailer position-absolute text-center" style={{top: "30%", left: "0", width: "100%"}}>
-                    <button className="btn btn-lg btn-danger" data-toggle="modal" data-target="#modal-trailer">Xem Trailer</button>
+                  <button className="btn btn-lg btn-danger" onClick={() => handleShow(movie.film_trailer)}>
+                    <i class="fa fa-play" aria-hidden="true"></i>&nbsp; Xem Trailer
+                  </button>
                   </div>
-                  <div className="product-content position-absolute px-3" style={{bottom: "5px", left: "0", width: "100%"}}>
+                  <div className="product-content position-absolute px-3 pb-3 ml-2" style={{bottom: "0", left: "0", width: "260px", background: "rgba(0,0,0,0.5)"}}>
                     <h3 style={{color: "#fff", textAlign: "center"}}>{movie.film_name}</h3>
                     <div className="d-flex justify-content-around">
                       <Link to={`/movie/movie_detail/${movie.id}`} title="Xem chi tiết" className="button btn-sm btn-danger" onClick={() => getMovie(movie)}>
-                          Xem chi tiết
+                        <i class="fa fa-info" aria-hidden="true"></i>&nbsp; Xem chi tiết
                       </Link>
                       <Link to={`/movie/booking_time/${movie.id}`} title="Mua vé" className="button btn-sm btn-danger" onClick={() => getIdBooking(movie.id)}>
-                          Mua vé
+                        <i class="fa fa-credit-card" aria-hidden="true"></i>&nbsp; Mua vé
                       </Link>
                     </div>
                   </div>
                 </div>
               ))}
             </Slider>
-            <div className="modal fade" id="modal-trailer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-              <div className="modal-dialog modal-lg" role="document">
-                <div className="modal-content">
-                  <div className="modal-header">
-                    <h5 className="modal-title" id="exampleModalLongTitle">Trailer</h5>
-                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div className="modal-body">
-                  <iframe width="100%" height="450" src="https://www.youtube.com/embed/PDp4Ic8ZGUM"></iframe>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         ) : (<div></div>)
       }

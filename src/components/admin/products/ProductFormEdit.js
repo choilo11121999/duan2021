@@ -143,7 +143,7 @@ function ProductFormEdit ({ handleClose, product, handleReload }) {
                         </ul>
                     </div>
                     <div className="form-group d-flex">
-                        <label htmlFor="file" className="btn btn-sm btn-primary w-25" >Chọn ảnh</label>
+                        <label htmlFor="file" className="btn btn-sm btn-primary w-25" ><i class="fa fa-picture-o" aria-hidden="true"></i>&nbsp;Chọn ảnh</label>
                         <input type="file" className="form-control-file" name="picture" id="file" style={{display:'none'}}
                                onChange={(e) => handleFileSelected(e)}
                         />

@@ -69,13 +69,11 @@ const MovieUpcoming = ({ getMovie }) => {
                         <span className="movie-info-normal">{movie.duration}</span>
                       </div>
                     </div>
-                    <ul className="add-to-links d-flex justify-content-between mt-3">
+                    <ul className="add-to-links d-flex justify-content-between mt-3 mx-3">
                         <li>
-                          <button type="button" className="button btn-like">Like <span>{movie.like}</span></button>
+                          <button type="button" className="button btn-like"><i class="fa fa-thumbs-up" aria-hidden="true"></i><span>{movie.like}</span></button>
                         </li>
-                        <li>
-                         
-                        </li>
+                        <li></li>
                     </ul>
                   </li>
                 );

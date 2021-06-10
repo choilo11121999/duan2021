@@ -105,8 +105,8 @@ const ProductList = ({ getReLoad }) => {
               <td>{product.duration}</td>
               <td>{product.film_description}</td>
               <td>{product.film_status === 0 ? "Không chiếu" : product.film_status === 1 ? "Đang chiếu" : "Sắp chiếu"}</td>
-              <td><button className="btn btn-sm btn-primary" onClick={(e) => handleEdit(e)}>Sửa</button></td>
-              <td><button className="btn btn-sm btn-danger" onClick={(e) => handleDelete(e)}>Xóa</button></td>
+              <td><button className="btn btn-sm btn-primary" onClick={(e) => handleEdit(e)}><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Sửa</button></td>
+              <td><button className="btn btn-sm btn-danger" onClick={(e) => handleDelete(e)}><i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp;Xóa</button></td>
           </tr>
         );
     })

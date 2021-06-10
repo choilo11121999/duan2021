@@ -119,9 +119,3 @@
   background: none no-repeat scroll 0 0 #e71a0f;
   border-radius: 5px;
 }
-
-.movie-playing .main .category-product .add-to-links .btn-booking > span {
-  padding-left: 25px;
-  background: url(./../img/bg-cate-booking.png) no-repeat scroll left center rgba(0, 0, 0, 0);
-  border-radius: 5px;
-}

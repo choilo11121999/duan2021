@@ -20,8 +20,8 @@ const BootstrapNavbar = ({ setUser }) => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto navbar-link">
-                        <NavLink activeClassName="active-link-admin mr-3" to="/admin/products" style={{fontSize: "20px"}}>Quản Lý Phim</NavLink>
-                        <NavLink activeClassName="active-link-admin ml-3" to="/admin/shows" style={{fontSize: "20px"}}>Quản lý giờ chiếu</NavLink>
+                        <NavLink activeClassName="active-link-admin mr-3" to="/admin/products" style={{fontSize: "20px"}}><i class="fa fa-film" aria-hidden="true"></i>&nbsp;Quản Lý Phim</NavLink>
+                        <NavLink activeClassName="active-link-admin ml-3" to="/admin/shows" style={{fontSize: "20px"}}><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;Quản lý giờ chiếu</NavLink>
                     </Nav>
                     <Form inline>
                         <Button variant="warning" href="/user/login" onClick={handleLogout}
