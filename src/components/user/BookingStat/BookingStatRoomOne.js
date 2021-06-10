@@ -24,7 +24,6 @@ function BookingStatRoomOne ({ idBooking, dateBooking, timeBooking, user, getUrl
   useEffect(() => {
     axios.get(`api/select-list/show?product_id=${idBooking}&show_date=${dateBooking}&show_time=${timeBooking}&room_id=1`).then((res) => {
       const data = res.data.data[0];
-      console.log(data);
       setListShowRoom(data);
     })
   }, [getListShow]);
@@ -35,9 +34,12 @@ function BookingStatRoomOne ({ idBooking, dateBooking, timeBooking, user, getUrl
       show_id: idBooking,
       show_room
     }
-    axios.post('/api/payment/calculate_payment', data)
+    axios.post('/api/payment/calculate_payment', data, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+    }
+    })
     .then((res) => {
-      console.log(res);
       const pay = res.data.data;
       setCalcPayment(pay.paid_amount);
       setPointMem(pay.mem_pts_plus);
@@ -87,10 +89,12 @@ function BookingStatRoomOne ({ idBooking, dateBooking, timeBooking, user, getUrl
       requestId: base64.encode(uuidv4()),
       extraData: user.email
     }
-    console.log(datapayment);
-    axios.post('/api/payment/momo_redirect', datapayment)
+    axios.post('/api/payment/momo_redirect', datapayment, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    })
     .then((res) => {
-      console.log(res);
       const url = res.data
       getUrlPay(url);
       const databooked =  {

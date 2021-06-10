@@ -12,7 +12,6 @@ function BookingStatRoomFour ({ idBooking, dateBooking, timeBooking, user, getUr
     },
     show_room: []
   });
-  console.log(listShowRoom);
   const [checkedState, setCheckedState] = useState(
     new Array(29).fill(false)
   );
@@ -37,9 +36,12 @@ function BookingStatRoomFour ({ idBooking, dateBooking, timeBooking, user, getUr
       show_id: idBooking,
       show_room
     }
-    axios.post('/api/payment/calculate_payment', data)
+    axios.post('/api/payment/calculate_payment', data, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    })
     .then((res) => {
-      console.log(res);
       const pay = res.data.data.paid_amount;
       setCalcPayment(pay)
     })
@@ -49,7 +51,6 @@ function BookingStatRoomFour ({ idBooking, dateBooking, timeBooking, user, getUr
   }, [getpay])
 
   const showRoom = listShowRoom.show_room;
-  console.log(showRoom);
 
   const handleOnChangeCheckbox = (position) => {
     const updatedCheckedState = checkedState.map((item, index) =>
@@ -89,8 +90,11 @@ function BookingStatRoomFour ({ idBooking, dateBooking, timeBooking, user, getUr
       requestId: base64.encode(uuidv4()),
       extraData: user.email
     }
-    console.log(datapayment);
-    axios.post('/api/payment/momo_redirect', datapayment)
+    axios.post('/api/payment/momo_redirect', datapayment, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    })
     .then((res) => {
       console.log(res);
       const url = res.data

@@ -12,7 +12,7 @@ ul li {
   margin-right: 5px;
 }
 .show-menu {
-  z-index: 99999;
+  z-index: 999;
 }
 .menu {
   width: 180px;

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./../../css/MovieDetail.css";
 
@@ -8,10 +9,19 @@ const MovieDetail = ({ movie, getIdBooking }) => {
     window.scrollTo(0, 0)
   }, [])
   const urlImg = axios.defaults.baseURL;
-  console.log(movie);
   const [valueRadio, setValueRadio] = useState('detail');
 
-  const { id, film_name, category, poster, duration, like, film_description, film_status, director, actor } = movie;
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => {
+    setShow(false);
+  }
+  const handleShow = () => {
+    setShow(true);
+  }
+
+
+  const { id, film_name, category, poster, duration, like, film_description, film_status, director, actor, film_trailer } = movie;
   return (
     <div className="movie-detail">
       <div className="breadcrums">
@@ -87,12 +97,12 @@ const MovieDetail = ({ movie, getIdBooking }) => {
             }
             {
               valueRadio === 'trailer' ? (
-                <label className="btn btn-danger btn-sm ml-2">
+                <label className="btn btn-danger btn-sm ml-2" onClick={() => handleShow()}>
                   Trailer
                   <input id="trailer" value="trailer" name="select" type="radio" />
                 </label>
               ) : (
-                <label className="btn btn-outline-danger btn-sm ml-2">
+                <label className="btn btn-outline-danger btn-sm ml-2" onClick={() => handleShow()}>
                   Trailer
                   <input id="trailer" value="trailer" name="select" type="radio" />
                 </label>
@@ -107,9 +117,16 @@ const MovieDetail = ({ movie, getIdBooking }) => {
                 </p>
               </div>
               ) : (
-                <div className="trailer">
-                  <p>Video</p>
-                </div>
+                <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}  size="lg">
+                  <Modal.Header closeButton>
+                    <Modal.Title>
+                      Trailer
+                    </Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    <iframe width="100%" height="450" src={film_trailer}></iframe>
+                  </Modal.Body>
+                </Modal>
               )
           }
         </div>

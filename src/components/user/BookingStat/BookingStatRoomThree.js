@@ -12,7 +12,6 @@ function BookingStatRoomThree ({ idBooking, dateBooking, timeBooking, user, getU
     },
     show_room: []
   });
-  console.log(listShowRoom);
   const [checkedState, setCheckedState] = useState(
     new Array(28).fill(false)
   );
@@ -25,7 +24,6 @@ function BookingStatRoomThree ({ idBooking, dateBooking, timeBooking, user, getU
   useEffect(() => {
     axios.get(`api/select-list/show?product_id=${idBooking}&show_date=${dateBooking}&show_time=${timeBooking}&room_id=3`).then((res) => {
       const data = res.data.data[0];
-      console.log(data);
       setListShowRoom(data);
     })
   }, [getListShow]);
@@ -37,9 +35,12 @@ function BookingStatRoomThree ({ idBooking, dateBooking, timeBooking, user, getU
       show_id: idBooking,
       show_room
     }
-    axios.post('/api/payment/calculate_payment', data)
+    axios.post('/api/payment/calculate_payment', data, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    })
     .then((res) => {
-      console.log(res);
       const pay = res.data.data.paid_amount;
       setCalcPayment(pay)
     })
@@ -49,7 +50,6 @@ function BookingStatRoomThree ({ idBooking, dateBooking, timeBooking, user, getU
   }, [getpay])
 
   const showRoom = listShowRoom.show_room;
-  console.log(showRoom);
 
   const handleOnChangeCheckbox = (position) => {
     const updatedCheckedState = checkedState.map((item, index) =>
@@ -89,10 +89,12 @@ function BookingStatRoomThree ({ idBooking, dateBooking, timeBooking, user, getU
       requestId: base64.encode(uuidv4()),
       extraData: user.email
     }
-    console.log(datapayment);
-    axios.post('/api/payment/momo_redirect', datapayment)
+    axios.post('/api/payment/momo_redirect', datapayment, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    })
     .then((res) => {
-      console.log(res);
       const url = res.data
       getUrlPay(url);
       const databooked =  {

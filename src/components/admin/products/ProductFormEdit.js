@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import DurationPicker from "react-duration-picker";
 
 function ProductFormEdit ({ handleClose, product, handleReload }) {
-    const types = ["Hành Động", "Hài Kịch", "Drama", "Kỳ Thú", "Kinh Dị", "Bí Ẩn", "Lãng Mạn", "Kịch Tính", "Hoạt Hình"];
+    const types = ["Hành Động", "Hài Kịch", "Drama", "Kì Thú", "Kinh Dị", "Bí Ẩn", "Lãng Mạng", "Kịch Tính", "Hoạt Hình"];
     const [checkedState, setCheckedState] = useState(
         new Array(types.length).fill(false)
     );
@@ -12,6 +12,7 @@ function ProductFormEdit ({ handleClose, product, handleReload }) {
     const [name, setName] = useState(product.film_name ?? "");
     const [category, setCategory] = useState([]);
     const [oldPoster, setOldPoster] = useState(product.poster ?? "");
+    const [trailer, setTrailer] = useState(product.film_trailer ?? "");
     const [duration, setDuration] = useState(product.duration ?? "");
     const [description, setDescription] = useState(product.film_description ?? "");
     const [status, setStatus] = useState(product.film_status.toString() ?? "");
@@ -64,7 +65,6 @@ function ProductFormEdit ({ handleClose, product, handleReload }) {
                 "Content-type": "multipart/form-data",
             }
         }).then((res) => {
-            console.log(res);
             setOldPoster(res.data);
         }).catch((err) => {
             console.log(err)
@@ -83,11 +83,11 @@ function ProductFormEdit ({ handleClose, product, handleReload }) {
             film_name: name,
             poster: oldPoster,
             category: category.toString(),
+            film_trailer: trailer,
             duration,
             film_description: description,
             film_status: status
         }
-        console.log(data)
         axios
             .put(`/api/products/${product.id}`, data , {
                 headers: {
@@ -148,6 +148,11 @@ function ProductFormEdit ({ handleClose, product, handleReload }) {
                                onChange={(e) => handleFileSelected(e)}
                         />
                         <span className="ml-2">{oldPoster}</span>
+                    </div>
+                    <div className="form-group">
+                        <label>Trailer:</label>
+                        <input type="text" className="form-control" name="name" value={trailer}
+                               onChange={(e) => setTrailer(e.target.value)}/>
                     </div>
                     <div className="form-group">
                         <label>Thời lượng phim:</label>

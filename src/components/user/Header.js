@@ -7,7 +7,6 @@ const Header = ({ user, setUserLogin }) => {
   const handleLogout = () => {
     localStorage.clear();
     setUserLogin(null);
-    console.log("logout success");
   }
   return (
     <div className="header">

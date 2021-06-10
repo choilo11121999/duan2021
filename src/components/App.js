@@ -20,6 +20,8 @@ import BookingStatRoomThree from './user/BookingStat/BookingStatRoomThree';
 import BookingStatRoomFour from './user/BookingStat/BookingStatRoomFour';
 import Payment from './user/Payment';
 import PaymentSucess from './user/PaymentSuccess';
+import Recommend from './user/Recommend';
+import PrivateRoute from './auth/PrivateRouter';
 
 const App = () => {
   const [user, setUser] = useState('');
@@ -32,7 +34,7 @@ const App = () => {
   });
   const [urlPay, setUrlPay] = useState("");
   const role = localStorage.getItem('role');
-  console.log("role",role);
+  const [regetUser, setRegetUser] = useState(false);
   useEffect(() => {
     axios.get('/api/auth/user')
     .then(
@@ -45,7 +47,7 @@ const App = () => {
         console.log(err);
       }
     );
-  }, []);
+  }, [regetUser]);
 
   const setUserLogin = (user_login) => {
     setUser(user_login)
@@ -84,23 +86,22 @@ const App = () => {
           <div className="App"> 
             <Header user={user} setUserLogin={setUserLogin} />
 
-            <Route path="/" exact component={() => <Home setProductNameFromHome={setProductNameFromHome} phimName={productName} getIdBooking={getIdBooking} getMovie={getMovie} />} />
+            <Route path="/" exact component={() => <Home setProductNameFromHome={setProductNameFromHome} phimName={productName} getIdBooking={getIdBooking} getMovie={getMovie} user={user} />} />
             <Route path="/user/login" exact component={() => <Login setUserLogin={setUserLogin} />}/>
             <Route path="/user/register" exact component={Register}/>
-            <Route path="/user/change_info" exact component={ChangeInfo}/>
-            <Route path="/user/change_password" exact component={ChangePassword}/>
+            <Route path="/user/change_info" exact component={() => <ChangeInfo user={user} setUserLogin={setUserLogin} />}/>
+            <Route path="/user/change_password" exact component={() => <ChangePassword setUserLogin={setUserLogin} />}/>
             <Route path="/movie/movie_playing" exact component={() => <MoviePlaying getIdBooking={getIdBooking} getMovie={getMovie} />} />
             <Route path="/movie/movie_upcoming" exact component={() => <MovieUpComing getMovie={getMovie} />} />
             <Route path={`/movie/movie_detail/${movie.id}`} exact component={() => <MovieDetail movie={movie} getIdBooking={getIdBooking} />} />
-            <Route path={`/movie/booking_time/${idBooking}`} exact component={() => <BookingTime idBooking={idBooking} getIdDateTimeBooking={getIdDateTimeBooking} />} />
-            <Route path={`/movie/booking_stat_01/${idBooking}`} component={() => <BookingStatRoomOne idBooking={idBooking} dateBooking={dateBooking} timeBooking={timeBooking} user={user} getUrlPay={getUrlPay} />} />
-            <Route path={`/movie/booking_stat_02/${idBooking}`} component={() => <BookingStatRoomTwo idBooking={idBooking} dateBooking={dateBooking} timeBooking={timeBooking} user={user} getUrlPay={getUrlPay} />} />
-            <Route path={`/movie/booking_stat_03/${idBooking}`} component={() => <BookingStatRoomThree idBooking={idBooking} dateBooking={dateBooking} timeBooking={timeBooking} user={user} getUrlPay={getUrlPay} />} />
-            <Route path={`/movie/booking_stat_04/${idBooking}`} component={() => <BookingStatRoomFour idBooking={idBooking} dateBooking={dateBooking} timeBooking={timeBooking} user={user} getUrlPay={getUrlPay} />} />
-            <Route path="/payment" component={() => <Payment urlPay={urlPay} />} />
-            <Route path="/payment_success" component={() => <PaymentSucess />} />
-            <Route path="/user/change_password" component={ChangePassword} />
-            <Route path="/user/change_info" component={ChangeInfo} />
+            <PrivateRoute path={`/movie/booking_time/${idBooking}`} exact component={() => <BookingTime idBooking={idBooking} getIdDateTimeBooking={getIdDateTimeBooking} />} />
+            <PrivateRoute path={`/movie/booking_stat_01/${idBooking}`} component={() => <BookingStatRoomOne idBooking={idBooking} dateBooking={dateBooking} timeBooking={timeBooking} user={user} getUrlPay={getUrlPay} />} />
+            <PrivateRoute path={`/movie/booking_stat_02/${idBooking}`} component={() => <BookingStatRoomTwo idBooking={idBooking} dateBooking={dateBooking} timeBooking={timeBooking} user={user} getUrlPay={getUrlPay} />} />
+            <PrivateRoute path={`/movie/booking_stat_03/${idBooking}`} component={() => <BookingStatRoomThree idBooking={idBooking} dateBooking={dateBooking} timeBooking={timeBooking} user={user} getUrlPay={getUrlPay} />} />
+            <PrivateRoute path={`/movie/booking_stat_04/${idBooking}`} component={() => <BookingStatRoomFour idBooking={idBooking} dateBooking={dateBooking} timeBooking={timeBooking} user={user} getUrlPay={getUrlPay} />} />
+            <PrivateRoute path="/payment" component={() => <Payment urlPay={urlPay} />} />
+            <PrivateRoute path="/payment_success" component={() => <PaymentSucess />} />
+            <Route path="/survey" component={() => <Recommend />} />
 
             <Footer />
           </div>

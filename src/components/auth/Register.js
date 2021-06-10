@@ -23,7 +23,7 @@ const Register = () => {
   const validateEmail = new RegExp("^[a-z0-9]+@gmail([\.])com$");
 
   const validatePassword = new RegExp(
-    "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*[!@$^%()])[A-Za-][a-zA-Z0-9!@$%^&()]{6,}$"
+    "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*[!@$^%()])[A-Za-][a-zA-Z0-9!@$%^&()]{8,}$"
   );
   const validdateName = new RegExp("^[a-zA-Z0-9]{1,20}$");
 
@@ -154,7 +154,7 @@ const Register = () => {
                 required
               />
               {passworErr ? (
-                <span style={{ color: "red" }}>Mật khẩu sai định dạng (gồm ít nhất 1 chữ hoa, chữ thường, số và ký tự đặc biệt !@$^%())</span>
+                <span style={{ color: "red" }}>Mật khẩu sai định dạng (gồm ít nhất 8 chữ số gồm 1 chữ hoa, chữ thường, số và ký tự đặc biệt !@$^%())</span>
               ) : (
                 ""
               )}

@@ -6,15 +6,6 @@ import i5 from './../../img/banner/5.png';
 import i6 from './../../img/banner/6.jpg';
 import i7 from './../../img/banner/7.jpg';
 
-import s1 from './../../img/selection/1.jpg';
-import s2 from './../../img/selection/2.jpg';
-import s3 from './../../img/selection/3.jpg';
-import s4 from './../../img/selection/4.jpg';
-import s5 from './../../img/selection/5.jpg';
-import s6 from './../../img/selection/6.jpg';
-import s7 from './../../img/selection/7.jpg';
-import s8 from './../../img/selection/8.jpg';
-
 import e1 from './../../img/event/1.jpg';
 import e2 from './../../img/event/2.jpg';
 import e3 from './../../img/event/3.jpg';
@@ -31,22 +22,42 @@ import "slick-carousel/slick/slick-theme.css";
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Slider from "react-slick";
+import { Modal } from 'react-bootstrap';
 
-const Home = ({ setProductNameFromHome, phimName, getIdBooking, getMovie }) => {
+const Home = ({ setProductNameFromHome, phimName, getIdBooking, getMovie, user }) => {
   const urlImg = axios.defaults.baseURL;
   const [listMovie, setListMovie] = useState(
     new Array()
   );
+  const [listMovieSuggest, setListMovieSuggest] = useState(
+    new Array()
+  );
+  const [linkTrailer, setLinktrailer] = useState("");
 
+  const first_time = localStorage.getItem("first_time");
   useEffect(() => {
+    getMovieSuggest();
     getMoviePlaying();
   }, []);
 
   const getMoviePlaying = () => {
     axios.get('/api/select-list/product?film_status=1')
       .then((res) => {
-        console.log(res.data.data);
         setListMovie(res.data.data.reverse());
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+
+  const getMovieSuggest = () => {
+    axios.get('/api/recommend', {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+      .then((res) => {
+        setListMovieSuggest(res.data.data.reverse());
       })
       .catch((err) => {
         console.log(err);
@@ -77,6 +88,16 @@ const Home = ({ setProductNameFromHome, phimName, getIdBooking, getMovie }) => {
       },
     ],
   }
+
+  const [show, setShow] = useState(false);
+
+    const handleClose = () => {
+      setShow(false);
+    }
+    const handleShow = (link) => {
+      setLinktrailer(link)
+      setShow(true);
+    }
 
   return (
     <div className="container home mb-4">
@@ -128,16 +149,16 @@ const Home = ({ setProductNameFromHome, phimName, getIdBooking, getMovie }) => {
       {/* Movie selection */}
       <div className="movie-selection">
         <div className="movie-selection-title">
-          <h2></h2>
+          <h2 className="d-flex align-content-center justify-content-around"><span className="bg-light text-center" style={{zIndex:"99", lineHeight: "4rem"}}>LỰA CHỌN PHIM</span></h2>
         </div>
         <Slider {...settings} className="mt-4">
           {listMovie.map((movie) => (
-            <div className="product position-relative" key={movie.id}>
+            <div className="product position-relative text" key={movie.id}>
               <img src={urlImg+movie.poster} className="rounded border border-primary mx-auto d-block" width={260} height={370} />
               <div className="btn-trailer position-absolute text-center" style={{top: "30%", left: "0", width: "100%"}}>
-                <button className="btn btn-lg btn-danger">Xem Trailer</button>
+                <button className="btn btn-lg btn-danger" onClick={() => handleShow(movie.film_trailer)}>Xem Trailer</button>
               </div>
-              <div className="product-content position-absolute px-3" style={{bottom: "5px", left: "0", width: "100%"}}>
+              <div className="product-content position-absolute px-3 pb-3 ml-2" style={{bottom: "0", left: "0", width: "260px", background: "rgba(0,0,0,0.5)"}}>
                 <h3 style={{color: "#fff", textAlign: "center"}}>{movie.film_name}</h3>
                 <div className="d-flex justify-content-around">
                   <Link to={`/movie/movie_detail/${movie.id}`} title="Xem chi tiết" className="button btn-sm btn-danger" onClick={() => getMovie(movie)}>
@@ -151,13 +172,70 @@ const Home = ({ setProductNameFromHome, phimName, getIdBooking, getMovie }) => {
             </div>
           ))}
         </Slider>
+        <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}  size="lg">
+          <Modal.Header closeButton>
+            <Modal.Title>
+              Trailer
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <iframe width="100%" height="450" src={linkTrailer}></iframe>
+          </Modal.Body>
+        </Modal>
       </div>
+
+      {
+        first_time === "1" ? (
+          <div className="movie-selection">
+            <div className="movie-selection-title">
+              <h2 className="d-flex align-content-center justify-content-around"><span className="bg-light" style={{zIndex:"99", lineHeight: "4rem"}}>GỢI Ý CHO BẠN</span></h2>
+            </div>
+            <Slider {...settings} className="mt-4">
+              {listMovieSuggest.map((movie) => (
+                <div className="product position-relative" key={movie.id}>
+                  <img src={urlImg+movie.poster} className="rounded border border-primary mx-auto d-block" width={260} height={370} />
+                  <div className="btn-trailer position-absolute text-center" style={{top: "30%", left: "0", width: "100%"}}>
+                    <button className="btn btn-lg btn-danger" data-toggle="modal" data-target="#modal-trailer">Xem Trailer</button>
+                  </div>
+                  <div className="product-content position-absolute px-3" style={{bottom: "5px", left: "0", width: "100%"}}>
+                    <h3 style={{color: "#fff", textAlign: "center"}}>{movie.film_name}</h3>
+                    <div className="d-flex justify-content-around">
+                      <Link to={`/movie/movie_detail/${movie.id}`} title="Xem chi tiết" className="button btn-sm btn-danger" onClick={() => getMovie(movie)}>
+                          Xem chi tiết
+                      </Link>
+                      <Link to={`/movie/booking_time/${movie.id}`} title="Mua vé" className="button btn-sm btn-danger" onClick={() => getIdBooking(movie.id)}>
+                          Mua vé
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </Slider>
+            <div className="modal fade" id="modal-trailer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+              <div className="modal-dialog modal-lg" role="document">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h5 className="modal-title" id="exampleModalLongTitle">Trailer</h5>
+                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div className="modal-body">
+                  <iframe width="100%" height="450" src="https://www.youtube.com/embed/PDp4Ic8ZGUM"></iframe>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (<div></div>)
+      }
+      
       {/* ############ */}
 
       {/* Event */}
       <div className="event-selection">
         <div className="event-selection-title">
-          <h2></h2>
+          <h2 className="d-flex align-content-center justify-content-around"><span className="bg-light" style={{zIndex:"99", lineHeight: "4rem"}}>SỰ KIỆN</span></h2>
         </div>
         <div id="event-selection" className="carousel slide event-selection carousel-multi-item w-100 mt-4" data-ride="carousel">
           <ol className="carousel-indicators">

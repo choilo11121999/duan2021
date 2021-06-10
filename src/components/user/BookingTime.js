@@ -45,7 +45,7 @@ const BookingTime = ({ idBooking, getIdDateTimeBooking }) => {
     axios
     .get(`api/select-list/show?product_id=${idBooking}&show_date=${date}`)
     .then((res) => {
-      setTimeData(res.data.data.reverse());
+      setTimeData(res.data.data);
     })
     .catch((err) => {
       console.log(err);
@@ -61,7 +61,7 @@ const BookingTime = ({ idBooking, getIdDateTimeBooking }) => {
         <div className="c-booking-items">
           <div className="radio-btn btn-group-toggle d-flex justify-content-center mb-3 mr-2" data-toggle="buttons">
             {
-              listDate2.reverse().map((date, index) => {
+              listDate2.sort().map((date, index) => {
                 const day = new Date(date);
                 const dayWeek = day.toString().slice(0,3)
                 const dateArr = date.split(/[-]+/);

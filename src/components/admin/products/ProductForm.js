@@ -4,13 +4,14 @@ import Swal from "sweetalert2";
 import DurationPicker from "react-duration-picker";
 
 function ProductForm ({ handleClose, getReLoad }) {
-    const types = ["Hành Động", "Hài Kịch", "Drama", "Kỳ Thú", "Kinh Dị", "Bí Ẩn", "Lãng Mạn", "Kịch Tính", "Hoạt Hình"];
+    const types = ["Hành Động", "Hài Kịch", "Drama", "Kì Thú", "Kinh Dị", "Bí Ẩn", "Lãng Mạng", "Kịch Tính", "Hoạt Hình"];
     const [checkedState, setCheckedState] = useState(
         new Array(types.length).fill(false)
     );
     const [name, setName] = useState("");
     const [category, setCategory] = useState([]);
     const [oldPoster, setOldPoster] = useState("");
+    const [trailer, setTrailer] = useState("");
     const [duration, setDuration] = useState("");
     const [description, setDescription] = useState("");
     const [status, setStatus] = useState("");
@@ -59,6 +60,7 @@ function ProductForm ({ handleClose, getReLoad }) {
         let fd = new FormData();
         fd.append('film_name', name);
         fd.append('poster', oldPoster);
+        fd.append('film_trailer', trailer);
         fd.append('category', category);
         fd.append('duration', duration);
         fd.append('film_description', description);
@@ -123,6 +125,11 @@ function ProductForm ({ handleClose, getReLoad }) {
                                onChange={(e) => handleFileSelected(e)}
                         />
                         <span className="ml-2">{oldPoster}</span>
+                    </div>
+                    <div className="form-group">
+                        <label>Trailer:</label>
+                        <input type="text" className="form-control" name="name"
+                            onChange={(e) => setTrailer(e.target.value)}/>
                     </div>
                     <div className="form-group">
                         <label>Thời lượng phim:</label>

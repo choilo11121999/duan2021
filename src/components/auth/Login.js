@@ -1,14 +1,19 @@
 import "./../../css/Login.css";
-import { Link, Redirect } from "react-router-dom";
-import { useState } from "react";
+import { Link, Redirect, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import Swal from 'sweetalert2';
-const Login = ({ setUserLogin }) => {
+const Login = ({ setUserLogin, handleShow }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [islogin, setIslogin] = useState(false);
   const [role, setRole] = useState('');
   const [status, setStatus] = useState(false);
+  const [first_time_user, setFirst_time_user] = useState("");
+  const { state } = useLocation();
   let msgErr;
 
   const data = {
@@ -21,9 +26,10 @@ const Login = ({ setUserLogin }) => {
     axios
       .post("/api/auth/login", data)
       .then((res) => {
-        console.log("login success", res.data);
         localStorage.setItem("token", res.data.data.access_token);
         localStorage.setItem("role", res.data.data.user.role);
+        localStorage.setItem("first_time", res.data.data.user.first_time_user)
+        setFirst_time_user(res.data.data.user.first_time_user);
         setIslogin(true);
         setRole(res.data.data.user.role)
         setUserLogin(res.data.data.user);
@@ -38,7 +44,11 @@ const Login = ({ setUserLogin }) => {
   };
 
   if (islogin && role === null) {
-    return <Redirect to={"/"} />;
+    if (first_time_user === 0) {
+      return <Redirect to={"/survey"} />;
+    } else {
+      return <Redirect to={state?.from || "/"} />;
+    }
   } else if (islogin && role === 1) {
     return <Redirect to={"/admin/products"} />;
   }
@@ -47,6 +57,7 @@ const Login = ({ setUserLogin }) => {
   } else {
     msgErr = "";
   }
+
 
   return (
     <div className="login rounded">

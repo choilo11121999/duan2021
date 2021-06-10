@@ -17,11 +17,6 @@
     width: 100%;
 }
 
-.movie-selection .movie-selection-title h2 {
-  background: url(./../img/h3_movie_selection.gif) no-repeat scroll center center / 406px 41px #FDFCF0;
-  display: inline-block;
-  width: 40%;
-}
 
 .movie-selection-title h2 {
   height: 60px;
@@ -35,12 +30,6 @@
 .product:hover .btn-trailer,
 .product:hover .product-content {
   display: block;
-}
-
-.event-selection .event-selection-title h2 {
-  background: url(./../img/h3_event.gif) no-repeat scroll center center / 142px 41px #FDFCF0;
-  display: inline-block;
-  width: 18%;
 }
 
 .event-selection-title h2 {

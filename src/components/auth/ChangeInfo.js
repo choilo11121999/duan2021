@@ -1,24 +1,50 @@
+import axios from 'axios';
 import React, {Component, useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import "../../css/ChangeInfo.css";
 
-function ChangeInfo (props) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
+function ChangeInfo ({ user, setUserLogin }) {
+  const [name, setName] = useState(user.name);
+  const [email, setEmail] = useState(user.email);
+  const [phone, setPhone] = useState(user.phone);
+  const [address, setAddress] = useState(user.address);
+  const [city, setCity] = useState(user.city);
+  const [updateSuccess, setUpdateSuccess] = useState(false);
 
   const data = {
-    name, email, phone, address, city,
+    id: user.id, name, email, phone, address, city,
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    axios.put(`/api/users/${user.id}`, data, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    }).then((res) => {
+      setUpdateSuccess(true);
+      const user = {
+        id: res.data.data.id,
+        name: res.data.data.name,
+        email: res.data.data.email,
+        phone: res.data.data.phone,
+        address: res.data.data.address,
+        city: res.data.data.city
+      }
+      setUserLogin(user)
+      Swal.fire({
+        icon: 'success',
+        text: 'Đổi thông tin thành công!',
+      })
+    })
   };
+  if(updateSuccess === true) {
+    return <Redirect to="/" />
+  }
   return (
     <>
-      <div className="c-change-info">
+      <div className="c-change-info rounded">
         <div className="change-info-header">
           <h2 className="text-center w-100 font-weight-bold">Sửa thông tin cá nhân</h2>
         </div>
@@ -30,6 +56,7 @@ function ChangeInfo (props) {
                   type="text" name="name" id="name"
                   placeholder="Nhập tên"
                   className="form-control" required
+                  value={name}
                   onChange={(e) => setName(e.target.value)}
                 />
               </label>
@@ -39,6 +66,7 @@ function ChangeInfo (props) {
                 <input type="email" name="email" id="email"
                   placeholder="Nhập email"
                   className="form-control" required
+                  value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </label>
@@ -48,6 +76,7 @@ function ChangeInfo (props) {
                 <input type="text" name="phone" id="phone"
                   placeholder="Nhập số điện thoại"
                   className="form-control" required
+                  value={phone}
                   onChange={(e) => setPhone(e.target.value)} 
                 />
               </label>
@@ -57,6 +86,7 @@ function ChangeInfo (props) {
                 <input type="text" name="address" id="address"
                   placeholder="Nhập địa chỉ"
                   className="form-control" required
+                  value={address}
                   onChange={(e) => setAddress(e.target.value)}
                 />
               </label>
@@ -67,6 +97,7 @@ function ChangeInfo (props) {
                   type="text" name="city"id="city"
                   placeholder="Nhập thành phố"
                   className="form-control" required
+                  value={city}
                   onChange={(e) => setCity(e.target.value)}
                 />
               </label>

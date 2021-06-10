@@ -30,7 +30,6 @@ const ProductList = ({ getReLoad }) => {
             }
         })
             .then((res) => {
-                console.log(res);
                 let data = res.data.data.data;
                 setListProduct(data);
             })

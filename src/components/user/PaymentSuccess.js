@@ -1,15 +1,22 @@
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const PaymentSucess = () => {
   const {location} = useHistory();
   const dataBooked = JSON.parse(localStorage.getItem("dataBooked"));
-  console.log(dataBooked);
-  console.log(location.search.includes("message=Success"));
   const handleBooking = () => {
-    axios.post('/api/payments', dataBooked)
+    axios.post('/api/payments', dataBooked, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    })
       .then((res) => {
         console.log(res);
+        Swal.fire({
+          icon: 'success',
+          text: 'Đặt vé thành công!',
+        })
       })
       .catch((err) => console.log(err));
 
