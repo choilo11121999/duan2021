@@ -10,6 +10,7 @@ const Recommend = () => {
   useEffect(() => {
     axios.get('/api/select-list/product')
       .then((res) => {
+        console.log(res);
         setListMovieRecommend(res.data.data);
       })
       .catch((err) => {
@@ -28,6 +29,7 @@ const Recommend = () => {
   };
 
   const [listId, setListId] = useState([]);
+  console.log(listId);
   const getInfo = (index, category) => {
     let updateId = listId;
     if (index) {
@@ -40,82 +42,92 @@ const Recommend = () => {
     }
     setListId(updateId);
   }
-
-  const data = {
-    "category": [
-      {
-        "id": 0,
-        "count": 0
-      },
-      {
-        "id": 1,
-        "count": 0
-      },
-      {
-        "id": 2,
-        "count": 0
-      },
-      {
-        "id": 3,
-        "count": 0
-      },
-      {
-        "id": 4,
-        "count": 0
-      },
-      {
-        "id": 5,
-        "count": 0
-      },
-      {
-        "id": 6,
-        "count": 0
-      },
-      {
-        "id": 7,
-        "count": 0
-      },
-      {
-        "id": 8,
-        "count": 0
-      }
-    ]
-  }
-  listId.forEach((id) => {
-    switch (id) {
-      case 0:
-        data.category[0].count++;
-        break;
-      case 1:
-        data.category[1].count++;
-        break;
-      case 2:
-        data.category[2].count++;
-        break;
-      case 3:
-        data.category[3].count++;
-        break;
-      case 4:
-        data.category[4].count++;
-        break;
-      case 5:
-        data.category[5].count++;
-        break;
-      case 6:
-        data.category[6].count++;
-        break;
-      case 7:
-        data.category[7].count++;
-        break;
-      case 8:
-        data.category[8].count++;
-        break;
-      default:
-        break;
-    }
-  })
   
   const postData = () => {
+    let id1 = 0; 
+    let id2 = 0; 
+    let id3 = 0; 
+    let id4 = 0; 
+    let id5 = 0; 
+    let id6 = 0; 
+    let id7 = 0; 
+    let id8 = 0; 
+    let id9 = 0;
+    listId.forEach((id) => {
+      console.log(id);
+      switch (id) {
+        case 1:
+          id1++;
+          break;
+        case 2:
+          id2++;
+          break;
+        case 3:
+          id3++;
+          break;
+        case 4:
+          id4++;
+          break;
+        case 5:
+          id5++;
+          break;
+        case 6:
+          id6++;
+          break;
+        case 7:
+          id7++;
+          break;
+        case 8:
+          id8++;
+          break;
+        case 9:
+          id9++;
+          break;
+      }
+    })
+    console.log("id1", id9);
+
+    const data = {
+      "category": [
+        {
+          "id": 1,
+          "count": id1
+        },
+        {
+          "id": 2,
+          "count": id2
+        },
+        {
+          "id": 3,
+          "count": id3
+        },
+        {
+          "id": 4,
+          "count": id4
+        },
+        {
+          "id": 5,
+          "count": id5
+        },
+        {
+          "id": 6,
+          "count": id6
+        },
+        {
+          "id": 7,
+          "count": id7
+        },
+        {
+          "id": 8,
+          "count": id8
+        },
+        {
+          "id": 9,
+          "count": id9
+        }
+      ]
+    }
+    console.log(data);
     axios.post('/api/save/user_category', data, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
